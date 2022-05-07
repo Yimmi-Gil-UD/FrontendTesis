@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  isLogged = true;
+  userName = 'Yimmy';
+
   constructor() {}
+
+
 
 }

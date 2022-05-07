@@ -1,0 +1,52 @@
+<ion-menu side="start" menuId="first" contentId="main" swipeGesture="false">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item routerLink="/">
+          <ion-icon name="home" slot="start"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/admin">
+          <ion-icon name="list-circle" slot="start"></ion-icon>
+          <ion-label>Notas Enfermeria</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/user">
+          <ion-icon name="list-circle" slot="start"></ion-icon>
+          <ion-label>Notas Enfermeria</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/nuevo-nota">
+          <ion-icon name="add-circle" slot="start"></ion-icon>
+          <ion-label>Nueva Nota</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/login">
+          <ion-icon name="log-in" slot="start"></ion-icon>
+          <ion-label>Iniciar Sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/registro">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          <ion-label>Registro</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item (click)="logOut()">
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>Cerrar Sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+        </ion-list>
+  </ion-content>
