@@ -12,4 +12,14 @@ export class EditarNotaPage implements OnInit {
   ngOnInit() {
   }
 
+  vaciar()
+  {
+
+  }
+
+  onUpdate()
+  {
+    
+  }
+
 }

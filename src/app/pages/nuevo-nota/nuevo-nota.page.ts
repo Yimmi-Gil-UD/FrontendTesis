@@ -12,4 +12,13 @@ export class NuevoNotaPage implements OnInit {
   ngOnInit() {
   }
 
+  vaciar(){
+
+  }
+
+  onCreate()
+  {
+    
+  }
+
 }

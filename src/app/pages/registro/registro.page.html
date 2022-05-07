@@ -1,5 +1,46 @@
 <app-header title="Registro"></app-header>
 
 <ion-content>
-
+    <h3 class="ion-text-center">INGRESAR</h3>
+    <form #f="ngForm" (ngSubmit)="onRegistrar()" novalidate>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-text>
+          <ion-label position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" name="nombres"></ion-input>
+        </ion-text>
+        <ion-text>
+            <ion-label position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="apellidos"></ion-input>
+          </ion-text>
+          <ion-text>
+            <ion-label position="floating">Correo:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="correo" email></ion-input>
+          </ion-text>
+          <ion-text>
+            <ion-label position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="password" name="contraseña"></ion-input>
+          </ion-text>
+          <ion-text>
+            <ion-label position="floating">Número Identifiación:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" name="numIdentifiacion"></ion-input>
+          </ion-text>
+        <div class="ion-padding">
+          <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+              <ion-icon name="person-add" slot="icon-only"></ion-icon>
+              Crear Cuenta
+          </ion-button>
+        </div>
+      </ion-list>
+    </form>
+    <div class="ion-text-center ion-padding">
+        <ion-button color="tertiary" expand="block" class="ion-no-margin" routerLink="/login">
+            <ion-icon name="log-in" slot="icon-only"></ion-icon>
+            Iniciar Sesión
+        </ion-button>
+    </div>
+    <div class="ion-text-center">
+        <ion-label position="floating">
+            <ion-text color="danger">*</ion-text>campos obligatorios
+        </ion-label>
+    </div>
 </ion-content>

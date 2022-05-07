@@ -1,5 +1,34 @@
 <app-header title="Editar notas de enfermeria"></app-header>
 
 <ion-content>
-
+    <h3 class="ion-text-center">EDITAR NOTA DE ENFERMERIA</h3>
+    <form #f="ngForm" (ngSubmit)="onUpdate()" novalidate>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-text>
+          <ion-label position="floating">Nombre Del Producto:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" name="nombre"></ion-input>
+        </ion-text>
+        <ion-text>
+          <ion-label position="floating">Precio:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="number" name="precio"></ion-input>
+        </ion-text>
+        <div class="ion-padding">
+          <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+              <ion-icon name="create" slot="icon-only"></ion-icon>
+              Actualizar
+              </ion-button>
+        </div>
+        <div class="ion-padding">
+          <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="vaciar()">
+              <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
+              Limpiar Campos
+              </ion-button>
+        </div>
+      </ion-list>
+    </form>
+    <div class="ion-text-center">
+        <ion-label position="floating">
+            <ion-text color="danger">*</ion-text>campos obligatorios
+        </ion-label>
+    </div>
 </ion-content>
