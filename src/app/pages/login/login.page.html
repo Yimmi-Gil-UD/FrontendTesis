@@ -6,11 +6,11 @@
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-text>
           <ion-label position="floating">Correo:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="text" name="correo"></ion-input>
+          <ion-input required type="text" name="correo" [(ngModel)]="this.correo" ></ion-input>
         </ion-text>
         <ion-text>
           <ion-label position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="password" name="password"></ion-input>
+          <ion-input required type="password" name="password" [(ngModel)]="this.password"></ion-input>
         </ion-text>
         <div class="ion-padding">
           <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
