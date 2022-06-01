@@ -11,14 +11,17 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule} from '@angular/fire/compat/firestore'
+import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import { HttpClientModule } from '@angular/common/http'
+
+
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig)
-            ,AngularFirestoreModule],
+            ,AngularFirestoreModule,HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

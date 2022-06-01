@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
+
 
 
 
@@ -11,11 +13,17 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class LoginPage implements OnInit {
 
 
-  idUsuario:string;
-  correo:null;
-  password:null;
 
-  constructor(private firestore: FirebaseService) { }
+  idUsuario = '';
+  correo = '';
+  password = '';
+  mensajeError = '';
+
+
+  constructor(private firestore: FirebaseService, 
+    private toastController: ToastController) { }
+
+  
 
   ngOnInit() {
     
@@ -24,37 +32,31 @@ export class LoginPage implements OnInit {
   onLogin()
   {
 
-    //console.log(this.firestore.getValor());  
-    this.idUsuario = this.firestore.getValor();
+    this.getIdUserByCorreo(this.correo);
     console.log(this.correo);
     console.log(this.password);
+    this.idUsuario = this.firestore.valor;
     console.log(this.idUsuario);
-    this.getIdUserByCorreo(this.correo);
+ 
+    
+    //this.loginEnfermera = new LoginEnfermera("jesY7wlt3NRFjNlKIXX2","User@gmail.com","123456789**95");
+
+
+    //this.firestore.valor = "";
     this.correo = null;
     this.password = null;
-
-
+    
   }
 
 
-  /*
-  getIdUser(correoUser:string){
-    const path = 'Usuario/';
-    this.firestore.getCollectionParametro<string>(path,'correo',correoUser ).subscribe(res =>{
-    console.log(res);
-    
-    });
-    
-  }*/
-
 
   getIdUserByCorreo(correoUser:string){
-    const path = 'Usuario/';
+    const path = 'Enfermera/';
     this.firestore.GetUsersDataParametro(path,'correo',correoUser );/*.subscribe(res =>{
     console.log(res);
     
     });*/
-    this.correo = null;
+
   }
 
 }
