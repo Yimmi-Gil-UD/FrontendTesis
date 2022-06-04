@@ -1,11 +1,10 @@
-<app-header title="Registro"></app-header>
+<app-header title="Crear Enfermera"></app-header>
 
 <ion-content>
   <h3 class="ion-text-center"></h3>
   <div class="centrado">
     <ion-icon name="person-circle-outline" style="zoom:6.0;" ></ion-icon>
   </div>
-    <h3 class="ion-text-center"></h3>
     <h3 class="ion-text-center"></h3>
     <form #f="ngForm" (ngSubmit)="onRegistrar()" novalidate>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
@@ -39,17 +38,11 @@
         <div class="ion-padding">
           <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
               <ion-icon name="person-add" slot="icon-only"></ion-icon>
-              Crear Cuenta
+             Ingresar Datos
           </ion-button>
         </div>
       </ion-list>
     </form>
-    <div class="ion-text-center ion-padding">
-        <ion-button color="tertiary" expand="block" class="ion-no-margin" routerLink="/login">
-            <ion-icon name="log-in" slot="icon-only"></ion-icon>
-            Iniciar Sesión
-        </ion-button>
-    </div>
     <div class="ion-text-center">
         <ion-label position="floating">
             <ion-text color="danger">*</ion-text>campos obligatorios

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
@@ -11,7 +11,6 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
 
 
   idUsuario = '';

@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NuevoNotaPageRoutingModule } from './nuevo-nota-routing.module';
+import { AdicionarEnfermeraPageRoutingModule } from './adicionar-enfermera-routing.module';
 
-import { NuevoNotaPage } from './nuevo-nota.page';
+import { AdicionarEnfermeraPage } from './adicionar-enfermera.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-
 @NgModule({
-
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevoNotaPageRoutingModule,
+    AdicionarEnfermeraPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [NuevoNotaPage]
+  declarations: [AdicionarEnfermeraPage]
 })
-export class NuevoNotaPageModule {}
+export class AdicionarEnfermeraPageModule {}

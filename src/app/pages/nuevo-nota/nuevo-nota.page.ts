@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+
+
 
 @Component({
   selector: 'app-nuevo-nota',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevoNotaPage implements OnInit {
 
-  constructor() { }
+  valorTemperatura: number;
+
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
+
   }
 
   vaciar(){
@@ -20,5 +27,10 @@ export class NuevoNotaPage implements OnInit {
   {
     
   }
+
+
+
+
+ 
 
 }

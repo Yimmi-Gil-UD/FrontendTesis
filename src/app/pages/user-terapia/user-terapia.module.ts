@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NuevoNotaPageRoutingModule } from './nuevo-nota-routing.module';
+import { UserTerapiaPageRoutingModule } from './user-terapia-routing.module';
 
-import { NuevoNotaPage } from './nuevo-nota.page';
+import { UserTerapiaPage } from './user-terapia.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-
 @NgModule({
-
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevoNotaPageRoutingModule,
+    UserTerapiaPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [NuevoNotaPage]
+  declarations: [UserTerapiaPage]
 })
-export class NuevoNotaPageModule {}
+export class UserTerapiaPageModule {}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { identity, Observable } from 'rxjs';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import { Validators } from '@angular/forms';
@@ -17,7 +17,6 @@ export class FirebaseService {
   }
 
   valor: string;
-
 
   //Funcion generica, se puede implementar para mas busquedas
   async GetUsersDataParametro<tipo>(path: string, parametro: string, value: string){

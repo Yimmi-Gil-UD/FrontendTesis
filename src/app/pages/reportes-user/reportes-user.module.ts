@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NuevoNotaPageRoutingModule } from './nuevo-nota-routing.module';
+import { ReportesUserPageRoutingModule } from './reportes-user-routing.module';
 
-import { NuevoNotaPage } from './nuevo-nota.page';
+import { ReportesUserPage } from './reportes-user.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-
 @NgModule({
-
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevoNotaPageRoutingModule,
+    ReportesUserPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [NuevoNotaPage]
+  declarations: [ReportesUserPage]
 })
-export class NuevoNotaPageModule {}
+export class ReportesUserPageModule {}

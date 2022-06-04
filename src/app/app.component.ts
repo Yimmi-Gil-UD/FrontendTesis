@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { MenuComponent } from './components/menu/menu.component';
 
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

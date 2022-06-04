@@ -40,10 +40,48 @@ const routes: Routes = [
     loadChildren: () => import('./pages/nuevo-nota/nuevo-nota.module').then( m => m.NuevoNotaPageModule)
   },
   {
+    path: 'paciente',
+    loadChildren: () => import('./pages/paciente/paciente.module').then( m => m.PacientePageModule)
+  },
+  {
+    path: 'nota-terapia',
+    loadChildren: () => import('./pages/nota-terapia/nota-terapia.module').then( m => m.NotaTerapiaPageModule)
+  },
+  {
+    path: 'user-terapia',
+    loadChildren: () => import('./pages/user-terapia/user-terapia.module').then( m => m.UserTerapiaPageModule)
+  },
+  {
+    path: 'admin-terapia',
+    loadChildren: () => import('./pages/admin-terapia/admin-terapia.module').then( m => m.AdminTerapiaPageModule)
+  },
+  {
+    path: 'detalle-terapia/:id',
+    loadChildren: () => import('./pages/detalle-terapia/detalle-terapia.module').then( m => m.DetalleTerapiaPageModule)
+  },
+  {
+    path: 'editar-terapia/:id',
+    loadChildren: () => import('./pages/editar-terapia/editar-terapia.module').then( m => m.EditarTerapiaPageModule)
+  },
+  {
+    path: 'adicionar-enfermera',
+    loadChildren: () => import('./pages/adicionar-enfermera/adicionar-enfermera.module').then( m => m.AdicionarEnfermeraPageModule)
+  },
+  {
+    path: 'reportes-user',
+    loadChildren: () => import('./pages/reportes-user/reportes-user.module').then( m => m.ReportesUserPageModule)
+  },
+  {
+    path: 'reportes-admin',
+    loadChildren: () => import('./pages/reportes-admin/reportes-admin.module').then( m => m.ReportesAdminPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   }
+ 
+ 
 ];
 
 @NgModule({

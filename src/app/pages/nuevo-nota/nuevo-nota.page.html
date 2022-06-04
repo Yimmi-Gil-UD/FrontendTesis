@@ -1,33 +1,126 @@
-<app-header title="Nueva nota"></app-header>
+
+<app-header title="Nueva Nota De Enfermeria"></app-header>
 <ion-content>
-    <h3 class="ion-text-center">LLENAR NOTA DE ENFERMERIA</h3>
+    <h3 class="ion-text-center"></h3>
     <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
-        <ion-text>
-          <ion-label position="floating">Nombre Del Producto:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="text" name="nombre"></ion-input>
-        </ion-text>
-        <ion-text>
-          <ion-label position="floating">Precio:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="number" name="precio"></ion-input>
-        </ion-text>
-        <div class="ion-padding">
-          <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
-              <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-              Crear
-              </ion-button>
-        </div>
-        <div class="ion-padding">
-          <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="vaciar()">
-              <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
-              Limpiar Campos
-              </ion-button>
-        </div>
+        <ion-card>    
+          <ion-card-header>
+            <ion-card-subtitle>Datos del paciente</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="text" name="nombres"></ion-input>
+            </ion-item> 
+            <ion-item>
+              <ion-label>
+                Paciente:
+              </ion-label>
+            </ion-item>
+            <div class="ion-padding">
+              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
+                  <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+                  Validar Paciente
+                  </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>    
+        <ion-card>    
+          <ion-card-content>            
+            <ion-item>
+              <ion-label position="floating">Número Cama:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="number" name="nombres"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Número Cuarto:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="number" name="nombres"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>
+              &nbsp;
+            <ion-input required type="date" name="nombres"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Hora:<ion-text color="danger">*</ion-text></ion-label>
+              &nbsp;
+              <ion-input required type="time" name="nombres"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Observación</ion-label>
+              <ion-textarea placeholder="voz a texto" id="texto" col="30" rows="10"></ion-textarea>
+              <div class="ion-padding">
+                <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
+                    <ion-icon name="mic-circle-outline" slot="icon-only"></ion-icon>
+                    Grabar Nota
+                    </ion-button>
+              </div>
+            </ion-item>
+            <ion-card>    
+              <ion-card-header>
+                <ion-card-subtitle>Signos vitales</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-item>
+                  <ion-label position="floating">Tensión arterial sistólico:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="Mm/Hg" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Tensión arterial diastólico:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="Mm/Hg" required type="number" name="nombres"></ion-input>
+                </ion-item>     
+                <ion-item>
+                  <ion-label>
+                    Tension:
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Frecuencia cardiaca:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="x min" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Frecuencia respiratoria:<ion-text color="danger" >*</ion-text></ion-label>
+                  <ion-input placeholder="x min" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Temperatura:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="T" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Saturación:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="%" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Glucometría:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="mg/dl" required type="number" name="nombres"></ion-input>
+                </ion-item> 
+              </ion-card-content>
+            </ion-card>  
+            <ion-item>
+              <ion-label>
+                Enfermera:
+              </ion-label>
+            </ion-item>           
+            <div class="ion-padding">
+              <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+                  <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+                  Guardar Nota De Enfermeria
+                  </ion-button>
+            </div>
+            <div class="ion-padding">
+              <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="vaciar()">
+                  <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
+                  Limpiar Campos
+                  </ion-button>
+            </div>
+            <div class="ion-text-center">
+              <ion-label position="floating">
+                  <ion-text color="danger">*</ion-text>campos obligatorios
+              </ion-label>
+          </div>
+          </ion-card-content>
+        </ion-card>      
       </ion-list>
     </form>
-    <div class="ion-text-center">
-        <ion-label position="floating">
-            <ion-text color="danger">*</ion-text>campos obligatorios
-        </ion-label>
-    </div>
 </ion-content>
+
