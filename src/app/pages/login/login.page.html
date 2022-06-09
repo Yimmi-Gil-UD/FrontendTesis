@@ -1,6 +1,6 @@
 <app-header title="Login"></app-header>
 
-<ion-content>
+<ion-content *ngIf="!ingreso">
     <h3 class="ion-text-center">BIENVENIDO</h3>
     <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
@@ -32,3 +32,15 @@
         </ion-label>
     </div>
 </ion-content>
+
+<ion-content *ngIf="ingreso">
+  <div class="ion-text-center ion-padding">
+    <ion-text color="primary"><h2>Sesión Iniciada</h2></ion-text>
+    <ion-item-divider></ion-item-divider>
+    <ion-button color="tertiary" expand="block" class="ion-no-margin" (click)="salir()">
+        <ion-icon name="log-out" slot="icon-only"></ion-icon>
+        Cerrar Sesión
+    </ion-button>
+</div>
+</ion-content>
+

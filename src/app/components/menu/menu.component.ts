@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,12 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  ingreso:boolean;
+  isAdmin:boolean;
+
+  constructor(private restlogin: RestLoginService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
+    this.validarSalida();
   }
 
-  logOut() {
+  salida(){
+      this.restlogin.logOut();
+      this.ingreso = false;
+      this.isAdmin = false;
+      this.router.navigate(['/login']);
+  }
+
+
+  validarSalida(): void {
+    this.ingreso = this.restlogin.getId()!=null;
+    if(this.restlogin.getRol() == 'ADMIN')
+    {
+      this.isAdmin = true;
+    }
     
   }
 

@@ -13,12 +13,14 @@ import { MenuComponent } from './components/menu/menu.component';
 export class AppComponent {
 
   @ViewChild(MenuComponent) menu:MenuComponent;
+
   menuOpen = false;
   constructor(
     private menucontroller: MenuController
   ) {}
 
   toggleMenu():void {
+    this.menu.validarSalida();
     this.menucontroller.toggle('first');
   }
 

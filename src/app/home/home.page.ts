@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RestLoginService } from '../services/rest-login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,21 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  isLogged = true;
-  userName = 'Yimmy';
+  
+  ingreso = false;
+  nombre = "";
 
-  constructor() {}
+  constructor( private restlogin: RestLoginService) {}
 
-
+  ionViewWillEnter(){
+    this.validarLogin();
+  }
+ 
+  validarLogin(): void
+  {
+    this.ingreso = this.restlogin.getId() != null;
+    this.nombre = this.restlogin.getCorreo();
+    console.log("datos: ", this.ingreso)
+  }
 
 }

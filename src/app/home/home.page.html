@@ -2,12 +2,11 @@
 
 <ion-content [fullscreen]="true">
 
-  <div id="container" *ngIf="!isLogged">
+  <div id="container" *ngIf="!ingreso">
     <strong>No se ha iniciado sesión</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-  <div id="container" *ngIf="isLogged">
-    <strong>Bienvenido {{userName}}</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    </div>
+  <div id="container" *ngIf="ingreso">
+    <strong>Bienvenido {{nombre}}</strong>
+    <p>Start with Ionic</p>
   </div>
 </ion-content>

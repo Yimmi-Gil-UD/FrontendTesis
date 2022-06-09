@@ -11,7 +11,7 @@
           <ion-card-content>
             <ion-item>
               <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="text" name="nombres"></ion-input>
+              <ion-input required type="text" name="numIdentificacionPacienteVal"></ion-input>
             </ion-item> 
             <ion-item>
               <ion-label>
@@ -30,25 +30,25 @@
           <ion-card-content>            
             <ion-item>
               <ion-label position="floating">Número Cama:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="number" name="nombres"></ion-input>
+              <ion-input required type="number" name="numCama"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Número Cuarto:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="number" name="nombres"></ion-input>
+              <ion-input required type="number" name="numCuarto"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>
               &nbsp;
-              <ion-input required type="date" name="nombres"></ion-input>
+              <ion-input required type="date" name="fechaNota"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Hora:<ion-text color="danger">*</ion-text></ion-label>
               &nbsp;
-            <ion-input required type="time" name="nombres"></ion-input>
+            <ion-input required type="time" name="horaNota"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Observación</ion-label>
-              <ion-textarea placeholder="voz a texto" id="texto" col="30" rows="10"></ion-textarea>
+              <ion-textarea placeholder="voz a texto" id="observacionNota" col="30" rows="10"></ion-textarea>
               <div class="ion-padding">
                 <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
                     <ion-icon name="mic-circle-outline" slot="icon-only"></ion-icon>
@@ -63,11 +63,11 @@
               <ion-card-content>
                 <ion-item>
                   <ion-label position="floating">Tensión arterial sistólico:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="Mm/Hg" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="Mm/Hg" required type="number" name="tensionSistolico"></ion-input>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Tensión arterial diastólico:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="Mm/Hg" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="Mm/Hg" required type="number" name="tensionDiastolico"></ion-input>
                 </ion-item>     
                 <ion-item>
                   <ion-label>
@@ -76,23 +76,23 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Frecuencia cardiaca:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="x min" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="x min" required type="number" name="frecuenciaCardiaca"></ion-input>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Frecuencia respiratoria:<ion-text color="danger" >*</ion-text></ion-label>
-                  <ion-input placeholder="x min" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="x min" required type="number" name="frecuenciaRespiratoria"></ion-input>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Temperatura:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="T" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="T" required type="number" name="temperatura"></ion-input>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Saturación:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="%" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="%" required type="number" name="saturacion"></ion-input>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Glucometría:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="mg/dl" required type="number" name="nombres"></ion-input>
+                  <ion-input placeholder="mg/dl" required type="number" name="glucometria"></ion-input>
                 </ion-item> 
               </ion-card-content>
             </ion-card>  
