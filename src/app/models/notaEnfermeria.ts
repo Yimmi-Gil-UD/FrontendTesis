@@ -1,0 +1,22 @@
+import { Data } from "@angular/router";
+
+export class NotaEnfermeria {
+
+    id: string;
+    idPaciente: string;
+    numeroCuarto: string;
+    numeroCama: string;
+    fechaNota: Date;
+    horaNota: string;
+    observacion: string;
+    tensionArterialSistolico: number;
+    tensionArterialDiastolico: number;
+    tensionArterial: string;
+    frecuenciaCardiaca: number;
+    frecuenciaRespiratoria: number;
+    temperatura:number;
+    saturacion:number;
+    glucometria: number;
+    idEnfermera: string;
+
+}

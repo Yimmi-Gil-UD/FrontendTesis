@@ -22,7 +22,6 @@ export class HomePage {
   {
     this.ingreso = this.restlogin.getId() != null;
     this.nombre = this.restlogin.getCorreo();
-    console.log("datos: ", this.ingreso)
   }
 
 }

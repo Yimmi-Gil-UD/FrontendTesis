@@ -45,23 +45,17 @@ export class LoginPage implements OnInit {
   onLogin()
   {
 
-    //this.getIdUserByCorreo(this.correo);
     this.getId(this.correo);
-    //console.log(this.correo);
-    //console.log(this.password);
-    //this.idUsuario = this.firestore.valor;
-    //console.log("Variable del id usuario:",this.idUsuario);
  
     this.correoRest = this.correo;
     this.passwordRest = this.password;
     this.correo = null;
     this.password = null;
 
-    let TIME_IN_MS = 2000;
+    let TIME_IN_MS = 1200;
     let hideFooterTimeout = setTimeout( () => {
      this.conexionLogin();
 }, TIME_IN_MS);
-    //this.conexionLogin();
   }
 
   conexionLogin()
@@ -83,16 +77,6 @@ export class LoginPage implements OnInit {
     );
   }
 
-  /*
-  getIdUserByCorreo(correoUser:string){
-    const path = 'Enfermera/';
-    this.firestore.GetUsersDataParametro(path,'correo',correoUser ).subscribe(res =>{
-    console.log(res);
-    
-    });
-
-  }*/
-
   getId(correoUser:string) 
   {
     const path = 'Enfermera/';
@@ -103,7 +87,6 @@ export class LoginPage implements OnInit {
         this.idUsuario = enfermeraRef.payload.doc.id;
           
         })
-        //console.log("desde el metodo: ",this.idUsuario);
         return this.idUsuario;
       })
     })
