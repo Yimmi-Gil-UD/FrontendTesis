@@ -76,10 +76,35 @@ const routes: Routes = [
     loadChildren: () => import('./pages/reportes-admin/reportes-admin.module').then( m => m.ReportesAdminPageModule)
   },
   {
+    path: 'admin-enfermeras',
+    loadChildren: () => import('./pages/admin-enfermeras/admin-enfermeras.module').then( m => m.AdminEnfermerasPageModule)
+  },
+  {
+    path: 'admin-pacientes',
+    loadChildren: () => import('./pages/admin-pacientes/admin-pacientes.module').then( m => m.AdminPacientesPageModule)
+  },
+  {
+    path: 'editar-enfermera/:id',
+    loadChildren: () => import('./pages/editar-enfermera/editar-enfermera.module').then( m => m.EditarEnfermeraPageModule)
+  },
+  {
+    path: 'editar-paciente/:id',
+    loadChildren: () => import('./pages/editar-paciente/editar-paciente.module').then( m => m.EditarPacientePageModule)
+  },
+  {
+    path: 'detalle-paciente/:id',
+    loadChildren: () => import('./pages/detalle-paciente/detalle-paciente.module').then( m => m.DetallePacientePageModule)
+  },
+  {
+    path: 'detalle-enfermera/:id',
+    loadChildren: () => import('./pages/detalle-enfermera/detalle-enfermera.module').then( m => m.DetalleEnfermeraPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   }
+ 
  
  
 ];

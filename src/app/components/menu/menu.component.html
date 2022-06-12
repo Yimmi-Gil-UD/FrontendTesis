@@ -30,6 +30,18 @@
           <ion-label>Notas Terapias</ion-label>
         </ion-item>
       </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="ingreso && isAdmin">
+        <ion-item routerLink="/admin-enfermeras">
+          <ion-icon name="people-circle-outline" slot="start"></ion-icon>
+          <ion-label>Enfermeras</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="ingreso && isAdmin">
+        <ion-item routerLink="/admin-pacientes">
+          <ion-icon name="people-outline" slot="start"></ion-icon>
+          <ion-label>Pacientes</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
       <ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/user-terapia">
           <ion-icon name="newspaper-outline" slot="start"></ion-icon>
