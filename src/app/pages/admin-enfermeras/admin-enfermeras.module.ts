@@ -8,6 +8,7 @@ import { AdminEnfermerasPageRoutingModule } from './admin-enfermeras-routing.mod
 
 import { AdminEnfermerasPage } from './admin-enfermeras.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     AdminEnfermerasPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [AdminEnfermerasPage]
 })

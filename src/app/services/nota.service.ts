@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NotaEnfermeria } from '../models/notaEnfermeria';
+import { NotaEnfermeriaDTO } from '../models/notaEnfermeriaDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class NotaService {
 
   constructor(private httpClient:HttpClient) { }
 
-  public lista(): Observable<NotaEnfermeria[]> {
-    return this.httpClient.get<NotaEnfermeria[]>(this.notaEnfermeriaUrl + 'list');
+  public lista(): Observable<NotaEnfermeriaDTO[]> {
+    return this.httpClient.get<NotaEnfermeriaDTO[]>(this.notaEnfermeriaUrl + 'list');
   }
 
   

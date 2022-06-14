@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotaEnfermeria } from 'src/app/models/notaEnfermeria';
+import { NotaEnfermeriaDTO } from 'src/app/models/notaEnfermeriaDTO';
 import { NotaService } from 'src/app/services/nota.service';
 
 @Component({
@@ -9,7 +9,9 @@ import { NotaService } from 'src/app/services/nota.service';
 })
 export class AdminPage implements OnInit {
 
-  notas: NotaEnfermeria[] = [];
+  notas: NotaEnfermeriaDTO[] = [];
+  notas2: string[] = ['Nota1','Nota2','Nota3','pruebaNota4'];
+  textoBuscar = '';
 
   constructor(
     private notaService:NotaService
@@ -28,6 +30,11 @@ export class AdminPage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  buscar(event){
+    //console.log(event);
+    this.textoBuscar = event.detail.value;
   }
 
 }

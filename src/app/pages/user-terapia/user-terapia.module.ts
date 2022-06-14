@@ -8,6 +8,7 @@ import { UserTerapiaPageRoutingModule } from './user-terapia-routing.module';
 
 import { UserTerapiaPage } from './user-terapia.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     UserTerapiaPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [UserTerapiaPage]
 })

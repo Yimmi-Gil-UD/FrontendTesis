@@ -1,6 +1,5 @@
-import { Data } from "@angular/router";
 
-export class NotaEnfermeria {
+export class NotaEnfermeriaDTO {
 
     id: string;
     idPaciente: string;

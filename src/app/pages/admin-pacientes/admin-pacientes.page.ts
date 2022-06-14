@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PacienteDTO } from 'src/app/models/pacienteDTO';
+import { PacienteService } from 'src/app/services/paciente.service';
 
 @Component({
   selector: 'app-admin-pacientes',
@@ -7,11 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPacientesPage implements OnInit {
 
-  pacientes: string[] = ['José', 'Carlos', 'Camilo', 'Miguel'];
+  //pacientes: string[] = ['José', 'Carlos', 'Camilo', 'Miguel'];
+  pacientes: PacienteDTO[] = [];
+  textoBuscar = '';
 
-  constructor() { }
+  constructor(
+    private pacienteService:PacienteService
+  ) { }
 
   ngOnInit() {
+    this.cargarLista();
+  }
+
+  cargarLista(): void {
+    this.pacienteService.lista().subscribe(
+      data => {
+        this.pacientes = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  buscar(event){
+    //console.log(event);
+    this.textoBuscar = event.detail.value;
   }
 
 }
