@@ -37,4 +37,7 @@ export class AdminPacientesPage implements OnInit {
     this.textoBuscar = event.detail.value;
   }
 
+
+
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotaTerapiaDTO } from 'src/app/models/notaTerapiaDTO';
+import { TerapiaService } from 'src/app/services/terapia.service';
 
 @Component({
   selector: 'app-user-terapia',
@@ -7,12 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserTerapiaPage implements OnInit {
 
-  notas: string[] = ['NotaTerapia1', 'NotaTerapia2', 'NotaTerapia3', 'NotaTerapia4'];
+  notasTerapias: NotaTerapiaDTO[] = [];
   textoBuscar = '';
 
-  constructor() { }
+  constructor(
+    private terapiaService:TerapiaService
+  ) { }
 
   ngOnInit() {
+    this.cargarLista();
+  }
+
+  cargarLista(): void {
+    this.terapiaService.lista().subscribe(
+      data => {
+        this.notasTerapias = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   buscar(event){

@@ -10,7 +10,6 @@ import { NotaService } from 'src/app/services/nota.service';
 export class UserPage implements OnInit {
 
   notas: NotaEnfermeriaDTO[] = [];
-  notas2: string[] = ['NotaTerapia1', 'NotaTerapia2', 'NotaTerapia3', 'NotaTerapia4'];
   textoBuscar = '';
 
   constructor(

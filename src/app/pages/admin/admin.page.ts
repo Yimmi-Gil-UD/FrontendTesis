@@ -10,8 +10,7 @@ import { NotaService } from 'src/app/services/nota.service';
 export class AdminPage implements OnInit {
 
   notas: NotaEnfermeriaDTO[] = [];
-  notas2: string[] = ['Nota1','Nota2','Nota3','pruebaNota4'];
-  textoBuscar = '';
+    textoBuscar = '';
 
   constructor(
     private notaService:NotaService

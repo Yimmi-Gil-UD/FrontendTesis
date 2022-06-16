@@ -17,5 +17,10 @@ export class NotaEnfermeriaDTO {
     saturacion:number;
     glucometria: number;
     idEnfermera: string;
+    nombrePaciente: string;
+    apellidoPaciente: string;
+    nombreEnfermera: string;
+    apellidoEnfermera: string;
+
 
 }
