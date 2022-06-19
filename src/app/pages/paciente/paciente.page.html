@@ -7,57 +7,64 @@
   </div>
     <h3 class="ion-text-center"></h3>
   <h3 class="ion-text-center"></h3>
-  <form #f="ngForm" (ngSubmit)="onRegistrar()" novalidate>
+  <form #f="ngForm" (ngSubmit)="crear()" novalidate>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" name="nombresPaciente"></ion-input>
+        <ion-input required type="text" name="nombre" [(ngModel)]="nombrePaciente"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input  required type="text" name="apellidosPaciente"></ion-input>
+        <ion-input  required type="text" name="apellido" [(ngModel)]="apellidoPaciente"></ion-input>
+      </ion-item>
+
+    <ion-item>  
+      <ion-label position="floating">Tipo identificación:<ion-text color="danger">*</ion-text></ion-label>
+    <ion-select name="identificacionP" interface="popover" [(ngModel)]="idTipoDoc" >
+      <ion-select-option  [value]="documentos.id" *ngFor="let documentos of tipoDocumentos">{{documentos.descripcionDocumento}}</ion-select-option >
+    </ion-select>
+  </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Número identificación:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input  required type="number" name="Identificacion" [(ngModel)]="numeroIdentificacion"></ion-input>
       </ion-item>
         <ion-item>
           <ion-label position="floating">Fecha Nacimiento:<ion-text color="danger">*</ion-text></ion-label>
           &nbsp;
-          <ion-input required type="date" name="fechaNacimientoPaciente"></ion-input>
+          <ion-input required type="date" name="Nacimiento" [(ngModel)]="fechaNacimiento"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Dirección:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="password" name="direccionPaciente"></ion-input>
+          <ion-input required type="text" name="direccionP" [(ngModel)]="direccion"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Teléfono:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="number" name="telefonoPaciente"></ion-input>
+          <ion-input required type="number" name="telefonoP" [(ngModel)]="telefono"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating">Género:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select interface="popover">
-            <ion-select-option value="nes">Masculino</ion-select-option>
-            <ion-select-option value="n64">Femenino</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Tipo Discapacidad:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select interface="popover">
-            <ion-select-option value="nes">Masculino</ion-select-option>
-            <ion-select-option value="n64">Femenino</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Grupo Sanguíneo:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select interface="popover">
-            <ion-select-option value="nes">Masculino</ion-select-option>
-            <ion-select-option value="n64">Femenino</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Fundación:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select interface="popover">
-            <ion-select-option value="nes">Masculino</ion-select-option>
-            <ion-select-option value="n64">Femenino</ion-select-option>
-          </ion-select>
-        </ion-item>
+        
+        <ion-item>  
+          <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-select name="generoP" interface="popover" [(ngModel)]="idGenero" >
+          <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
+        </ion-select>
+      </ion-item>
+
+      <ion-item>  
+        <ion-label position="floating">Tipo discapacidad:<ion-text color="danger">*</ion-text></ion-label>
+      <ion-select name="discapacidadP" interface="popover" [(ngModel)]="idDiscapacidad" >
+        <ion-select-option  [value]="discapacidad.id" *ngFor="let discapacidad of discapacidades">{{discapacidad.nombreDiscapacidad}}</ion-select-option >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>  
+      <ion-label position="floating">Grupo sanguineo:<ion-text color="danger">*</ion-text></ion-label>
+    <ion-select name="grupoP" interface="popover" [(ngModel)]="idGrupo" >
+      <ion-select-option  [value]="grupo.id" *ngFor="let grupo of grupoSanguineo">{{grupo.nombreGrupo}}</ion-select-option >
+    </ion-select>
+  </ion-item>
+
+        
       <div class="ion-padding">
         <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
             <ion-icon name="person-add" slot="icon-only"></ion-icon>

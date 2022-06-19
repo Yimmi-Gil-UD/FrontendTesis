@@ -19,8 +19,10 @@ export class NotaEnfermeriaDTO {
     idEnfermera: string;
     nombrePaciente: string;
     apellidoPaciente: string;
+    documentoPaciente: number;
     nombreEnfermera: string;
     apellidoEnfermera: string;
+    documentoEnfermera:number;
 
 
 }

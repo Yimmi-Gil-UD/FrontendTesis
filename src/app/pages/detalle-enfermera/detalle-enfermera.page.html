@@ -1,5 +1,47 @@
 <app-header title="Detalle Enfermera"></app-header>
 
-<ion-content>
+<ion-content *ngIf="enfermeraDTOs">
+    <h3 class="ion-text-center"></h3>
+       <ion-list *ngFor ="let enfermera of enfermeraDTOs" lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+          <ion-label >Nombres y apellidos:</ion-label>
+          &nbsp;
+          <ion-label >{{enfermera.nombre}} {{enfermera.apellido}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+            <ion-label >Tipo identificación:</ion-label>
+            &nbsp;
+            <ion-label >{{enfermera.tipoDocumento}}</ion-label>
+            &nbsp;
+          </ion-item>
+        <ion-item>
+            <ion-label >Número identificación:</ion-label>
+            &nbsp;
+            <ion-label >{{enfermera.numeroIdentificacion}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Correo:</ion-label>
+            &nbsp;
+            <ion-label >{{enfermera.correo}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Genero:</ion-label>
+            &nbsp;
+            <ion-label >{{enfermera.descripcionGenero}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>    
+            <ion-label >Rol:</ion-label>
+            &nbsp;
+            <ion-label >{{enfermera.descripcionRol}}</ion-label>
+            &nbsp;
+          </ion-item>
+      </ion-list>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 </ion-content>

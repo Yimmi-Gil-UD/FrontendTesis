@@ -12,5 +12,10 @@ export class PacienteDTO {
     idCategoriaDiscapacidad:String;
     idGrupoSanguineo:String;
     idFundacion:String;
+    nombreGenero:String;
+	nombreCategoria:String;
+	nombreGrupo:String;
+	nombreFundacion:String;
+	tipoDocumento:String;
 
 }

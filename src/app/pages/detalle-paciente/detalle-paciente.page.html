@@ -1,5 +1,65 @@
 <app-header title="Detalle Paciente"></app-header>
 
-<ion-content>
+<ion-content *ngIf="pacienteDTOs">
+    <h3 class="ion-text-center"></h3>
+       <ion-list *ngFor ="let paciente of pacienteDTOs" lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+          <ion-label >Nombres y apellidos:</ion-label>
+          &nbsp;
+          <ion-label >{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+            <ion-label >Tipo identificación:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.tipoDocumento}}</ion-label>
+            &nbsp;
+          </ion-item>
+        <ion-item>
+            <ion-label >Número identificación:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.numeroIdentificacionP}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Fecha Nacimiento:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.fechaNacimiento}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Dirección:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.direccion}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>    
+            <ion-label >Teléfono:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.telefono}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Género:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.nombreGenero}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Tipo Discapacidad:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.nombreCategoria}}</ion-label>
+            &nbsp;
+          </ion-item>
+          <ion-item>
+            <ion-label >Grupo Sanguíneo:</ion-label>
+            &nbsp;
+            <ion-label >{{paciente.nombreGrupo}}</ion-label>
+            &nbsp;
+          </ion-item>
+      </ion-list>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 </ion-content>

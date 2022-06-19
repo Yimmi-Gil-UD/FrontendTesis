@@ -17,5 +17,9 @@ export class NotaService {
     return this.httpClient.get<NotaEnfermeriaDTO[]>(this.notaEnfermeriaUrl + 'list');
   }
 
+  public detalle(id: string): Observable<NotaEnfermeriaDTO[]> {
+    return this.httpClient.get<NotaEnfermeriaDTO[]>(this.notaEnfermeriaUrl + `detail/${id}`);
+  }
+
   
 }

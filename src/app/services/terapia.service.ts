@@ -16,4 +16,7 @@ export class TerapiaService {
     return this.httpClient.get<NotaTerapiaDTO[]>(this.notaTerapiaURL + 'list');
   }
 
+  public detalle(id: string): Observable<NotaTerapiaDTO[]> {
+    return this.httpClient.get<NotaTerapiaDTO[]>(this.notaTerapiaURL + `detail/${id}`);
+  }
 }

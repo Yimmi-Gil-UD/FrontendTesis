@@ -6,35 +6,40 @@
     <ion-icon name="person-circle-outline" style="zoom:6.0;" ></ion-icon>
   </div>
     <h3 class="ion-text-center"></h3>
-    <form #f="ngForm" (ngSubmit)="onRegistrar()" novalidate>
+    <form #f="ngForm" (ngSubmit)="crear()" novalidate>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-item>
           <ion-label position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="text" name="nombresEnfermera"></ion-input>
+          <ion-input required type="text" name="nombresEnfermera" [(ngModel)]="nombre"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input  required type="text" name="apellidosEnfemera"></ion-input>
+          <ion-input  required type="text" name="apellidosEnfemera" [(ngModel)]="apellido"></ion-input>
         </ion-item>
+        <ion-item>  
+          <ion-label position="floating">Tipo identificación:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-select name="identificacionP" interface="popover" [(ngModel)]="tipoDocumento" >
+          <ion-select-option  [value]="documentos.id" *ngFor="let documentos of tipoDocumentos">{{documentos.descripcionDocumento}}</ion-select-option >
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Número Identificación:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" name="numIdentificacionEnfermera" [(ngModel)]="identificacion"></ion-input>
+      </ion-item>
           <ion-item>
             <ion-label position="floating">Correo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="correoEnfermera" email></ion-input>
+            <ion-input required type="text" name="correoEnfermera" email [(ngModel)]="correo"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="password" name="contraseñaEnfermera"></ion-input>
+            <ion-input required type="password" name="contraseñaEnfermera" [(ngModel)]="password"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label position="floating">Número Identificación:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="number" name="numIdentificacionEnfermera"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Género:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-select interface="popover">
-              <ion-select-option value="nes">Masculino</ion-select-option>
-              <ion-select-option value="n64">Femenino</ion-select-option>
-            </ion-select>
-          </ion-item>
+          <ion-item>  
+            <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select name="generoEnfermera" interface="popover" [(ngModel)]="genero" >
+            <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
+          </ion-select>
+        </ion-item>
         <div class="ion-padding">
           <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
               <ion-icon name="person-add" slot="icon-only"></ion-icon>

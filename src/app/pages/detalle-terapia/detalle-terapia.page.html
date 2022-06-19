@@ -1,14 +1,89 @@
 <app-header title="Detalle Terapia"></app-header>
 
-<ion-content>
-    <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          <ion-card-title>Card Title</ion-card-title>
-        </ion-card-header>      
-        <ion-card-content class="ion-text-justify">
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
+<ion-content *ngIf="notaTerapiaDTOs">
+  <h3 class="ion-text-center"></h3>
+     <ion-list *ngFor ="let notaTerapia of notaTerapiaDTOs" lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label >Nombres y apellidos paciente:</ion-label>
+        &nbsp;
+        <ion-label >{{notaTerapia.nombrePacienteTerapia}} {{notaTerapia.apellidoPacienteTerapia}}</ion-label>
+        &nbsp;
+      </ion-item>
+      <ion-item>
+          <ion-label >Número documento paciente:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.documentoPaciente}}</ion-label>
+          &nbsp;
+        </ion-item>
+      <ion-item>
+          <ion-label >Objetivo:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.objetivo}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Estructura Corporal:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.estructuraCorporal}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Funcion Corporal:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.funcionCorporal}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>    
+          <ion-label >Pronostico:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.pronostico}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Plan Trabajo:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.planTrabajo}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Fecha nota terapia:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.fechaNotaTerapia}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Hora nota terapia:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.horaNotaTerapia}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Observacion:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.observacion}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Tipo Terapia:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.tipoTerapia}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Nombres y apellidos enfermera:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.nombreEnfermeraTerapia}} {{notaTerapia.apellidoEnfermeraTerapia}}</ion-label>
+          &nbsp;
+        </ion-item>
+        <ion-item>
+          <ion-label >Número documento enfermera:</ion-label>
+          &nbsp;
+          <ion-label >{{notaTerapia.documentoEnfermera}}</ion-label>
+          &nbsp;
+        </ion-item>
+    </ion-list>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
 </ion-content>

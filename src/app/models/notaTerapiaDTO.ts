@@ -15,6 +15,9 @@ export class NotaTerapiaDTO {
     idEnfermera: string;
     nombrePacienteTerapia: string;
     apellidoPacienteTerapia: string;
+    documentoPaciente: number;
+    tipoTerapia: string;
     nombreEnfermeraTerapia: string;
     apellidoEnfermeraTerapia: string;
+    documentoEnfermera: string;
 }

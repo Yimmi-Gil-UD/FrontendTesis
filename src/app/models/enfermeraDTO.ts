@@ -9,5 +9,8 @@ export class EnfermeraDTO {
     password:String;
     idGenero:String;
     idRol:String;
+    tipoDocumento:String;
+	descripcionGenero:String;
+	descripcionRol:String;
 
 }
