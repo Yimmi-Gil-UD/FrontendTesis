@@ -12,7 +12,8 @@ export class MenuComponent implements OnInit {
   ingreso:boolean;
   isAdmin:boolean;
 
-  constructor(private restlogin: RestLoginService,
+  constructor(
+    private restlogin: RestLoginService,
     private router: Router
     ) { }
 

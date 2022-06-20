@@ -29,7 +29,8 @@ export class LoginPage implements OnInit {
   ingreso = false;
 
 
-  constructor(private firestore: FirebaseService, 
+  constructor(
+    private firestore: FirebaseService, 
     private toastController: ToastController,
     private restlogin: RestLoginService,
     private loginService : LoginService,

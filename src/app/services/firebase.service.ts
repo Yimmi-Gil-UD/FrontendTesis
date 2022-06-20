@@ -26,6 +26,15 @@ export class FirebaseService {
   
   }
 
+  async GetUsuariosPE<tipo>(path: string, parametro: string, value: number){
+
+    try{ 
+      return await this.firestore.collection<tipo>(path, ref =>  ref.where(parametro, '==', value)).snapshotChanges();
+    }catch(error){
+      console.log("Error en el getAll",error)
+    }
+    
+    }
 
 
 
