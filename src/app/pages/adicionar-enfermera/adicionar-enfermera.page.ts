@@ -5,6 +5,7 @@ import { Enfermera } from 'src/app/models/enfermera';
 import { GeneroDTO } from 'src/app/models/generoDTO';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-adicionar-enfermera',
@@ -18,6 +19,8 @@ export class AdicionarEnfermeraPage implements OnInit {
   generos: GeneroDTO[] = [];
 
 
+  idUsuarioCorreo = "";
+  idUsuarioDocumento = "";
   nombre = '';
   apellido = '';
   tipoDocumento = '';
@@ -33,7 +36,8 @@ export class AdicionarEnfermeraPage implements OnInit {
   constructor(
     private enfermeraService:EnfermeraService,
     private router: Router,
-    private toastController:ToastController
+    private toastController:ToastController,
+    private firestore:FirebaseService
   ) { }
 
   ngOnInit() {
@@ -43,21 +47,72 @@ export class AdicionarEnfermeraPage implements OnInit {
 
   crear()
   {
-    this.enfermera = new Enfermera(this.nombre,this.apellido,this.tipoDocumento,this.identificacion,this.correo,this.password,this.genero,this.rol,this.estadoEnfermera);
-    this.enfermeraService.crear(this.enfermera).subscribe(
-      data => {
-        this.presentToast("enfermera cread(@)");
-        let TIME_IN_MS = 2500;
-        let hideFooterTimeout = setTimeout( () => {
-        this.limpiarCampos();
-        }, TIME_IN_MS);
-        
-        this.regresar();
-      },
-      err => {
-        this.presentToast("error al crear el paciente");
-      }
-    );
+
+    this.idUsuarioCorreo = null;
+    this.idUsuarioDocumento = null;
+    this.getValidacionCorreo(this.correo);
+    this.getValidacionDocumento(this.identificacion);
+
+
+
+    let TIME_IN_MS = 2500;
+    let hideFooterTimeout = setTimeout( () => {
+    //console.log("usuarioCorreo retardo: ",this.idUsuarioCorreo);
+    //console.log("usuarioDocumento retardo: ",this.idUsuarioDocumento);
+
+    if(this.idUsuarioCorreo == null && this.idUsuarioDocumento == null)
+    {
+      this.enfermera = new Enfermera(this.nombre,this.apellido,this.tipoDocumento,this.identificacion,this.correo,this.password,this.genero,this.rol,this.estadoEnfermera);
+      this.enfermeraService.crear(this.enfermera).subscribe(
+        data => {
+          this.presentToast("enfermera cread(@)");
+          let TIME_IN_MS = 2500;
+          let hideFooterTimeout = setTimeout( () => {
+          this.limpiarCampos();
+          }, TIME_IN_MS);
+          
+          this.regresar();
+        },
+        err => {
+          this.presentToast("error al crear el paciente");
+        }
+      );
+    }
+    else {
+      this.presentToast("ya existe el correo o el documento");
+    }
+
+    }, TIME_IN_MS);
+    
+
+  }
+
+
+
+  getValidacionCorreo(correoUser:string) 
+  {
+    const path = 'Enfermera/';
+    this.firestore.GetAllUser(path,'correo',correoUser).then(firebaseResponse =>{
+      firebaseResponse.subscribe(listaEnfermera =>{
+        listaEnfermera.map(enfermeraRef =>{
+        this.idUsuarioCorreo = enfermeraRef.payload.doc.id;
+        })
+        return this.idUsuarioCorreo;
+      })
+    })
+  }
+
+  getValidacionDocumento(documentoUser:number) 
+  {
+    const path = 'Enfermera/';
+    this.firestore.GetUsuariosPE(path,'numeroIdentificacion',documentoUser).then(firebaseResponse =>{
+      firebaseResponse.subscribe(listaEnfermera =>{
+        listaEnfermera.map(enfermeraRef =>{
+        this.idUsuarioDocumento = enfermeraRef.payload.doc.id;
+        })
+        return this.idUsuarioDocumento;
+      })
+    })
   }
 
   async presentToast(mensaje: string) {

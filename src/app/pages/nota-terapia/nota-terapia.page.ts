@@ -31,6 +31,8 @@ export class NotaTerapiaPage implements OnInit {
   observacion = '';
   idTipoTerapia = '';
   idEnfermera = '';
+  isActivo:boolean;
+  validar:boolean;
 
   notaTerapia:NotaTerapia;
   pacientes: PacienteDTO[] = [];
@@ -92,21 +94,46 @@ export class NotaTerapiaPage implements OnInit {
   {
     let TIME_IN_MS = 2400;
     let hideFooterTimeout = setTimeout( () => {
-    this.router.navigate(['nota-terapia']);
+    this.router.navigate(['user-terapia']);
 }, TIME_IN_MS);
   }
 
   buscar()
   {
     this.idPaciente = null;
+    this.isActivo = false;
+    this.validar = false;
     this.buscarPaciente(this.docPacienteBuscar);
-    let TIME_IN_MS = 1000;
+    let TIME_IN_MS = 2000;
     let hideFooterTimeout = setTimeout( () => {
+
+      for(let p in this.pacientes)
+      {             
+          //console.log(this.pacientes);
+          if(this.pacientes[p].descripcionEstadoPaciente == 'Inactivo')
+          {
+            this.isActivo = false;
+          }
+          else{  
+            this.isActivo = true;
+          }
+          
+      }
 
       if(this.idPaciente == null)
       {
-        this.presentToast("no existe el paciente");
+        this.presentToast("No existe el paciente");
       }
+      else if(this.isActivo == false)
+      {
+        this.presentToast("El paciente no se encuentra activo");
+      }
+      else{
+          this.validar = true;
+      }
+
+      //console.log(this.idPaciente);
+      //console.log("Estado Paciente: ",this.isActivo);  
 
 }, TIME_IN_MS);
     

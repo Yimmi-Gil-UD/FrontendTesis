@@ -17,14 +17,14 @@
                 <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</ion-label>
             </ion-item>
             <div class="ion-padding">
-              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin" (click)="buscar()">
+              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin" (click)="buscar()" >
                   <ion-icon name="add-circle" slot="icon-only"></ion-icon>
                   Validar Paciente
                   </ion-button>
             </div>
           </ion-card-content>
         </ion-card>    
-        <ion-card [disabled]="!idPaciente">    
+        <ion-card [disabled]="!validar">    
           <ion-card-content>            
             <ion-item>
               <ion-label position="floating">Número Cama:<ion-text color="danger">*</ion-text></ion-label>
@@ -105,12 +105,6 @@
               <ion-button color="success" expand="block" type="submit" class="ion-no-margin" (click)="crear()"  [disabled]="!f.valid">
                   <ion-icon name="add-circle" slot="icon-only"></ion-icon>
                   Guardar Nota De Enfermeria
-                  </ion-button>
-            </div>
-            <div class="ion-padding">
-              <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="limpiarCampos()">
-                  <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
-                  Limpiar Campos
                   </ion-button>
             </div>
             <div class="ion-text-center">

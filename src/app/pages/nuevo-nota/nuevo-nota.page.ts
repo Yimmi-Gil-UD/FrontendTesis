@@ -38,6 +38,8 @@ export class NuevoNotaPage implements OnInit {
   saturacionNota = null;
   glucometriaNota = null;
   idEnfermera = '';
+  isActivo:boolean;
+  validar:boolean;
 
   notaEnfermeria:NotaEnfermeria;
   pacientes: PacienteDTO[] = [];
@@ -57,7 +59,7 @@ export class NuevoNotaPage implements OnInit {
   ngOnInit() {
 
     this.idEnfermera = this.restlogin.getId();
-    console.log("id enfermera: ",this.idEnfermera);
+    //console.log("id enfermera: ",this.idEnfermera);
     this.myMethod();
     this.cargarEnfermera(this.idEnfermera);
   }
@@ -98,7 +100,7 @@ export class NuevoNotaPage implements OnInit {
   {
     let TIME_IN_MS = 2400;
     let hideFooterTimeout = setTimeout( () => {
-    this.router.navigate(['/nuevo-nota']);
+    this.router.navigate(['/user']);
 }, TIME_IN_MS);
   }
 
@@ -121,6 +123,7 @@ export class NuevoNotaPage implements OnInit {
     this.idPaciente = '';
     this.docPacienteBuscar = '';
     this.pacientes = null;
+
 
 
   }
@@ -149,19 +152,50 @@ export class NuevoNotaPage implements OnInit {
   buscar()
   {
     this.idPaciente = null;
+    this.isActivo = false;
+    this.validar = false;
     this.buscarPaciente(this.docPacienteBuscar);
-    let TIME_IN_MS = 1000;
+    let TIME_IN_MS = 2000;
     let hideFooterTimeout = setTimeout( () => {
+
+      for(let p in this.pacientes)
+      {             
+        //console.log(this.pacientes);
+          if(this.pacientes[p].descripcionEstadoPaciente == 'Inactivo')
+          {
+            this.isActivo = false;
+          }
+          else{  
+            this.isActivo = true;
+          }
+          
+      }
+
 
       if(this.idPaciente == null)
       {
-        this.presentToast("no existe el paciente");
+        this.presentToast("No existe el paciente");
       }
+      else if(this.isActivo == false)
+      {
+        this.presentToast("El paciente no se encuentra activo");
+      }
+      else{
+          this.validar = true;
+      }
+         
+
+
+        //console.log(this.idPaciente);
+        //console.log("Estado Paciente: ",this.isActivo);   
+      
+      
 
 }, TIME_IN_MS);
     
     this.pacientes = null;
   }
+
 
   buscarPaciente(numDocumento:number) 
   {
@@ -172,6 +206,7 @@ export class NuevoNotaPage implements OnInit {
         listaPaciente.map(pacienteRef =>{
         this.idPaciente = pacienteRef.payload.doc.id;
         this.cargarPaciente(this.idPaciente);
+
         //console.log("idPaciente: ",this.idPaciente);
         })
         return this.idPaciente;
@@ -183,7 +218,7 @@ export class NuevoNotaPage implements OnInit {
   cargarPaciente(id:string): void {
     this.pacienteService.detalle(id).subscribe(
       data => {
-        this.pacientes = data;
+        this.pacientes = data;  
       },
       err => {
         console.log(err);

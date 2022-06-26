@@ -6,6 +6,7 @@ import { GeneroDTO } from 'src/app/models/generoDTO';
 import { GrupoSanguineoDTO } from 'src/app/models/grupoSanguineoDTO';
 import { Paciente } from 'src/app/models/paciente';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 
 @Component({
@@ -15,6 +16,8 @@ import { PacienteService } from 'src/app/services/paciente.service';
 })
 export class PacientePage implements OnInit {
 
+
+  idUsuarioDocumento = "";
   paciente:Paciente;
   nombrePaciente = '';
   apellidoPaciente = '';
@@ -39,7 +42,8 @@ export class PacientePage implements OnInit {
   constructor(
     private pacienteService:PacienteService,
     private router: Router,
-    private toastController:ToastController
+    private toastController:ToastController,
+    private firestore:FirebaseService
   ) { }
 
   ngOnInit() {
@@ -52,6 +56,17 @@ export class PacientePage implements OnInit {
 
   crear()
   {
+
+    this.idUsuarioDocumento = null;
+    this.getValidacionDocumento(this.numeroIdentificacion);
+
+    let TIME_IN_MS = 2500;
+    let hideFooterTimeout = setTimeout( () => {
+
+    //console.log("usuarioDocumento retardo: ",this.idUsuarioDocumento);
+
+    if(this.idUsuarioDocumento == null)
+    {
     this.paciente = new Paciente(this.nombrePaciente,this.apellidoPaciente,this.numeroIdentificacion,this.idTipoDoc,this.fechaNacimiento,this.direccion,this.telefono,this.idGenero,this.idDiscapacidad,this.idGrupo,this.idEstado);
     this.pacienteService.crear(this.paciente).subscribe(
       data => {
@@ -67,6 +82,28 @@ export class PacientePage implements OnInit {
         this.presentToast("error al crear el paciente");
       }
     );
+
+    }else {
+      this.presentToast("ya existe el documento");
+    }
+
+
+  }, TIME_IN_MS);
+
+
+  }
+
+  getValidacionDocumento(documentoUser:number) 
+  {
+    const path = 'Paciente/';
+    this.firestore.GetUsuariosPE(path,'numeroIdentificacionP',documentoUser).then(firebaseResponse =>{
+      firebaseResponse.subscribe(listaEnfermera =>{
+        listaEnfermera.map(enfermeraRef =>{
+        this.idUsuarioDocumento = enfermeraRef.payload.doc.id;
+        })
+        return this.idUsuarioDocumento;
+      })
+    })
   }
 
   async presentToast(mensaje: string) {
