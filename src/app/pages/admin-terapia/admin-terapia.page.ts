@@ -20,10 +20,16 @@ export class AdminTerapiaPage implements OnInit {
     this.cargarLista();
   }
 
+  ionViewWillEnter()
+  {
+    this.cargarLista();
+  }
+
   cargarLista(): void {
     this.terapiaService.lista().subscribe(
       data => {
         this.notasTerapia = data;
+        //console.log(this.notasTerapia);
       },
       err => {
         console.log(err);

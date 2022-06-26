@@ -12,5 +12,7 @@ export class EnfermeraDTO {
     tipoDocumento:String;
 	descripcionGenero:String;
 	descripcionRol:String;
+    idEstadoEnfermera:string;
+    descripcionEstadoEnfermera:string;
 
 }

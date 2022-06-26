@@ -25,6 +25,10 @@ export class NotaService {
   public crear(notaEnfermeria:NotaEnfermeria): Observable<boolean> {
     return this.httpClient.post<boolean>(this.notaEnfermeriaUrl + 'save',notaEnfermeria);
   }
+  
+  public actualizar(id:string, notaEnfermeria:NotaEnfermeria): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.notaEnfermeriaUrl + `update/${id}`,notaEnfermeria);
+  }
 
   
 }

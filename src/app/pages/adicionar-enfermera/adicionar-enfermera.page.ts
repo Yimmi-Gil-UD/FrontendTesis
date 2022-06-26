@@ -27,6 +27,7 @@ export class AdicionarEnfermeraPage implements OnInit {
   genero = '';
   // rol de user quemado XD
   rol = 'Gu2ZrrJHSBpmz5gIQnPH';
+  estadoEnfermera = 'OY3rHoXKun6Y2MFr61JN';
 
   
   constructor(
@@ -42,7 +43,7 @@ export class AdicionarEnfermeraPage implements OnInit {
 
   crear()
   {
-    this.enfermera = new Enfermera(this.nombre,this.apellido,this.tipoDocumento,this.identificacion,this.correo,this.password,this.genero,this.rol);
+    this.enfermera = new Enfermera(this.nombre,this.apellido,this.tipoDocumento,this.identificacion,this.correo,this.password,this.genero,this.rol,this.estadoEnfermera);
     this.enfermeraService.crear(this.enfermera).subscribe(
       data => {
         this.presentToast("enfermera cread(@)");

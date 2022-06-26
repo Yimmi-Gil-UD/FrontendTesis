@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { CategoriaDiscapacidadDTO } from 'src/app/models/categoriaDiscapacidadDTO';
 import { GeneroDTO } from 'src/app/models/generoDTO';
 import { GrupoSanguineoDTO } from 'src/app/models/grupoSanguineoDTO';
-import { Paciente } from 'src/app/models/Paciente';
+import { Paciente } from 'src/app/models/paciente';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { PacienteService } from 'src/app/services/paciente.service';
 
@@ -26,6 +26,7 @@ export class PacientePage implements OnInit {
   idGenero = '';
   idDiscapacidad = '';
   idGrupo = '';
+  idEstado = 'OY3rHoXKun6Y2MFr61JN';
 
   mensajeExito = '';
   mensajeError = '';
@@ -51,7 +52,7 @@ export class PacientePage implements OnInit {
 
   crear()
   {
-    this.paciente = new Paciente(this.nombrePaciente,this.apellidoPaciente,this.numeroIdentificacion,this.idTipoDoc,this.fechaNacimiento,this.direccion,this.telefono,this.idGenero,this.idDiscapacidad,this.idGrupo);
+    this.paciente = new Paciente(this.nombrePaciente,this.apellidoPaciente,this.numeroIdentificacion,this.idTipoDoc,this.fechaNacimiento,this.direccion,this.telefono,this.idGenero,this.idDiscapacidad,this.idGrupo,this.idEstado);
     this.pacienteService.crear(this.paciente).subscribe(
       data => {
         this.presentToast("paciente creado");

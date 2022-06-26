@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoriaDiscapacidadDTO } from '../models/categoriaDiscapacidadDTO';
+import { EstadoDTO } from '../models/estadoDTO';
 import { GeneroDTO } from '../models/generoDTO';
 import { GrupoSanguineoDTO } from '../models/grupoSanguineoDTO';
-import { Paciente } from '../models/Paciente';
+import { Paciente } from '../models/paciente';
 import { PacienteDTO } from '../models/pacienteDTO';
 import { TipoDocumentoDTO } from '../models/TipoDocumentoIdDTO';
 
@@ -18,6 +19,7 @@ export class PacienteService {
   tipoGeneroUrl = 'http://localhost:8080/genero/';
   categoriaUrl = 'http://localhost:8080/categoria/';
   grupoSanguineoUrl = 'http://localhost:8080/grupoSanguineo/';
+  estadoUrl = 'http://localhost:8080/estado/';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -31,6 +33,10 @@ export class PacienteService {
 
   public crear(paciente:Paciente): Observable<boolean> {
     return this.httpClient.post<boolean>(this.pacienteUrl + 'save',paciente);
+  }
+
+  public actualizar(id:string, paciente:Paciente): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.pacienteUrl + `update/${id}`,paciente);
   }
 
   public listaDocumentos(): Observable<TipoDocumentoDTO[]> {
@@ -47,6 +53,10 @@ export class PacienteService {
 
   public listaGrupoSanguineo(): Observable<GrupoSanguineoDTO[]> {
     return this.httpClient.get<GrupoSanguineoDTO[]>(this.grupoSanguineoUrl + 'list');
+  }
+
+  public listaEstado(): Observable<EstadoDTO[]> {
+    return this.httpClient.get<EstadoDTO[]>(this.estadoUrl + 'list');
   }
 
 }

@@ -4,58 +4,44 @@
     <h3 class="ion-text-center"></h3>
        <ion-list *ngFor ="let paciente of pacienteDTOs" lines="full" class="ion-no-margin ion-no-padding">
         <ion-item>
-          <ion-label >Nombres y apellidos:</ion-label>
-          &nbsp;
-          <ion-label >{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Nombres y apellidos:</ion-label>
+          <p >{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</p>
         </ion-item>
         <ion-item>
-            <ion-label >Tipo identificación:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.tipoDocumento}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Tipo identificación:</ion-label>
+            <p >{{paciente.tipoDocumento}}</p>
           </ion-item>
         <ion-item>
-            <ion-label >Número identificación:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.numeroIdentificacionP}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Número identificación:</ion-label>
+            <p >{{paciente.numeroIdentificacionP}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Fecha Nacimiento:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.fechaNacimiento}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Fecha Nacimiento:</ion-label>
+            <p >{{paciente.fechaNacimiento.split('T')[0]}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Dirección:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.direccion}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Dirección:</ion-label>
+            <p >{{paciente.direccion}}</p>
           </ion-item>
           <ion-item>    
-            <ion-label >Teléfono:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.telefono}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Teléfono:</ion-label>
+            <p >{{paciente.telefono}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Género:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.nombreGenero}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Género:</ion-label>
+            <p >{{paciente.nombreGenero}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Tipo Discapacidad:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.nombreCategoria}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Tipo Discapacidad:</ion-label>
+            <p >{{paciente.nombreCategoria}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Grupo Sanguíneo:</ion-label>
-            &nbsp;
-            <ion-label >{{paciente.nombreGrupo}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Grupo Sanguíneo:</ion-label>
+            <p >{{paciente.nombreGrupo}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Estado:</ion-label>
+            <p >{{paciente.descripcionEstadoPaciente}}</p>
           </ion-item>
       </ion-list>
 

@@ -1,107 +1,76 @@
 <app-header title="Detalle Nota Enfermeria"></app-header>
 
 <ion-content *ngIf="NotaEnfermeriaDTOs">
+  <ion-card>
   <h3 class="ion-text-center"></h3>
      <ion-list *ngFor ="let notaEnfermeria of NotaEnfermeriaDTOs" lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label >Nombres y apellidos paciente:</ion-label>
-        &nbsp;
-        <ion-label >{{notaEnfermeria.nombrePaciente}} {{notaEnfermeria.apellidoPaciente}}</ion-label>
-        &nbsp;
+        <ion-label position="floating">Nombres y apellidos paciente</ion-label>
+        <p>{{notaEnfermeria.nombrePaciente}}{{notaEnfermeria.apellidoPaciente}}</p>
       </ion-item>
       <ion-item>
-          <ion-label >Número documento paciente:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.documentoPaciente}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número documento paciente</ion-label>
+          <p>{{notaEnfermeria.documentoPaciente}}</p>
         </ion-item>
       <ion-item>
-          <ion-label >Número cuarto:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.numeroCuarto}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número cuarto</ion-label>
+          <p>{{notaEnfermeria.numeroCuarto}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Número cama:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.numeroCama}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número cama</ion-label>
+          <p>{{notaEnfermeria.numeroCama}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Fecha nota:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.fechaNota}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Fecha nota</ion-label>
+          <p>{{notaEnfermeria.fechaNota.split('T')[0]}}</p>
         </ion-item>
         <ion-item>    
-          <ion-label >Hora nota:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.horaNota}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Hora nota</ion-label>
+          <p>{{notaEnfermeria.horaNota}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Observación:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.observacion}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Observación</ion-label>
+          <br><ion-textarea>{{notaEnfermeria.observacion}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label >Tension Arterial:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.tensionArterial}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Tension Arterial</ion-label>
+          <p>{{notaEnfermeria.tensionArterial}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Frecuencia Cardiaca:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.frecuenciaCardiaca}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Frecuencia Cardiaca</ion-label>
+          <p>{{notaEnfermeria.frecuenciaCardiaca}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Frecuencia Respiratoria:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.frecuenciaRespiratoria}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Frecuencia Respiratoria</ion-label>
+          <p>{{notaEnfermeria.frecuenciaRespiratoria}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >temperatura:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.temperatura}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">temperatura</ion-label>
+          <p>{{notaEnfermeria.temperatura}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >saturacion:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.saturacion}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">saturacion</ion-label>
+          <p>{{notaEnfermeria.saturacion}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >glucometria:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.glucometria}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">glucometria</ion-label>
+          <p>{{notaEnfermeria.glucometria}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Nombre enfermera:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.nombreEnfermera}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Nombre enfermera</ion-label>
+          <p>{{notaEnfermeria.nombreEnfermera}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Apellido enfermera:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.apellidoEnfermera}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Apellido enfermera</ion-label>
+          <p>{{notaEnfermeria.apellidoEnfermera}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Número documento enfermera:</ion-label>
-          &nbsp;
-          <ion-label >{{notaEnfermeria.documentoEnfermera}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número documento enfermera</ion-label>
+          <p>{{notaEnfermeria.documentoEnfermera}}</p>
         </ion-item>
     </ion-list>
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
+</ion-card> 
 </ion-content>

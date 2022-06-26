@@ -21,10 +21,17 @@ export class AdminPacientesPage implements OnInit {
     this.cargarLista();
   }
 
+  ionViewWillEnter()
+  {
+    this.cargarLista();
+  }
+  
+
   cargarLista(): void {
     this.pacienteService.lista().subscribe(
       data => {
         this.pacientes = data;
+        //console.log(this.pacientes);
       },
       err => {
         console.log(err);

@@ -31,4 +31,8 @@ export class TerapiaService {
     return this.httpClient.post<boolean>(this.notaTerapiaURL + 'save',notaTerapia);
   }
 
+  public actualizar(id:string, notaTerapia:NotaTerapia): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.notaTerapiaURL + `update/${id}`,notaTerapia);
+  }
+
 }

@@ -19,6 +19,11 @@ export class AdminPage implements OnInit {
   ngOnInit() {
     this.cargarLista();
   }
+  
+  ionViewWillEnter()
+  {
+    this.cargarLista();
+  }
 
   cargarLista(): void {
     this.notaService.lista().subscribe(

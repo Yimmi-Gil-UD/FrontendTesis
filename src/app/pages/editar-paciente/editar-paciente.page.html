@@ -1,5 +1,80 @@
 <app-header title="Editar Paciente"></app-header>
 
-<ion-content>
-
+<ion-content *ngIf="pacientesDTO">
+    <h3 class="ion-text-center"></h3>
+    <div class="centrado">
+      <ion-icon name="person-circle-outline" style="zoom:6.0;" ></ion-icon>
+    </div>
+      <h3 class="ion-text-center"></h3>
+      <form #f="ngForm" (ngSubmit)="actualizarPaciente()" novalidate>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" *ngFor="let paciente of pacientesDTO" name="nombresEnfermera" [(ngModel)]="paciente.nombrePaciente"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input  required type="text" *ngFor="let paciente of pacientesDTO" name="apellidosEnfemera" [(ngModel)]="paciente.apellidoPaciente"></ion-input>
+          </ion-item>
+          <ion-item>  
+            <ion-label position="floating">Tipo identificación:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select name="identificacionP" interface="popover" *ngFor="let paciente of pacientesDTO" [(ngModel)]="paciente.idTipoDocumentoP" >
+            <ion-select-option  [value]="documentos.id" *ngFor="let documentos of tipoDocumentos">{{documentos.descripcionDocumento}}</ion-select-option >
+          </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Número Identificación:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" *ngFor="let paciente of pacientesDTO" name="numIdentificacionEnfermera" [(ngModel)]="paciente.numeroIdentificacionP"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Fecha Nacimiento:<ion-text color="danger">*</ion-text></ion-label>
+            &nbsp;
+            <ion-input required type="date" dateFormat="DDD DD MMM, YYYY" *ngFor="let paciente of pacientesDTO" name="fechaNacimientoP" [(ngModel)]="paciente.fechaNacimiento.split('T')[0]"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Dirección:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" *ngFor="let paciente of pacientesDTO" name="direccionP" name="direccionP" [(ngModel)]="paciente.direccion"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Teléfono:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" *ngFor="let paciente of pacientesDTO" name="telefonoP" name="telefonoP" [(ngModel)]="paciente.telefono"></ion-input>
+          </ion-item>
+          <ion-item>  
+            <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select name="generoEnfermera" *ngFor="let paciente of pacientesDTO" name="generoP" interface="popover"  [(ngModel)]="paciente.idGenero" >
+            <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
+          </ion-select>
+        </ion-item>
+        <ion-item>  
+          <ion-label position="floating">Tipo discapacidad:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-select name="discapacidadP" *ngFor="let paciente of pacientesDTO" name="tipoDP" interface="popover" [(ngModel)]="paciente.idCategoriaDiscapacidad" >
+          <ion-select-option  [value]="discapacidad.id" *ngFor="let discapacidad of categoriaDiscapacidad">{{discapacidad.nombreDiscapacidad}}</ion-select-option >
+        </ion-select>
+      </ion-item>
+      <ion-item>  
+        <ion-label position="floating">Grupo sanguineo:<ion-text color="danger">*</ion-text></ion-label>
+      <ion-select name="grupoP" *ngFor="let paciente of pacientesDTO" interface="popover" [(ngModel)]="paciente.idGrupoSanguineo" >
+        <ion-select-option [value]="grupo.id" *ngFor="let grupo of grupoSanguineo">{{grupo.nombreGrupo}}</ion-select-option >
+      </ion-select>
+       </ion-item>
+       <ion-item>  
+        <ion-label position="floating">Estado:<ion-text color="danger">*</ion-text></ion-label>
+      <ion-select name="estadoP" *ngFor="let paciente of pacientesDTO" name="grupoS" interface="popover" [(ngModel)]="paciente.idEstadoPaciente" >
+        <ion-select-option  [value]="estado.id" *ngFor="let estado of estados">{{estado.descripcionEstado}}</ion-select-option >
+      </ion-select>
+       </ion-item>
+              
+          <div class="ion-padding">
+            <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+                <ion-icon name="person-add" slot="icon-only"></ion-icon>
+               Actualizar Datos
+            </ion-button>
+          </div>
+        </ion-list>
+      </form>
+      <div class="ion-text-center">
+          <ion-label position="floating">
+              <ion-text color="danger">*</ion-text>campos obligatorios
+          </ion-label>
+      </div>
 </ion-content>

@@ -7,8 +7,10 @@ export class Enfermera {
 	password:string;
 	idGenero:string;
 	idRol:string;
+    idEstadoEnfermera:string;
 
-    constructor(nombre:string, apellido:string, idTipoDocumentoE:string, numeroIdentificacion:number,correo:string,password:string,idGenero:string,idRol:string)
+
+    constructor(nombre:string, apellido:string, idTipoDocumentoE:string, numeroIdentificacion:number,correo:string,password:string,idGenero:string,idRol:string,idEstadoEnfermera:string)
     {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,6 +20,7 @@ export class Enfermera {
         this.password = password;
         this.idGenero = idGenero;
         this.idRol = idRol;
+        this.idEstadoEnfermera = idEstadoEnfermera;
     }
 
 

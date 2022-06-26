@@ -1,5 +1,68 @@
-<app-header title="Editar Paciente"></app-header>
+<app-header title="Editar Enfermera"></app-header>
 
-<ion-content>
-
+<ion-content *ngIf="enfermeraDTOs">
+    <h3 class="ion-text-center"></h3>
+    <div class="centrado">
+      <ion-icon name="person-circle-outline" style="zoom:6.0;" ></ion-icon>
+    </div>
+      <h3 class="ion-text-center"></h3>
+      <form #f="ngForm" (ngSubmit)="actualizarEnfermera()" novalidate>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" *ngFor="let enfermera of enfermeraDTOs" name="nombresEnfermera" [(ngModel)]="enfermera.nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input  required type="text" *ngFor="let enfermera of enfermeraDTOs" name="apellidosEnfemera" [(ngModel)]="enfermera.apellido"></ion-input>
+          </ion-item>
+          <ion-item>  
+            <ion-label position="floating">Tipo identificación:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select name="identificacionP" interface="popover" *ngFor="let enfermera of enfermeraDTOs" [(ngModel)]="enfermera.idTipoDocumentoE" >
+            <ion-select-option  [value]="documentos.id" *ngFor="let documentos of tipoDocumentos">{{documentos.descripcionDocumento}}</ion-select-option >
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Número Identificación:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="number" *ngFor="let enfermera of enfermeraDTOs" name="numIdentificacionEnfermera" [(ngModel)]="enfermera.numeroIdentificacion"></ion-input>
+        </ion-item>
+            <ion-item>
+              <ion-label position="floating">Correo:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="text" *ngFor="let enfermera of enfermeraDTOs" name="correoEnfermera" email [(ngModel)]="enfermera.correo"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="password" *ngFor="let enfermera of enfermeraDTOs" name="contraseñaEnfermera" [(ngModel)]="enfermera.password"></ion-input>
+            </ion-item>
+            <ion-item>  
+              <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-select name="generoEnfermera" interface="popover" *ngFor="let enfermera of enfermeraDTOs" [(ngModel)]="enfermera.idGenero" >
+              <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
+            </ion-select>
+          </ion-item>
+          <ion-item>  
+            <ion-label position="floating">Estado:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select name="estadoEnfermera" interface="popover" *ngFor="let enfermera of enfermeraDTOs" [(ngModel)]="enfermera.idEstadoEnfermera" >
+            <ion-select-option  [value]="estado.id" *ngFor="let estado of estados">{{estado.descripcionEstado}}</ion-select-option >
+          </ion-select>
+        </ion-item>
+        <ion-item>  
+          <ion-label position="floating">Rol:<ion-text color="danger">*</ion-text></ion-label>
+        <ion-select name="rolEnfermera" interface="popover" *ngFor="let enfermera of enfermeraDTOs" [(ngModel)]="enfermera.idRol" >
+          <ion-select-option  [value]="rol.id" *ngFor="let rol of roles">{{rol.nombreRol}}</ion-select-option >
+        </ion-select>
+      </ion-item>
+          <div class="ion-padding">
+            <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+                <ion-icon name="person-add" slot="icon-only"></ion-icon>
+               Actualizar Datos
+            </ion-button>
+          </div>
+        </ion-list>
+      </form>
+      <div class="ion-text-center">
+          <ion-label position="floating">
+              <ion-text color="danger">*</ion-text>campos obligatorios
+          </ion-label>
+      </div>
 </ion-content>

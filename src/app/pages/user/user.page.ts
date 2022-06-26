@@ -20,10 +20,16 @@ export class UserPage implements OnInit {
     this.cargarLista();
   }
 
+  ionViewWillEnter()
+  {
+    this.cargarLista();
+  }
+
   cargarLista(): void {
     this.notaService.lista().subscribe(
       data => {
         this.notas = data;
+        //console.log(this.notas);
       },
       err => {
         console.log(err);

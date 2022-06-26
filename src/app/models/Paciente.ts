@@ -9,8 +9,9 @@ export class Paciente {
 	idGenero:string;
 	idCategoriaDiscapacidad:string;
 	idGrupoSanguineo:string;
+	idEstadoPaciente:string;
 
-	constructor(nombrePaciente: string, apellidoPaciente:string,numeroIdentificacionP:number,idTipoDocumentoP:string,fechaNacimiento:Date,direccion:string,telefono:number,idGenero:string,idCategoriaDiscapacidad:string,idGrupoSanguineo:string)
+	constructor(nombrePaciente: string, apellidoPaciente:string,numeroIdentificacionP:number,idTipoDocumentoP:string,fechaNacimiento:Date,direccion:string,telefono:number,idGenero:string,idCategoriaDiscapacidad:string,idGrupoSanguineo:string,idEstadoPaciente:string)
 	{
 		this.nombrePaciente = nombrePaciente;
 		this.apellidoPaciente = apellidoPaciente;
@@ -22,6 +23,7 @@ export class Paciente {
 		this.idGenero = idGenero;
 		this.idCategoriaDiscapacidad = idCategoriaDiscapacidad;
 		this.idGrupoSanguineo = idGrupoSanguineo;
+		this.idEstadoPaciente = idEstadoPaciente;
 
 	}
 }

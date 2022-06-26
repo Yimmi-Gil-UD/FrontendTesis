@@ -3,8 +3,8 @@ export class NotaEnfermeriaDTO {
 
     id: string;
     idPaciente: string;
-    numeroCuarto: string;
-    numeroCama: string;
+    numeroCuarto: number;
+    numeroCama: number;
     fechaNota: Date;
     horaNota: string;
     observacion: string;

@@ -17,5 +17,7 @@ export class PacienteDTO {
 	nombreGrupo:String;
 	nombreFundacion:String;
 	tipoDocumento:String;
+    idEstadoPaciente:string;
+    descripcionEstadoPaciente:string;
 
 }

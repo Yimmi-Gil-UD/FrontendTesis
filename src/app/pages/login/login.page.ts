@@ -43,6 +43,11 @@ export class LoginPage implements OnInit {
   this.validarLogin();
   }
 
+  ionViewWillEnter()
+  {
+    this.validarLogin();
+  }
+
   onLogin()
   {
 

@@ -20,6 +20,11 @@ export class UserTerapiaPage implements OnInit {
     this.cargarLista();
   }
 
+  ionViewWillEnter()
+  {
+    this.cargarLista();
+  }
+
   cargarLista(): void {
     this.terapiaService.lista().subscribe(
       data => {

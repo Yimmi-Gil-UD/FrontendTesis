@@ -4,82 +4,60 @@
   <h3 class="ion-text-center"></h3>
      <ion-list *ngFor ="let notaTerapia of notaTerapiaDTOs" lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label >Nombres y apellidos paciente:</ion-label>
-        &nbsp;
-        <ion-label >{{notaTerapia.nombrePacienteTerapia}} {{notaTerapia.apellidoPacienteTerapia}}</ion-label>
-        &nbsp;
+        <ion-label position="floating">Nombres y apellidos paciente</ion-label>
+        <p>{{notaTerapia.nombrePacienteTerapia}}{{notaTerapia.apellidoPacienteTerapia}}</p>
       </ion-item>
       <ion-item>
-          <ion-label >Número documento paciente:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.documentoPaciente}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número documento paciente</ion-label>
+          <p>{{notaTerapia.documentoPaciente}}</p>
         </ion-item>
       <ion-item>
-          <ion-label >Objetivo:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.objetivo}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Objetivo</ion-label>
+          <br>
+          <ion-textarea>{{notaTerapia.objetivo}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label >Estructura Corporal:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.estructuraCorporal}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Estructura Corporal</ion-label>
+          <p>{{notaTerapia.estructuraCorporal}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Funcion Corporal:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.funcionCorporal}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Funcion Corporal</ion-label>
+          <p>{{notaTerapia.funcionCorporal}}</p>
         </ion-item>
         <ion-item>    
-          <ion-label >Pronostico:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.pronostico}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Pronostico:</ion-label>
+          <br>
+          <ion-textarea>{{notaTerapia.pronostico}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label >Plan Trabajo:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.planTrabajo}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Plan Trabajo:</ion-label>
+          <br>
+          <ion-textarea>{{notaTerapia.planTrabajo}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label >Fecha nota terapia:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.fechaNotaTerapia}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Fecha nota terapia:</ion-label>
+          <p>{{notaTerapia.fechaNotaTerapia.split('T')[0]}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Hora nota terapia:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.horaNotaTerapia}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Hora nota terapia:</ion-label>
+          <p>{{notaTerapia.horaNotaTerapia}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Observacion:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.observacion}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Observacion:</ion-label>
+          <br>
+          <ion-textarea>{{notaTerapia.observacion}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label >Tipo Terapia:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.tipoTerapia}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Tipo Terapia:</ion-label>
+          <p>{{notaTerapia.tipoTerapia}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Nombres y apellidos enfermera:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.nombreEnfermeraTerapia}} {{notaTerapia.apellidoEnfermeraTerapia}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Nombres y apellidos enfermera:</ion-label>
+          <p>{{notaTerapia.nombreEnfermeraTerapia}} {{notaTerapia.apellidoEnfermeraTerapia}}</p>
         </ion-item>
         <ion-item>
-          <ion-label >Número documento enfermera:</ion-label>
-          &nbsp;
-          <ion-label >{{notaTerapia.documentoEnfermera}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Número documento enfermera:</ion-label>
+          <p>{{notaTerapia.documentoEnfermera}}</p>
         </ion-item>
     </ion-list>
 

@@ -4,40 +4,32 @@
     <h3 class="ion-text-center"></h3>
        <ion-list *ngFor ="let enfermera of enfermeraDTOs" lines="full" class="ion-no-margin ion-no-padding">
         <ion-item>
-          <ion-label >Nombres y apellidos:</ion-label>
-          &nbsp;
-          <ion-label >{{enfermera.nombre}} {{enfermera.apellido}}</ion-label>
-          &nbsp;
+          <ion-label position="floating">Nombres y apellidos:</ion-label>
+          <p>{{enfermera.nombre}} {{enfermera.apellido}}</p>
         </ion-item>
         <ion-item>
-            <ion-label >Tipo identificación:</ion-label>
-            &nbsp;
-            <ion-label >{{enfermera.tipoDocumento}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Tipo identificación:</ion-label>
+            <p >{{enfermera.tipoDocumento}}</p>
           </ion-item>
         <ion-item>
-            <ion-label >Número identificación:</ion-label>
-            &nbsp;
-            <ion-label >{{enfermera.numeroIdentificacion}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Número identificación:</ion-label>
+            <p >{{enfermera.numeroIdentificacion}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Correo:</ion-label>
-            &nbsp;
-            <ion-label >{{enfermera.correo}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Correo:</ion-label>
+            <p >{{enfermera.correo}}</p>
           </ion-item>
           <ion-item>
-            <ion-label >Genero:</ion-label>
-            &nbsp;
-            <ion-label >{{enfermera.descripcionGenero}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Genero:</ion-label>
+            <p >{{enfermera.descripcionGenero}}</p>
           </ion-item>
           <ion-item>    
-            <ion-label >Rol:</ion-label>
-            &nbsp;
-            <ion-label >{{enfermera.descripcionRol}}</ion-label>
-            &nbsp;
+            <ion-label position="floating">Rol:</ion-label>
+            <p >{{enfermera.descripcionRol}}</p>
+          </ion-item>
+          <ion-item>    
+            <ion-label position="floating">Estado:</ion-label>
+            <p >{{enfermera.descripcionEstadoEnfermera}}</p>
           </ion-item>
       </ion-list>
 

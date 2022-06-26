@@ -2,94 +2,70 @@
 
 <ion-content>
   <h3 class="ion-text-center"></h3>
-  <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+  <form #f="ngForm" (ngSubmit)="actualizarTerapia()" novalidate>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-card>    
-        <ion-card-header>
-          <ion-card-subtitle>Datos del paciente</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
+        <ion-card-content>    
           <ion-item>
             <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="numIdentiPacienteT"></ion-input>
+            <ion-input required type="text" name="numIdentiPacienteT" *ngFor="let paciente of pacientesDTO" [(ngModel)]="paciente.numeroIdentificacionP"></ion-input>
           </ion-item> 
           <ion-item>
-            <ion-label>
-              Paciente:
+            <ion-label *ngFor="let paciente of pacientesDTO">
+              Paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}
             </ion-label>
-          </ion-item>
-          <div class="ion-padding">
-            <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
-                <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-                Validar Paciente
-                </ion-button>
-          </div>
-        </ion-card-content>
-      </ion-card>    
-      <ion-card>    
-        <ion-card-content>            
+          </ion-item>    
           <ion-item>
             <ion-label position="floating">Objetivo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="objetivo"></ion-input>
+            <ion-input required type="text" name="objetivoT" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.objetivo"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Estructura corporal:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="estructuraCorporal"></ion-input>
+            <ion-input required type="text" name="estructuraCorporal" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.estructuraCorporal"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Función corporal:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="funcionCorporal"></ion-input>
+            <ion-input required type="text" name="funcionCorporal" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.funcionCorporal"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Pronóstico:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="pronostico"></ion-input>
+            <ion-input required type="text" name="pronosticoT" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.pronostico"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Plan de trabajo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="planDeTrabajo"></ion-input>
+            <ion-input required type="text" name="planDeTrabajo" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.planTrabajo"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>
             &nbsp;
-            <ion-input required type="date" name="fechaTerapia"></ion-input>
+            <ion-input required type="date" name="fechaTerapia" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.fechaNotaTerapia.split('T')[0]"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Hora:<ion-text color="danger">*</ion-text></ion-label>
             &nbsp;
-            <ion-input required type="time" name="horaTerapia"></ion-input>
+            <ion-input required type="time" name="horaTerapia" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.horaNotaTerapia"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Observación:</ion-label>
-            <ion-textarea placeholder="voz a texto" id="observacionTerapia" col="30" rows="10"></ion-textarea>
+            <ion-textarea name="observacionTerapia" col="30" rows="10" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.observacion"></ion-textarea>
             <div class="ion-padding">
-              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
-                  <ion-icon name="mic-circle-outline" slot="icon-only"></ion-icon>
-                  Grabar Nota De Terapia
-                  </ion-button>
             </div>
           </ion-item>
-          <ion-item>
+          <ion-item>  
             <ion-label position="floating">Tipo de terapia:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-select interface="popover">
-              <ion-select-option value="nes">Masculino</ion-select-option>
-              <ion-select-option value="n64">Femenino</ion-select-option>
-            </ion-select>
-          </ion-item>
+          <ion-select name="tipoTerapia" interface="popover" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.idTipoTerapia" >
+            <ion-select-option  [value]="terapia.id" *ngFor="let terapia of tipoTerapia">{{terapia.nombreTerapia}}</ion-select-option >
+          </ion-select>
+        </ion-item>
           <ion-item>
-            <ion-label>
-              Enfermera:
+            <ion-label *ngFor="let enfermera of enfermeraDTO">
+              Enfermera: {{enfermera.nombre}} {{enfermera.apellido}}
             </ion-label>
           </ion-item>            
           <div class="ion-padding">
             <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
                 <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-                Guardar Nota De Terapia
-                </ion-button>
-          </div>
-          <div class="ion-padding">
-            <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="vaciar()">
-                <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
-                Limpiar Campos
+                Actualizar Nota De Terapia
                 </ion-button>
           </div>
           <div class="ion-text-center">
