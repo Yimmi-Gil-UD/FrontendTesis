@@ -9,6 +9,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { NotaService } from 'src/app/services/nota.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { RestLoginService } from 'src/app/services/rest-login.service';
+import { ChangeDetectorRef } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 
 
 
@@ -45,6 +48,10 @@ export class NuevoNotaPage implements OnInit {
   pacientes: PacienteDTO[] = [];
   enfermeras: EnfermeraDTO[] = [];
 
+  texto:string;
+  textoFinal = "";
+  isRecording = false;
+
 
   constructor(
     private notaService:NotaService,
@@ -53,8 +60,13 @@ export class NuevoNotaPage implements OnInit {
     private firestore: FirebaseService,
     private pacienteService:PacienteService,
     private restlogin: RestLoginService,
-    private enfermeraService:EnfermeraService
-    ) { }
+    private enfermeraService:EnfermeraService,
+    private speechRecognition:SpeechRecognition,
+    private cd:ChangeDetectorRef,
+    private navCtrl: NavController
+    ) { 
+      this.speechRecognition.requestPermission();
+    }
 
   ngOnInit() {
 
@@ -123,6 +135,8 @@ export class NuevoNotaPage implements OnInit {
     this.idPaciente = '';
     this.docPacienteBuscar = '';
     this.pacientes = null;
+
+    
 
 
 
@@ -235,6 +249,32 @@ export class NuevoNotaPage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  async startListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.observacion = this.observacion + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+  
+  stopListening()
+  {
+    //this.speechRecognition.stopListening().then(() => {
+    //this.isRecording = false;
+    //})
+    this.isRecording = false;
+    this.speechRecognition.stopListening();
+
   }
  
 

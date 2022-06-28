@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http'
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 
 
 
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http'
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig)
             ,AngularFirestoreModule,HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SpeechRecognition],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

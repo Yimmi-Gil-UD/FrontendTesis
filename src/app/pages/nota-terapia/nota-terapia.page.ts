@@ -11,6 +11,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { RestLoginService } from 'src/app/services/rest-login.service';
 import { TerapiaService } from 'src/app/services/terapia.service';
+import { ChangeDetectorRef } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 
 @Component({
   selector: 'app-nota-terapia',
@@ -39,6 +42,10 @@ export class NotaTerapiaPage implements OnInit {
   enfermeras: EnfermeraDTO[] = [];
   tipoTerapiaDTOS: TipoTerapiaDTO[] = [];
 
+  texto:string;
+  textoFinal = "";
+  isRecording = false;
+
 
   constructor(
     private terapiaService:TerapiaService,
@@ -48,8 +55,13 @@ export class NotaTerapiaPage implements OnInit {
     private pacienteService:PacienteService,
     private restlogin: RestLoginService,
     private enfermeraService:EnfermeraService,
+    private speechRecognition:SpeechRecognition,
+    private cd:ChangeDetectorRef,
+    private navCtrl: NavController
 
-  ) { }
+  ) {
+    this.speechRecognition.requestPermission();
+   }
 
   ngOnInit() {
     this.idEnfermera = this.restlogin.getId();
@@ -208,9 +220,31 @@ export class NotaTerapiaPage implements OnInit {
     );
   }
 
-
+  async startListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.observacion = this.observacion + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
   
+  stopListening()
+  {
+    //this.speechRecognition.stopListening().then(() => {
+    //this.isRecording = false;
+    //})
+    this.isRecording = false;
+    this.speechRecognition.stopListening();
 
+  }
 
 
 }

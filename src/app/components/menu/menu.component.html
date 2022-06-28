@@ -66,12 +66,6 @@
           <ion-label>Iniciar Sesión</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="!ingreso">
-        <ion-item routerLink="/registro">
-          <ion-icon name="person-add" slot="start"></ion-icon>
-          <ion-label>Registro</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
       <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/adicionar-enfermera">
           <ion-icon name="pulse-outline" slot="start"></ion-icon>

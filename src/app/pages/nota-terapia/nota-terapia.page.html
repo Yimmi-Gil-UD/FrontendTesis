@@ -60,7 +60,7 @@
             <ion-label position="stacked">Observación:</ion-label>
             <ion-textarea placeholder="voz a texto" name="observacionT" col="30" rows="10" [(ngModel)]="this.observacion"></ion-textarea>
             <div class="ion-padding">
-              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin">
+              <ion-button color="dark" expand="block" type="submit" class="ion-no-margin" (click)="startListening()">
                   <ion-icon name="mic-circle-outline" slot="icon-only"></ion-icon>
                   Grabar Nota De Terapia
                   </ion-button>
