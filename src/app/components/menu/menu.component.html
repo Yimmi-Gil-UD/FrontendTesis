@@ -18,66 +18,176 @@
           <ion-label>Notas Enfermeria</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+      <!-- <ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/user">
           <ion-icon name="newspaper-outline" slot="start"></ion-icon>
           <ion-label>Notas Enfermeria</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/admin-terapia">
-          <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+          <ion-icon name="body-outline" slot="start"></ion-icon>
           <ion-label>Notas Terapias</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && isAdmin">
+      <!-- <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/admin-enfermeras">
           <ion-icon name="people-circle-outline" slot="start"></ion-icon>
           <ion-label>Enfermeras</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> 
       <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/admin-pacientes">
           <ion-icon name="people-outline" slot="start"></ion-icon>
           <ion-label>Pacientes</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+      </ion-menu-toggle> -->
+
+
+      <ion-accordion-group *ngIf="ingreso && !isAdmin">
+        <ion-accordion>
+          <ion-item slot="header">
+            <ion-icon name="barbell-outline" slot="start"></ion-icon>
+            <ion-label>Notas Terapias</ion-label>
+          </ion-item>
+        
+
+        <ion-list slot="content">
+          <ion-item>
+            <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+              <ion-item routerLink="/user-terapia">
+                <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+                <ion-label>Notas Terapias</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+              <ion-item routerLink="/nota-terapia">
+                <ion-icon name="body-outline" slot="start"></ion-icon>
+                <ion-label>Nueva Nota Terapia</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+      </ion-accordion-group>
+
+
+
+
+      <ion-accordion-group *ngIf="ingreso && !isAdmin">
+        <ion-accordion>
+          <ion-item slot="header">
+            <ion-icon name="albums-outline" slot="start"></ion-icon>
+            <ion-label>Notas Enfermeria</ion-label>
+          </ion-item>
+        
+
+        <ion-list slot="content">
+          <ion-item>
+          <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+            <ion-item routerLink="/user">
+              <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+              <ion-label>Notas Enfermeria</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          </ion-item>
+          <ion-item>
+          <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+            <ion-item routerLink="/nuevo-nota">
+              <ion-icon name="medkit-outline" slot="start"></ion-icon>
+              <ion-label>Nueva Nota Enfermeria</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+      </ion-accordion-group>
+
+
+
+       <ion-accordion-group *ngIf="ingreso && isAdmin">
+        <ion-accordion>
+          <ion-item slot="header">
+            <ion-icon name="apps-outline" slot="start"></ion-icon>
+            <ion-label>Gestión Usuarios</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+            <ion-item>
+              <ion-menu-toggle *ngIf="ingreso && isAdmin">
+                <ion-item routerLink="/admin-enfermeras">
+                  <ion-icon name="people-circle-outline" slot="start"></ion-icon>
+                  <ion-label>Lista Enfermeras</ion-label>
+                </ion-item>
+              </ion-menu-toggle> 
+            </ion-item>
+            <ion-item>
+              <ion-menu-toggle *ngIf="ingreso && isAdmin">
+                <ion-item routerLink="/admin-pacientes">
+                  <ion-icon name="people-outline" slot="start"></ion-icon>
+                  <ion-label>Lista Pacientes</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-menu-toggle *ngIf="ingreso && isAdmin">
+                <ion-item routerLink="/adicionar-enfermera">
+                  <ion-icon name="pulse-outline" slot="start"></ion-icon>
+                  <ion-label>Crear Enfermera</ion-label>
+                </ion-item>
+              </ion-menu-toggle> 
+            </ion-item>
+            <ion-item>
+              <ion-menu-toggle *ngIf="ingreso && isAdmin">
+                <ion-item routerLink="/paciente">
+                  <ion-icon name="person-add" slot="start"></ion-icon>
+                  <ion-label>Crear Paciente</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+       </ion-accordion-group>
+     
+
+      <!--<ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/user-terapia">
           <ion-icon name="newspaper-outline" slot="start"></ion-icon>
           <ion-label>Notas Terapias</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+      </ion-menu-toggle>-->
+      <!-- <ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/nuevo-nota">
           <ion-icon name="medkit-outline" slot="start"></ion-icon>
           <ion-label>Nueva Nota Enfermeria</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+      </ion-menu-toggle> -->
+      <!--<ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/nota-terapia">
           <ion-icon name="body-outline" slot="start"></ion-icon>
           <ion-label>Nueva Nota Terapia</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle *ngIf="!ingreso">
         <ion-item routerLink="/login">
           <ion-icon name="log-in" slot="start"></ion-icon>
           <ion-label>Iniciar Sesión</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle *ngIf="ingreso && isAdmin">
+      <!--<ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/adicionar-enfermera">
           <ion-icon name="pulse-outline" slot="start"></ion-icon>
           <ion-label>Crear Enfermera</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> 
       <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/paciente">
           <ion-icon name="person-add" slot="start"></ion-icon>
           <ion-label>Crear Paciente</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/reportes-user">
           <ion-icon name="bar-chart-outline" slot="start"></ion-icon>

@@ -6,7 +6,18 @@
     <strong>No se ha iniciado sesión</strong>
     </div>
   <div id="container" *ngIf="ingreso">
-    <strong>Bienvenido {{nombre}}</strong>
-    <p>Start with Ionic</p>
-  </div>
+   <ion-content fullscreen class="ion-padding" scroll-y="false">
+
+
+        <div class="slide">
+          <h2>Bienvenido: {{nombre}}</h2>
+          <p>
+            En esta aplicación móvil podrá gestionar tareas relacionadas al cuidado de los pacientes que sufren algún tipo de discapacidad.
+          </p>
+        </div>
+
+
+  </ion-content>
+</div>
+
 </ion-content>
