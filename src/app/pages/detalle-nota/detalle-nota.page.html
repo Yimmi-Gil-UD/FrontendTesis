@@ -5,67 +5,63 @@
   <h3 class="ion-text-center"></h3>
      <ion-list *ngFor ="let notaEnfermeria of NotaEnfermeriaDTOs" lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="floating">Nombres y apellidos paciente</ion-label>
-        <p>{{notaEnfermeria.nombrePaciente}}{{notaEnfermeria.apellidoPaciente}}</p>
+        <ion-label position="floating">Nombres y apellidos paciente:</ion-label>
+        <p>{{notaEnfermeria.nombrePaciente}} {{notaEnfermeria.apellidoPaciente}}</p>
       </ion-item>
       <ion-item>
-          <ion-label position="floating">Número documento paciente</ion-label>
+          <ion-label position="floating">Número documento paciente:</ion-label>
           <p>{{notaEnfermeria.documentoPaciente}}</p>
         </ion-item>
       <ion-item>
-          <ion-label position="floating">Número cuarto</ion-label>
+          <ion-label position="floating">Número cuarto:</ion-label>
           <p>{{notaEnfermeria.numeroCuarto}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Número cama</ion-label>
+          <ion-label position="floating">Número cama:</ion-label>
           <p>{{notaEnfermeria.numeroCama}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Fecha nota</ion-label>
+          <ion-label position="floating">Fecha nota:</ion-label>
           <p>{{notaEnfermeria.fechaNota.split('T')[0]}}</p>
         </ion-item>
         <ion-item>    
-          <ion-label position="floating">Hora nota</ion-label>
+          <ion-label position="floating">Hora nota:</ion-label>
           <p>{{notaEnfermeria.horaNota}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Observación</ion-label>
+          <ion-label position="floating">Observación:</ion-label>
           <br><ion-textarea>{{notaEnfermeria.observacion}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Tension Arterial</ion-label>
+          <ion-label position="floating">Tension Arterial:</ion-label>
           <p>{{notaEnfermeria.tensionArterial}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Frecuencia Cardiaca</ion-label>
+          <ion-label position="floating">Frecuencia Cardiaca:</ion-label>
           <p>{{notaEnfermeria.frecuenciaCardiaca}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Frecuencia Respiratoria</ion-label>
+          <ion-label position="floating">Frecuencia Respiratoria:</ion-label>
           <p>{{notaEnfermeria.frecuenciaRespiratoria}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">temperatura</ion-label>
+          <ion-label position="floating">Temperatura:</ion-label>
           <p>{{notaEnfermeria.temperatura}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">saturacion</ion-label>
+          <ion-label position="floating">Saturacion:</ion-label>
           <p>{{notaEnfermeria.saturacion}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">glucometria</ion-label>
+          <ion-label position="floating">Glucometria:</ion-label>
           <p>{{notaEnfermeria.glucometria}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Nombre enfermera</ion-label>
-          <p>{{notaEnfermeria.nombreEnfermera}}</p>
+          <ion-label position="floating">Enfermer@:</ion-label>
+          <p>{{notaEnfermeria.nombreEnfermera}} {{notaEnfermeria.apellidoEnfermera}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Apellido enfermera</ion-label>
-          <p>{{notaEnfermeria.apellidoEnfermera}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Número documento enfermera</ion-label>
+          <ion-label position="floating">Número documento enfermer@:</ion-label>
           <p>{{notaEnfermeria.documentoEnfermera}}</p>
         </ion-item>
     </ion-list>

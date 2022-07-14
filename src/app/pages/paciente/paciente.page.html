@@ -44,7 +44,7 @@
         </ion-item>
         
         <ion-item>  
-          <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Género:<ion-text color="danger">*</ion-text></ion-label>
         <ion-select name="generoP" interface="popover" [(ngModel)]="idGenero" >
           <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
         </ion-select>

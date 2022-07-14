@@ -100,10 +100,27 @@ const routes: Routes = [
     loadChildren: () => import('./pages/detalle-enfermera/detalle-enfermera.module').then( m => m.DetalleEnfermeraPageModule)
   },
   {
+    path: 'terapias',
+    loadChildren: () => import('./pages/terapias/terapias.module').then( m => m.TerapiasPageModule)
+  },
+  {
+    path: 'detalle-tipo-terapia/:id',
+    loadChildren: () => import('./pages/detalle-tipo-terapia/detalle-tipo-terapia.module').then( m => m.DetalleTipoTerapiaPageModule)
+  },
+  {
+    path: 'editar-tipo-terapia/:id',
+    loadChildren: () => import('./pages/editar-tipo-terapia/editar-tipo-terapia.module').then( m => m.EditarTipoTerapiaPageModule)
+  },
+  {
+    path: 'adicionar-tipo-terapia',
+    loadChildren: () => import('./pages/adicionar-tipo-terapia/adicionar-tipo-terapia.module').then( m => m.AdicionarTipoTerapiaPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
-  }
+  },
+
  
  
  

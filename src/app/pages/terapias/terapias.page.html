@@ -1,8 +1,8 @@
-<app-header title="Enfermer@s"></app-header>
+<app-header title="Terapias"></app-header>
 
 <ion-content>
     <ion-toolbar>
-      <ion-title>Buscar Enfermer@s</ion-title>
+      <ion-title>Buscar Terapia</ion-title>
     </ion-toolbar>
     <ion-toolbar>
       <ion-searchbar animated (ionChange)="buscar($event)"></ion-searchbar>
@@ -11,25 +11,26 @@
     <div class="ion-text-center ion-margin-bottom ion-margin-top">
         <h3>Desliza para ver las opciones</h3>
     </div>
-   <ion-card *ngFor ="let enfermera of enfermeras | filtro:textoBuscar: 'nombre'">
+   <ion-card *ngFor ="let terapia of terapias | filtro:textoBuscar: 'nombreTerapia'">
    <!-- <ion-card *ngFor ="let enfermera of enfermeras | filtro:textoBuscar"> -->
     <ion-item-sliding>
-        <ion-item-options side="start">
-          <ion-item-option routerLink="/detalle-enfermera/{{enfermera.id}}">
+        <!--<ion-item-options side="start">
+          <ion-item-option routerLink="/detalle-tipo-terapia/{{terapia.id}}">
               <ion-icon name="eye" slot="icon-only"></ion-icon>
           </ion-item-option>
-        </ion-item-options> 
+        </ion-item-options> -->
           <ion-item class="ion-text-center">
-          <ion-label>Enfermer@: {{enfermera.nombre}} {{enfermera.apellido}}
-            <br>Documento enfermer@: {{enfermera.numeroIdentificacion}}
-            <br>Estado: {{enfermera.descripcionEstadoEnfermera}}
+          <ion-label>Nombre terapia: {{terapia.nombreTerapia}}
           </ion-label>
         </ion-item>
         <ion-item-options side="end">
-          <ion-item-option color="warning" routerLink="/editar-enfermera/{{enfermera.id}}">
+          <ion-item-option color="warning" routerLink="/editar-tipo-terapia/{{terapia.id}}">
             <ion-icon name="create" slot="icon-only"></ion-icon>
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
    </ion-card>
+   <section class="full-width">
+    <ion-button (click)="irACrear()" routerDirection="forward" expand="full" color="secondary">Adicionar terapia física</ion-button>
+  </section>
 </ion-content>

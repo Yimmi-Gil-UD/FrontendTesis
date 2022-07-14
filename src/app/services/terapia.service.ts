@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NotaTerapia } from '../models/notaTerapia';
 import { NotaTerapiaDTO } from '../models/notaTerapiaDTO';
+import { TipoTerapia } from '../models/tipoTerapia';
 import { TipoTerapiaDTO } from '../models/tipoTerapiaDTO';
 
 @Injectable({
@@ -23,6 +24,10 @@ export class TerapiaService {
     return this.httpClient.get<TipoTerapiaDTO[]>(this.tipoTerapiaaURL + 'list');
   }
 
+  public detalleTipoTerapia(id:string): Observable<TipoTerapiaDTO[]> {
+    return this.httpClient.get<TipoTerapiaDTO[]>(this.tipoTerapiaaURL + `detail/${id}`);
+  }
+
   public detalle(id: string): Observable<NotaTerapiaDTO[]> {
     return this.httpClient.get<NotaTerapiaDTO[]>(this.notaTerapiaURL + `detail/${id}`);
   }
@@ -31,8 +36,16 @@ export class TerapiaService {
     return this.httpClient.post<boolean>(this.notaTerapiaURL + 'save',notaTerapia);
   }
 
+  public crearTipoTerapia(tipoTerapia:TipoTerapia): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.tipoTerapiaaURL + 'save',tipoTerapia);
+  }
+
   public actualizar(id:string, notaTerapia:NotaTerapia): Observable<boolean> {
     return this.httpClient.put<boolean>(this.notaTerapiaURL + `update/${id}`,notaTerapia);
+  }
+
+  public actualizarTerapia(id:string, tipoTerapia:TipoTerapia): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.tipoTerapiaaURL + `update/${id}`,tipoTerapia);
   }
 
 }

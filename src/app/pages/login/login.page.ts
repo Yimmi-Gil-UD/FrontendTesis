@@ -76,8 +76,8 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/']);
       },
       err => {
-        this.mensajeError = "El correo o la contraseña son incorrectos";
-        this.presentToast();
+        //this.mensajeError = "El correo o la contraseña son incorrectos";
+        this.presentToast("El correo o la contraseña son incorrectos");
       }
       
     );
@@ -92,16 +92,19 @@ export class LoginPage implements OnInit {
         listaEnfermera.map(enfermeraRef =>{
         this.idUsuario = enfermeraRef.payload.doc.id;
           
+        },
+        err =>{
+          this.presentToast("El correo o la contraseña son incorrectos");
         })
         return this.idUsuario;
       })
     })
   }
 
-  async presentToast(){
+  async presentToast(mensaje: string) {
     const toast = await this.toastController.create({
-      message: this.mensajeError,
-      duration: 2500,
+      message: mensaje,
+      duration: 2000,
       position: 'middle'
     });
     toast.present();

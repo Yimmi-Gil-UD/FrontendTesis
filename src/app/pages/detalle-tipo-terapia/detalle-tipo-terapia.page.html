@@ -1,0 +1,19 @@
+<app-header title="Tipo Terapia"></app-header>
+
+<ion-content>
+  
+  <ion-card>
+    <h3 class="ion-text-center"></h3>
+    <ion-list *ngFor ="let terapia of terapiaDTOs" lines="full" class="ion-no-margin ion-no-padding">
+     <ion-item>
+       <ion-label position="floating">Nombre terapia:</ion-label>
+       <p >{{terapia.nombreTerapia}}</p>
+     </ion-item>
+   </ion-list>
+  </ion-card>
+ 
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+</ion-content>

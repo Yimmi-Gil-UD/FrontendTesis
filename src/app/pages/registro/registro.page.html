@@ -36,7 +36,7 @@
             <ion-input required type="number" name="numIdentifiacionRegistro" [(ngModel)]="identificacion"></ion-input>
           </ion-item>
           <ion-item>  
-            <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-label position="floating">Género:<ion-text color="danger">*</ion-text></ion-label>
           <ion-select name="generoRegistro" interface="popover" [(ngModel)]="genero">
             <ion-select-option  [value]="genero.id" *ngFor="let genero of generos">{{genero.nombreGenero}}</ion-select-option >
           </ion-select>

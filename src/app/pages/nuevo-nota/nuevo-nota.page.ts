@@ -269,9 +269,7 @@ export class NuevoNotaPage implements OnInit {
   
   stopListening()
   {
-    //this.speechRecognition.stopListening().then(() => {
-    //this.isRecording = false;
-    //})
+
     this.isRecording = false;
     this.speechRecognition.stopListening();
 

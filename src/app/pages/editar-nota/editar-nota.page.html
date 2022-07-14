@@ -7,12 +7,12 @@
         <ion-card>    
           <ion-card-content>   
             <ion-item>
-              <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="text" name="numIdentiPacienteT" *ngFor="let paciente of pacienteDTO" [(ngModel)]="paciente.numeroIdentificacionP"></ion-input>
+              <ion-label *ngFor="let paciente of pacienteDTO">
+                Documento Paciente: {{paciente.numeroIdentificacionP}}</ion-label>
             </ion-item> 
             <ion-item>
               <ion-label *ngFor="let paciente of pacienteDTO">
-                Paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}
+                Nombres y apellidos del paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}
               </ion-label>
             </ion-item>          
             <ion-item>
@@ -34,12 +34,12 @@
             <ion-input required type="time" name="horaNota" *ngFor="let nota of notaEnfermeriaDTO" [(ngModel)]="nota.horaNota"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="stacked">Observación</ion-label>
+              <ion-label position="stacked">Observación:</ion-label>
               <ion-textarea placeholder="voz a texto" name="observacionNota" col="30" rows="10" *ngFor="let nota of notaEnfermeriaDTO" [(ngModel)]="nota.observacion"></ion-textarea>
             </ion-item>
             <ion-card>    
               <ion-card-header>
-                <ion-card-subtitle>Signos vitales</ion-card-subtitle>
+                <ion-card-subtitle>Signos vitales:</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content>
                 <ion-item>
@@ -79,13 +79,13 @@
             </ion-card>  
             <ion-item>
               <ion-label *ngFor="let enfermera of enfermeraDTO">
-                Enfermera: {{enfermera.nombre}} {{enfermera.apellido}}
+                Enfermer@: {{enfermera.nombre}} {{enfermera.apellido}}
               </ion-label>
             </ion-item>                   
             <div class="ion-padding">
               <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
-                  <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-                  Guardar Nota De Enfermeria
+                  <ion-icon name="pencil-outline" slot="icon-only"></ion-icon>
+                  Actualizar Nota De Enfermería
                   </ion-button>
             </div>
             <div class="ion-text-center">

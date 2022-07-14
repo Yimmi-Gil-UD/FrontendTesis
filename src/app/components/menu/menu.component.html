@@ -30,6 +30,12 @@
           <ion-label>Notas Terapias</ion-label>
         </ion-item>
       </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="ingreso && isAdmin">
+        <ion-item routerLink="/terapias">
+          <ion-icon name="duplicate-outline" slot="start"></ion-icon>
+          <ion-label>Terapias</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
       <!-- <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/admin-enfermeras">
           <ion-icon name="people-circle-outline" slot="start"></ion-icon>
@@ -119,7 +125,7 @@
               <ion-menu-toggle *ngIf="ingreso && isAdmin">
                 <ion-item routerLink="/admin-enfermeras">
                   <ion-icon name="people-circle-outline" slot="start"></ion-icon>
-                  <ion-label>Lista Enfermeras</ion-label>
+                  <ion-label>Lista Enfermer@s</ion-label>
                 </ion-item>
               </ion-menu-toggle> 
             </ion-item>
@@ -135,7 +141,7 @@
               <ion-menu-toggle *ngIf="ingreso && isAdmin">
                 <ion-item routerLink="/adicionar-enfermera">
                   <ion-icon name="pulse-outline" slot="start"></ion-icon>
-                  <ion-label>Crear Enfermera</ion-label>
+                  <ion-label>Crear Enfermer@</ion-label>
                 </ion-item>
               </ion-menu-toggle> 
             </ion-item>
@@ -188,16 +194,18 @@
           <ion-label>Crear Paciente</ion-label>
         </ion-item>
       </ion-menu-toggle> -->
-      <ion-menu-toggle *ngIf="ingreso && !isAdmin">
+
+      <!--<ion-menu-toggle *ngIf="ingreso && !isAdmin">
         <ion-item routerLink="/reportes-user">
           <ion-icon name="bar-chart-outline" slot="start"></ion-icon>
           <ion-label>Reportes</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
+      
       <ion-menu-toggle *ngIf="ingreso && isAdmin">
         <ion-item routerLink="/reportes-admin">
           <ion-icon name="bar-chart-outline" slot="start"></ion-icon>
-          <ion-label>Reportes</ion-label>
+          <ion-label>Graficas</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle *ngIf="ingreso">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as HighCharts from 'highcharts';
+import { NotaService } from 'src/app/services/nota.service';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { TerapiaService } from 'src/app/services/terapia.service';
 
 
 @Component({
@@ -11,42 +13,56 @@ import { PacienteService } from 'src/app/services/paciente.service';
 export class ReportesAdminPage implements OnInit {
 
   categoriaDiscapacidades: [] = []
+  terapiasfisicas: [] = []
+  Xterapiasfisicas: [] = []
+  XNotasEnfermerias: [] = []
   dataResult: any;
   labels = new Array;
   labelsGeneros = new Array;
+  labelsFisica = new Array;
+  labelsxTerapias = new Array;
+  labelsxTNotasEnfermeria = new Array;
+  
  
   constructor(
-    private pacienteService:PacienteService
+    private pacienteService:PacienteService,
+    private terapiaService:TerapiaService,
+    private notaService:NotaService
   ) { 
     
   }
 
   ngOnInit() {
     this.getTipoDiscapacidades();
+    this.getTipoTerapias();
+    this.getXTerapiasEnfermeras();
+    this.getXNotasEnfermeras();
     
   }
 
   ionViewWillEnter()
   {
     this.getTipoDiscapacidades();
+    this.getTipoTerapias();
+    this.getXTerapiasEnfermeras();
+    this.getXNotasEnfermeras();
   }
 
   ionViewDidEnter() {
-    this.barChartPopulation();
-  }
-
-
-  getTipoDiscapacidades()
-  {
-    this.pacienteService.lista().subscribe((data: any)=>{
-      this.categoriaDiscapacidades = data;
-      this.setTipoDiscapacidades();
-      this.setGeneros();
-      console.log(this.categoriaDiscapacidades);
-    })
+    
   }
 
  
+  getTipoDiscapacidades()
+  {
+      this.pacienteService.lista().subscribe((data: any)=>{
+      this.categoriaDiscapacidades = data;
+      this.setTipoDiscapacidades();
+      this.setGeneros();
+      //console.log(this.categoriaDiscapacidades);
+    })
+  }
+
   setTipoDiscapacidades()
   {
     this.labels = new Array
@@ -54,32 +70,123 @@ export class ReportesAdminPage implements OnInit {
       let index = this.labels.findIndex(ele => ele.name == el.nombreCategoria )
       
       if(index>=0){
-        console.log(index);
+        //console.log(index);
         this.labels[index].y++
         
       }else{
         
         this.labels.push({name:el.nombreCategoria, y:1})
       }
-      console.log("dentro del for: ",this.labels)
+      //console.log("dentro del for: ",this.labels)
     })
     
     this.discapacidades();
 
   }
 
+  getXTerapiasEnfermeras()
+  {
+      this.terapiaService.lista().subscribe((data: any)=>{
+      this.Xterapiasfisicas = data;
+      this.setXTerapiasEnfermeras();
+      //this.setGeneros();
+      //console.log(this.categoriaDiscapacidades);
+    })
+  }
+
+  setXTerapiasEnfermeras()
+  {
+    this.labelsxTerapias = new Array
+    this.Xterapiasfisicas.forEach((el:any)=>{
+      let index = this.labelsxTerapias.findIndex(ele => ele.name == el.nombreEnfermeraTerapia +' '+ el.apellidoEnfermeraTerapia)
+      
+      if(index>=0){
+        //console.log(index);
+        this.labelsxTerapias[index].y++
+        
+      }else{
+        
+        this.labelsxTerapias.push({name:el.nombreEnfermeraTerapia +' '+ el.apellidoEnfermeraTerapia, y:1, drilldown:el.nombreEnfermeraTerapia +' '+ el.apellidoEnfermeraTerapia})
+      }
+      //console.log("dentro del for: ",this.labels)
+    })
+    
+    this.cantidadTerapiasEnfermera();
+
+  }
+
+  getXNotasEnfermeras()
+  {
+      this.notaService.lista().subscribe((data: any)=>{
+      this.XNotasEnfermerias = data;
+      this.setXTNotasEnfermeras();
+      //this.setGeneros();
+      //console.log(this.categoriaDiscapacidades);
+    })
+  }
+
+  setXTNotasEnfermeras()
+  {
+    this.labelsxTNotasEnfermeria = new Array
+    this.XNotasEnfermerias.forEach((el:any)=>{
+      let index = this.labelsxTNotasEnfermeria.findIndex(ele => ele.name == el.nombreEnfermera +' '+ el.apellidoEnfermera)
+      
+      if(index>=0){
+        //console.log(index);
+        this.labelsxTNotasEnfermeria[index].y++
+        
+      }else{
+        
+        this.labelsxTNotasEnfermeria.push({name:el.nombreEnfermera +' '+ el.apellidoEnfermera, y:1, drilldown:el.nombreEnfermera +' '+ el.apellidoEnfermera})
+      }
+      //console.log("dentro del for: ",this.labels)
+    })
+    
+    this.cantidadNotasEnfermera();
+
+  }
+
+  getTipoTerapias()
+  {
+    this.terapiaService.lista().subscribe((data:any)=>{
+    this.terapiasfisicas = data;
+    this.setTerapiasFisicas();
+    //console.log(this.terapiasfisicas);
+   }) 
+  }
+
+  setTerapiasFisicas()
+  {
+    this.labelsFisica = new Array
+    this.terapiasfisicas.forEach((el:any)=>{
+    let index = this.labelsFisica.findIndex(ele => ele.name == el.tipoTerapia)
+
+    if(index>=0){
+      //console.log(index);
+      this.labelsFisica[index].y++
+      
+    }else{
+      
+      this.labelsFisica.push({name:el.tipoTerapia, y:1})
+    }
+    //console.log("dentro del for de terapias: ",this.labels)
+
+    })
+    this.terapiasFisicas();
+  }
+
   setGeneros()
   {
     this.labelsGeneros = new Array
     this.categoriaDiscapacidades.forEach((el:any)=>{
-      let index = this.labelsGeneros.findIndex(ele => ele.name == el.nombreGenero )
+    let index = this.labelsGeneros.findIndex(ele => ele.name == el.nombreGenero )
       
       if(index>=0){
         this.labelsGeneros[index].y++
       }else{
         this.labelsGeneros.push({name:el.nombreGenero, y:1})
       }
-      console.log("dentro del for generos: ",this.labelsGeneros)
+      //console.log("dentro del for generos: ",this.labelsGeneros)
     })
     
     this.discapacidades();
@@ -96,7 +203,7 @@ export class ReportesAdminPage implements OnInit {
         type: 'pie'
       },
       title: {
-        text: 'Discapacidades registradas'
+        text: 'Discapacidades'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -125,86 +232,160 @@ export class ReportesAdminPage implements OnInit {
     HighCharts.chart('generosChart', {
       chart: {
         type: 'column'
-    },
+        
+      },
       title: {
-        text: 'Generos',
+        text: '.',
         align: 'left',
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage}</b>'
+        pointFormat: '{series.name}: <b>{point.y}</b>'
       },
       plotOptions: {
         series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y}'
-                
-            }
+          borderWidth: 0,
+          dataLabels: {
+              enabled: true,
+              format: 'Cantidad:{point.y}'
+          },
         }
+      
     },
+    xAxis: {
+      type: 'category'
+  },
+  yAxis: {
+      title: {
+          text: 'Total pacientes'
+      }
+
+  } ,
       series: [{
         name: '',
         colorByPoint: true,
         type: undefined,
         data: this.labelsGeneros
-        
-        
       }]
     });
     
   }
-  
+ 
 
+  terapiasFisicas() {
     
-
-
-  barChartPopulation() {
-    HighCharts.chart('barChart', {
+    HighCharts.chart('discapacidadFisicaChart', {
       chart: {
-        type: 'bar'
-      },
-      title: {
-        text: 'Historic World Population by Region'
-      },
-      xAxis: {
-        categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Population (millions)',
-          align: 'high'
-        },
-      },
-      tooltip: {
-        valueSuffix: ' millions'
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: true
-          }
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
         }
       },
+      title: {
+        text: 'Terapias físicas',
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          innerSize: 100,
+          depth: 45
+      }
+    },
       series: [{
+        name: 'porcentaje',
+        colorByPoint: true,
         type: undefined,
-        name: 'Year 1800',
-        data: [107, 31, 635, 203, 2]
-      }, {
-        type: undefined,
-        name: 'Year 1900',
-        data: [133, 156, 947, 408, 6]
-      }, {
-        type: undefined,
-        name: 'Year 2000',
-        data: [814, 841, 3714, 727, 31]
-      }, {
-        type: undefined,
-        name: 'Year 2016',
-        data: [1216, 1001, 4436, 738, 40]
+        data: this.labelsFisica
       }]
     });
+    
+  }
+
+  cantidadTerapiasEnfermera() {
+    HighCharts.chart('xTerapiasChart', {
+      chart: {
+        type: 'column'
+        
+      },
+      title: {
+        text: '.',
+        align: 'left',
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+              enabled: true,
+              format: 'Cantidad:{point.y}'
+          },
+        }
+      
+    },
+    xAxis: {
+      type: 'category'
+  },
+  yAxis: {
+      title: {
+          text: 'Total notas de terapias '
+      }
+
+  } ,
+      series: [{
+        name: '',
+        colorByPoint: true,
+        type: undefined,
+        data: this.labelsxTerapias
+      }]
+    });
+    
+  }
+
+
+  cantidadNotasEnfermera() {
+    HighCharts.chart('xNotasChart', {
+      chart: {
+        type: 'column'
+        
+      },
+      title: {
+        text: '.',
+        align: 'left',
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+              enabled: true,
+              format: 'Cantidad:{point.y}'
+          },
+        }
+      
+    },
+    xAxis: {
+      type: 'category'
+  },
+  yAxis: {
+      title: {
+          text: 'Total notas de enfermeria '
+      }
+
+  } ,
+      series: [{
+        name: '',
+        colorByPoint: true,
+        type: undefined,
+        data: this.labelsxTNotasEnfermeria
+      }]
+    });
+    
   }
 
 

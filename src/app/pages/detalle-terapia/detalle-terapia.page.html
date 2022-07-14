@@ -4,24 +4,24 @@
   <h3 class="ion-text-center"></h3>
      <ion-list *ngFor ="let notaTerapia of notaTerapiaDTOs" lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="floating">Nombres y apellidos paciente</ion-label>
+        <ion-label position="floating">Nombres y apellidos paciente:</ion-label>
         <p>{{notaTerapia.nombrePacienteTerapia}}{{notaTerapia.apellidoPacienteTerapia}}</p>
       </ion-item>
       <ion-item>
-          <ion-label position="floating">Número documento paciente</ion-label>
+          <ion-label position="floating">Número documento paciente:</ion-label>
           <p>{{notaTerapia.documentoPaciente}}</p>
         </ion-item>
       <ion-item>
-          <ion-label position="floating">Objetivo</ion-label>
+          <ion-label position="floating">Objetivo:</ion-label>
           <br>
           <ion-textarea>{{notaTerapia.objetivo}}</ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Estructura Corporal</ion-label>
+          <ion-label position="floating">Estructura Corporal:</ion-label>
           <p>{{notaTerapia.estructuraCorporal}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Funcion Corporal</ion-label>
+          <ion-label position="floating">Funcion Corporal:</ion-label>
           <p>{{notaTerapia.funcionCorporal}}</p>
         </ion-item>
         <ion-item>    
@@ -52,11 +52,11 @@
           <p>{{notaTerapia.tipoTerapia}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Nombres y apellidos enfermera:</ion-label>
+          <ion-label position="floating">Enfermer@:</ion-label>
           <p>{{notaTerapia.nombreEnfermeraTerapia}} {{notaTerapia.apellidoEnfermeraTerapia}}</p>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Número documento enfermera:</ion-label>
+          <ion-label position="floating">Número documento enfermer@:</ion-label>
           <p>{{notaTerapia.documentoEnfermera}}</p>
         </ion-item>
     </ion-list>
