@@ -1,8 +1,8 @@
-<app-header title="Enfermer@s"></app-header>
+<app-header title="Enfermeras"></app-header>
 
 <ion-content>
     <ion-toolbar>
-      <ion-title>Buscar Enfermer@s</ion-title>
+      <ion-title>Buscar Enfermeras</ion-title>
     </ion-toolbar>
     <ion-toolbar>
       <ion-searchbar animated (ionChange)="buscar($event)"></ion-searchbar>
@@ -20,8 +20,8 @@
           </ion-item-option>
         </ion-item-options> 
           <ion-item class="ion-text-center">
-          <ion-label>Enfermer@: {{enfermera.nombre}} {{enfermera.apellido}}
-            <br>Documento enfermer@: {{enfermera.numeroIdentificacion}}
+          <ion-label>Enfermero(a): {{enfermera.nombre}} {{enfermera.apellido}}
+            <br>Documento enfermero(a): {{enfermera.numeroIdentificacion}}
             <br>Estado: {{enfermera.descripcionEstadoEnfermera}}
           </ion-label>
         </ion-item>

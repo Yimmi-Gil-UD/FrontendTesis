@@ -1,7 +1,7 @@
 <app-header title="Login"></app-header>
 
 <ion-content *ngIf="!ingreso">
-    <h3 class="ion-text-center">BIENVENIDO</h3>
+    <h3 class="ion-text-center">BIENVENIDO(A)</h3>
     <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-item>
@@ -20,12 +20,12 @@
         </div>
       </ion-list>
     </form>
-    <div class="ion-text-center ion-padding">
+    <!--<div class="ion-text-center ion-padding">
         <ion-button color="tertiary" expand="block" class="ion-no-margin" routerLink="/registro">
             <ion-icon name="person-add" slot="icon-only"></ion-icon>
             Crear Cuenta
         </ion-button>
-    </div>
+    </div>-->
     <div class="ion-text-center">
         <ion-label position="floating">
             <ion-text color="danger">*</ion-text>campos obligatorios

@@ -75,7 +75,7 @@
         </ion-item>
 
           <ion-item>
-            <ion-label *ngFor="let enfermera of enfermeras" name="labelNombres">Enfermer@: {{enfermera.nombre}} {{enfermera.apellido}}</ion-label>
+            <ion-label *ngFor="let enfermera of enfermeras" name="labelNombres">Enfermero(a): {{enfermera.nombre}} {{enfermera.apellido}}</ion-label>
           </ion-item>               
           <div class="ion-padding">
             <ion-button color="success" expand="block" type="submit" class="ion-no-margin"  (click)="crear()"  [disabled]="!f.valid">
