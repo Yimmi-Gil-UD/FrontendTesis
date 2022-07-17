@@ -7,19 +7,32 @@ import { GeneroDTO } from '../models/generoDTO';
 import { TipoDocumentoDTO } from '../models/TipoDocumentoIdDTO';
 import { EstadoDTO } from '../models/estadoDTO';
 import { RolDTO } from '../models/rolDTO';
+import { RestLoginService } from './rest-login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnfermeraService {
 
+
+  /*
   enfermeraUrl = 'http://localhost:8080/enfermera/';
   tipoDocumentoUrl = 'http://localhost:8080/tipoDocumento/';
   tipoGeneroUrl = 'http://localhost:8080/genero/';
   estadoUrl = 'http://localhost:8080/estado/';
   rolUrl = 'http://localhost:8080/rol/';
+  */
 
-  constructor(private httpClient:HttpClient) { }
+  enfermeraUrl = this.restlogin.ip+':8080/enfermera/';
+  tipoDocumentoUrl = this.restlogin.ip+':8080/tipoDocumento/';
+  tipoGeneroUrl = this.restlogin.ip+':8080/genero/';
+  estadoUrl = this.restlogin.ip+':8080/estado/';
+  rolUrl = this.restlogin.ip+':8080/rol/';
+
+  constructor(
+    private httpClient:HttpClient,
+    private restlogin: RestLoginService,
+    ) { }
 
   public lista(): Observable<EnfermeraDTO[]> {
     return this.httpClient.get<EnfermeraDTO[]>(this.enfermeraUrl + 'list');

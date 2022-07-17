@@ -8,20 +8,34 @@ import { GrupoSanguineoDTO } from '../models/grupoSanguineoDTO';
 import { Paciente } from '../models/paciente';
 import { PacienteDTO } from '../models/pacienteDTO';
 import { TipoDocumentoDTO } from '../models/TipoDocumentoIdDTO';
+import { RestLoginService } from './rest-login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PacienteService {
 
+
+  /*
   pacienteUrl = 'http://localhost:8080/paciente/';
   tipoDocumentoUrl = 'http://localhost:8080/tipoDocumento/';
   tipoGeneroUrl = 'http://localhost:8080/genero/';
   categoriaUrl = 'http://localhost:8080/categoria/';
   grupoSanguineoUrl = 'http://localhost:8080/grupoSanguineo/';
   estadoUrl = 'http://localhost:8080/estado/';
+  */
 
-  constructor(private httpClient:HttpClient) { }
+  pacienteUrl = this.restlogin.ip+':8080/paciente/';
+  tipoDocumentoUrl = this.restlogin.ip+':8080/tipoDocumento/';
+  tipoGeneroUrl = this.restlogin.ip+':8080/genero/';
+  categoriaUrl = this.restlogin.ip+':8080/categoria/';
+  grupoSanguineoUrl = this.restlogin.ip+':8080/grupoSanguineo/';
+  estadoUrl = this.restlogin.ip+':8080/estado/';
+
+  constructor(
+    private httpClient:HttpClient,
+    private restlogin: RestLoginService,
+    ) { }
 
   public lista(): Observable<PacienteDTO[]> {
     return this.httpClient.get<PacienteDTO[]>(this.pacienteUrl + 'list');

@@ -9,6 +9,9 @@ const rolResult = 'rolResult';
 })
 export class RestLoginService {
 
+  // IP DEL SERVIDOR LOCAL 
+  ip = 'http://localhost';
+
   constructor() { }
 
   public setId(id:string):void {

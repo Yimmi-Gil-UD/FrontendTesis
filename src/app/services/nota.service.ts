@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NotaEnfermeria } from '../models/notaEnfermeria';
 import { NotaEnfermeriaDTO } from '../models/notaEnfermeriaDTO';
+import { RestLoginService } from './rest-login.service';
 
 
 @Injectable({
@@ -10,9 +11,14 @@ import { NotaEnfermeriaDTO } from '../models/notaEnfermeriaDTO';
 })
 export class NotaService {
 
-  notaEnfermeriaUrl = 'http://localhost:8080/nota/';
 
-  constructor(private httpClient:HttpClient) { }
+  //notaEnfermeriaUrl = 'http://localhost:8080/nota/';
+  notaEnfermeriaUrl = this.restlogin.ip+':8080/nota/';
+
+  constructor(
+    private httpClient:HttpClient,
+    private restlogin: RestLoginService,
+    ) { }
 
   public lista(): Observable<NotaEnfermeriaDTO[]> {
     return this.httpClient.get<NotaEnfermeriaDTO[]>(this.notaEnfermeriaUrl + 'list');

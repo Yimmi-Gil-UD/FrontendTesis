@@ -5,16 +5,23 @@ import { NotaTerapia } from '../models/notaTerapia';
 import { NotaTerapiaDTO } from '../models/notaTerapiaDTO';
 import { TipoTerapia } from '../models/tipoTerapia';
 import { TipoTerapiaDTO } from '../models/tipoTerapiaDTO';
+import { RestLoginService } from './rest-login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TerapiaService {
 
-  notaTerapiaURL = 'http://localhost:8080/notaTerapia/'
-  tipoTerapiaaURL = 'http://localhost:8080/tipoTerapia/'
+  //notaTerapiaURL = 'http://localhost:8080/notaTerapia/'
+  //tipoTerapiaaURL = 'http://localhost:8080/tipoTerapia/'
 
-  constructor(private httpClient:HttpClient) { }
+  notaTerapiaURL = this.restlogin.ip+':8080/notaTerapia/'
+  tipoTerapiaaURL = this.restlogin.ip+':8080/tipoTerapia/'
+
+  constructor(
+    private httpClient:HttpClient,
+    private restlogin: RestLoginService,
+    ) { }
 
   public lista(): Observable<NotaTerapiaDTO[]> {
     return this.httpClient.get<NotaTerapiaDTO[]>(this.notaTerapiaURL + 'list');
