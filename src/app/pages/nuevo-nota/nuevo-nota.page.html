@@ -14,7 +14,8 @@
               <ion-input required type="number" name="numIdentiPacienteNota" [(ngModel)]="this.docPacienteBuscar"></ion-input>
             </ion-item> 
             <ion-item>
-                <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</ion-label>
+              <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: 
+                <p><b>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</b></p></ion-label>
             </ion-item>
             <div class="ion-padding">
               <ion-button color="dark" expand="block" type="submit" class="ion-no-margin" (click)="buscar()" >
@@ -99,8 +100,9 @@
               </ion-card-content>
             </ion-card>  
             <ion-item>
-              <ion-label *ngFor="let enfermera of enfermeras" name="labelNombres">Enfermero(a): {{enfermera.nombre}} {{enfermera.apellido}}</ion-label>
-            </ion-item>           
+              <ion-label *ngFor="let enfermera of enfermeras"  name="labelNombres">Enfermero(a): 
+                <p><b>{{enfermera.nombre}} {{enfermera.apellido}}</b></p></ion-label>
+            </ion-item>             
             <div class="ion-padding">
               <ion-button color="success" expand="block" type="submit" class="ion-no-margin" (click)="crear()"  [disabled]="!f.valid">
                   <ion-icon name="add-circle" slot="icon-only"></ion-icon>

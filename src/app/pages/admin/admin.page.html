@@ -1,4 +1,4 @@
-<app-header title="Lista De Notas De Enfermeria"></app-header>
+<app-header title="Notas De Enfermeria"></app-header>
 
 <ion-content>
     
@@ -20,7 +20,7 @@
           </ion-item-option>
         </ion-item-options> 
         <ion-item class="ion-text-center">
-          <ion-label>Paciente: {{nota.nombrePaciente}}{{nota.apellidoEnfermera}}
+          <ion-label>Paciente: {{nota.nombrePaciente}} {{nota.apellidoPaciente}}
           <br>Documento paciente: {{nota.documentoPaciente}}
           <br>Fecha anotación: {{nota.fechaNota.split('T')[0]}}
           <br>Hora anotación: {{nota.horaNota}}

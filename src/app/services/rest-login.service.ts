@@ -10,7 +10,8 @@ const rolResult = 'rolResult';
 export class RestLoginService {
 
   // IP DEL SERVIDOR LOCAL 
-  ip = 'http://localhost';
+  //ip = 'http://localhost';
+  ip = 'http://192.168.20.38';
 
   constructor() { }
 

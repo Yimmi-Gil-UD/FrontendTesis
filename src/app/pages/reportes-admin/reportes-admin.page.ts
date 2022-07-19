@@ -272,27 +272,29 @@ export class ReportesAdminPage implements OnInit {
  
 
   terapiasFisicas() {
-    
     HighCharts.chart('discapacidadFisicaChart', {
       chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
-        }
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
       },
       title: {
-        text: 'Terapias físicas',
+        text: 'Terapias físicas'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
       },
       plotOptions: {
         pie: {
-          innerSize: 100,
-          depth: 45
-      }
-    },
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          }
+        }
+      },
       series: [{
         name: 'porcentaje',
         colorByPoint: true,
@@ -300,7 +302,6 @@ export class ReportesAdminPage implements OnInit {
         data: this.labelsFisica
       }]
     });
-    
   }
 
   cantidadTerapiasEnfermera() {
@@ -321,7 +322,7 @@ export class ReportesAdminPage implements OnInit {
           borderWidth: 0,
           dataLabels: {
               enabled: true,
-              format: 'Cantidad:{point.y}'
+              format: ''
           },
         }
       
@@ -364,7 +365,7 @@ export class ReportesAdminPage implements OnInit {
           borderWidth: 0,
           dataLabels: {
               enabled: true,
-              format: 'Cantidad:{point.y}'
+              format: ''
           },
         }
       

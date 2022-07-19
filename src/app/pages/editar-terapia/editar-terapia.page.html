@@ -12,9 +12,8 @@
             </ion-label>
           </ion-item> 
           <ion-item>
-            <ion-label *ngFor="let paciente of pacientesDTO">
-              Nombres y apellidos del paciente: {{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}
-            </ion-label>
+            <ion-label *ngFor="let paciente of pacientesDTO" >Nombres y apellidos del paciente:
+              <p><b>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</b></p></ion-label>
           </ion-item>    
           <ion-item>
             <ion-label position="floating">Objetivo:<ion-text color="danger">*</ion-text></ion-label>
@@ -57,11 +56,10 @@
           <ion-select name="tipoTerapia" interface="popover" *ngFor="let terapia of terapiasDTO" [(ngModel)]="terapia.idTipoTerapia" >
             <ion-select-option  [value]="terapia.id" *ngFor="let terapia of tipoTerapia">{{terapia.nombreTerapia}}</ion-select-option >
           </ion-select>
-        </ion-item>
+        </ion-item> 
           <ion-item>
-            <ion-label *ngFor="let enfermera of enfermeraDTO">
-              Enfermero(a): {{enfermera.nombre}} {{enfermera.apellido}}
-            </ion-label>
+            <ion-label *ngFor="let enfermera of enfermeraDTO"> Enfermero(a):
+              <p><b>{{enfermera.nombre}} {{enfermera.apellido}}</b></p></ion-label>
           </ion-item>            
           <div class="ion-padding">
             <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
