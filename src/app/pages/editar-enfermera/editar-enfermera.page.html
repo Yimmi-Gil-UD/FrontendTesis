@@ -32,7 +32,8 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="password" *ngFor="let enfermera of enfermeraDTOs" name="contraseñaEnfermera" [(ngModel)]="enfermera.password"></ion-input>
+              <ion-input [type]="showPassword ? 'text' : 'password'" *ngFor="let enfermera of enfermeraDTOs" name="contraseñaEnfermera" [(ngModel)]="enfermera.password"></ion-input>
+              <ion-icon slot="end" [name]="passwordToggleIcon" (click)="verContrasena()"></ion-icon>
             </ion-item>
             <ion-item>  
               <ion-label position="floating">Genero:<ion-text color="danger">*</ion-text></ion-label>

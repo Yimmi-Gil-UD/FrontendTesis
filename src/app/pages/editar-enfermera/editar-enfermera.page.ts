@@ -23,6 +23,9 @@ export class EditarEnfermeraPage implements OnInit {
   estados:EstadoDTO[] = [];
   roles:RolDTO[] = [];
 
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+
 
   
   constructor(
@@ -156,6 +159,19 @@ export class EditarEnfermeraPage implements OnInit {
     this.enfermera.correo = '';
     this.enfermera.password = '';
     this.enfermera.idGenero = '';
+  }
+
+
+  verContrasena():void
+  {
+    this.showPassword = !this.showPassword;
+    if(this.passwordToggleIcon == 'eye')
+    {
+      this.passwordToggleIcon = 'eye-off';
+    }
+    else{
+      this.passwordToggleIcon = 'eye';
+    }
   }
 
 

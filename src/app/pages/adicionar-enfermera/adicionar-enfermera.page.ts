@@ -32,6 +32,9 @@ export class AdicionarEnfermeraPage implements OnInit {
   rol = 'Gu2ZrrJHSBpmz5gIQnPH';
   estadoEnfermera = 'OY3rHoXKun6Y2MFr61JN';
 
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+
   
   constructor(
     private enfermeraService:EnfermeraService,
@@ -165,6 +168,18 @@ export class AdicionarEnfermeraPage implements OnInit {
     this.password = '';
     this.genero = '';
     this.rol = '';
+  }
+  
+  verContrasena():void
+  {
+    this.showPassword = !this.showPassword;
+    if(this.passwordToggleIcon == 'eye')
+    {
+      this.passwordToggleIcon = 'eye-off';
+    }
+    else{
+      this.passwordToggleIcon = 'eye';
+    }
   }
 
 }

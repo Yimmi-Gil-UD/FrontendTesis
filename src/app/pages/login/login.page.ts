@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
   passwordRest = "";
 
   ingreso = false;
+  showPassword = false;
+  passwordToggleIcon = 'eye';
 
 
   constructor(
@@ -118,6 +120,19 @@ export class LoginPage implements OnInit {
   validarLogin(): void
   {
     this.ingreso = this.restlogin.getId() != null;
+  }
+
+
+  verContrasena():void
+  {
+    this.showPassword = !this.showPassword;
+    if(this.passwordToggleIcon == 'eye')
+    {
+      this.passwordToggleIcon = 'eye-off';
+    }
+    else{
+      this.passwordToggleIcon = 'eye';
+    }
   }
 
 
