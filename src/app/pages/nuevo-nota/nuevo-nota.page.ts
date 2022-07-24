@@ -51,6 +51,7 @@ export class NuevoNotaPage implements OnInit {
   texto:string;
   textoFinal = "";
   isRecording = false;
+  estadoPaciente = "";
 
 
   constructor(
@@ -168,37 +169,26 @@ export class NuevoNotaPage implements OnInit {
     this.idPaciente = null;
     this.isActivo = false;
     this.validar = false;
+    this.estadoPaciente = "";
     this.buscarPaciente(this.docPacienteBuscar);
     let TIME_IN_MS = 2000;
     let hideFooterTimeout = setTimeout( () => {
 
-      for(let p in this.pacientes)
-      {             
-        //console.log(this.pacientes);
-          if(this.pacientes[p].descripcionEstadoPaciente == 'Inactivo')
-          {
-            this.isActivo = false;
-          }
-          else{  
-            this.isActivo = true;
-          }
-          
-      }
+           
 
-
-      if(this.idPaciente == null)
-      {
+    if(this.estadoPaciente == 'Inactivo')
+    {
+       this.isActivo = false;
+       this.presentToast("El paciente no se encuentra activo");
+    }
+    else if(this.estadoPaciente == 'Activo'){  
+       this.isActivo = true;
+       this.validar = true;
+    }
+    if(this.idPaciente == null)
+    {
         this.presentToast("No existe el paciente");
-      }
-      else if(this.isActivo == false)
-      {
-        this.presentToast("El paciente no se encuentra activo");
-      }
-      else{
-          this.validar = true;
-      }
-         
-
+    }
 
         //console.log(this.idPaciente);
         //console.log("Estado Paciente: ",this.isActivo);   
@@ -233,6 +223,7 @@ export class NuevoNotaPage implements OnInit {
     this.pacienteService.detalle(id).subscribe(
       data => {
         this.pacientes = data;  
+        this.estadoPaciente = this.pacientes[0].descripcionEstadoPaciente;
       },
       err => {
         console.log(err);

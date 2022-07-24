@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
     this.correo = null;
     this.password = null;
 
-    let TIME_IN_MS = 1200;
+    let TIME_IN_MS = 2000;
     let hideFooterTimeout = setTimeout( () => {
      this.conexionLogin();
 }, TIME_IN_MS);
@@ -89,17 +89,21 @@ export class LoginPage implements OnInit {
   {
     const path = 'Enfermera/';
     this.firestore.GetAllUser(path,'correo',correoUser).then(firebaseResponse =>{
-      firebaseResponse.subscribe(listaEnfermera =>{
+
+        firebaseResponse.subscribe(listaEnfermera =>{
        
-        listaEnfermera.map(enfermeraRef =>{
-        this.idUsuario = enfermeraRef.payload.doc.id;
+          listaEnfermera.map(enfermeraRef =>{
+          this.idUsuario = enfermeraRef.payload.doc.id;
+          //console.log("Validacion del id 1: ",this.idUsuario);
+          },
+          err =>{
+            this.presentToast("El correo o la contraseña son incorrectos");
+          })
+          //console.log("Validacion del id 2: ",this.idUsuario);
+          return this.idUsuario;
           
-        },
-        err =>{
-          this.presentToast("El correo o la contraseña son incorrectos");
         })
-        return this.idUsuario;
-      })
+
     })
   }
 

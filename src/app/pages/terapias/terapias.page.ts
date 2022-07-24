@@ -54,8 +54,45 @@ export class TerapiasPage implements OnInit {
     toast.present();
   }
 
+  async borrarConfirm(id:string){
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Seguro de eliminar la terapia?',
+      buttons:[
+        {
+          text:'Aceptar',
+          handler: () =>{
+            this.EliminarTipoTerapia(id);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler:(blah) => {
+            console.log('confirm cancel: blah');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   irACrear(){
     this.navCtrl.navigateForward('/adicionar-tipo-terapia');
+  }
+
+  EliminarTipoTerapia(id:string):void
+  {
+    this.terapiaService.EliminarTipoTerapia(id).subscribe(
+      data => {
+        this.presentToast("Terapia eliminada");
+        this.cargarLista();
+      },
+      err =>{
+        this.presentToast("Error al eliminar la terapia");
+      }
+    );
   }
 
 

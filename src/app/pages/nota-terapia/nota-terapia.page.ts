@@ -39,12 +39,14 @@ export class NotaTerapiaPage implements OnInit {
 
   notaTerapia:NotaTerapia;
   pacientes: PacienteDTO[] = [];
+  pacienteEstado: PacienteDTO[] = [];
   enfermeras: EnfermeraDTO[] = [];
   tipoTerapiaDTOS: TipoTerapiaDTO[] = [];
 
   texto:string;
   textoFinal = "";
   isRecording = false;
+  estadoPaciente = "";
 
 
   constructor(
@@ -65,7 +67,7 @@ export class NotaTerapiaPage implements OnInit {
 
   ngOnInit() {
     this.idEnfermera = this.restlogin.getId();
-    console.log("id enfermera: ",this.idEnfermera);
+    //console.log("id enfermera: ",this.idEnfermera);
     this.cargarEnfermera(this.idEnfermera);
     this.cargarListaCategoria();
   }
@@ -115,33 +117,23 @@ export class NotaTerapiaPage implements OnInit {
     this.idPaciente = null;
     this.isActivo = false;
     this.validar = false;
+    this.estadoPaciente = "";
     this.buscarPaciente(this.docPacienteBuscar);
     let TIME_IN_MS = 2000;
     let hideFooterTimeout = setTimeout( () => {
 
-      for(let p in this.pacientes)
-      {             
-          //console.log(this.pacientes);
-          if(this.pacientes[p].descripcionEstadoPaciente == 'Inactivo')
-          {
-            this.isActivo = false;
-          }
-          else{  
-            this.isActivo = true;
-          }
-          
+      if(this.estadoPaciente == 'Inactivo')
+      {
+         this.isActivo = false;
+         this.presentToast("El paciente no se encuentra activo");
       }
-
+      else if(this.estadoPaciente == 'Activo'){  
+         this.isActivo = true;
+         this.validar = true;
+      }
       if(this.idPaciente == null)
       {
-        this.presentToast("No existe el paciente");
-      }
-      else if(this.isActivo == false)
-      {
-        this.presentToast("El paciente no se encuentra activo");
-      }
-      else{
-          this.validar = true;
+          this.presentToast("No existe el paciente");
       }
 
       //console.log(this.idPaciente);
@@ -173,7 +165,9 @@ export class NotaTerapiaPage implements OnInit {
     this.pacienteService.detalle(id).subscribe(
       data => {
         this.pacientes = data;
-        //console.log(this.pacientes);
+        this.estadoPaciente = this.pacientes[0].descripcionEstadoPaciente;
+        //console.log("Info del paciente: ",this.pacientes);
+        //console.log("Info del estado: ",this.estadoPaciente);
       },
       err => {
         console.log(err);

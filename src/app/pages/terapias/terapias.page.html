@@ -27,6 +27,9 @@
           <ion-item-option color="warning" routerLink="/editar-tipo-terapia/{{terapia.id}}">
             <ion-icon name="create" slot="icon-only"></ion-icon>
           </ion-item-option>
+          <ion-item-option color="danger" (click)="borrarConfirm(terapia.id)">
+            <ion-icon name="trash" slot="icon-only" ></ion-icon>
+        </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
    </ion-card>

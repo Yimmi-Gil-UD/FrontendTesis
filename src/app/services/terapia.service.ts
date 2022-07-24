@@ -55,4 +55,8 @@ export class TerapiaService {
     return this.httpClient.put<boolean>(this.tipoTerapiaaURL + `update/${id}`,tipoTerapia);
   }
 
+  public EliminarTipoTerapia(id:string): Observable<boolean> {
+    return this.httpClient.delete<boolean>(this.tipoTerapiaaURL + `delete/${id}`);
+  }
+
 }
