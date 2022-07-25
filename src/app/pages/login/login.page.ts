@@ -74,8 +74,15 @@ export class LoginPage implements OnInit {
         this.restlogin.setId(data.id);
         this.restlogin.setCorreo(data.correo);
         this.restlogin.setRol(data.rol);
-        this.ingreso = true;
-        this.router.navigate(['/']);
+        if(data.rol == 'Inactivo')
+        {
+          this.presentToast("La enfermera(o) no se encuentra activa");
+        }
+        else{
+          this.ingreso = true;
+          this.router.navigate(['/']);
+        }
+        
       },
       err => {
         //this.mensajeError = "El correo o la contraseña son incorrectos";
