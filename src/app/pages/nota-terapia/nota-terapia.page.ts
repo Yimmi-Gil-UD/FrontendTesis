@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { CategoriaDiscapacidadDTO } from 'src/app/models/categoriaDiscapacidadDTO';
 import { EnfermeraDTO } from 'src/app/models/enfermeraDTO';
 import { NotaTerapia } from 'src/app/models/notaTerapia';
@@ -59,7 +59,8 @@ export class NotaTerapiaPage implements OnInit {
     private enfermeraService:EnfermeraService,
     private speechRecognition:SpeechRecognition,
     private cd:ChangeDetectorRef,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertController:AlertController,
 
   ) {
     this.speechRecognition.requestPermission();
@@ -87,7 +88,7 @@ export class NotaTerapiaPage implements OnInit {
         this.regresar();
       },
       err => {
-        this.presentToast("error al crear el paciente");
+        this.presentToast("error al crear la nota");
       }
     );
     
@@ -229,6 +230,102 @@ export class NotaTerapiaPage implements OnInit {
     });
     
   }
+
+  async docPacienteListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.docPacienteBuscar = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async objetivoListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.objetivo = this.objetivo + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async estrucCorporalListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.estrucCorporal = this.estrucCorporal + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async funcionCorporalListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.funcCorporal = this.funcCorporal + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async pronosticolListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.pronostico = this.pronostico + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async planTrabajoListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.planTrabajo = this.planTrabajo + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
   
   stopListening()
   {
@@ -238,6 +335,30 @@ export class NotaTerapiaPage implements OnInit {
     this.isRecording = false;
     this.speechRecognition.stopListening();
 
+  }
+
+  async guardarConfirm(){
+    const alert = await this.alertController.create({
+      header: 'Guardar Nota',
+      message: '¿Seguro de guardar la nota de terapia? Recuerde que no puede editar la nota, para editar la nota debe solicitarlo con el administrador.',
+      buttons:[
+        {
+          text:'Aceptar',
+          handler: () =>{
+            this.crear();
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler:(blah) => {
+            console.log('confirm cancel: blah');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 

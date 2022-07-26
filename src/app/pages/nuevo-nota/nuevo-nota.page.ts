@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { EnfermeraDTO } from 'src/app/models/enfermeraDTO';
 import { NotaEnfermeria } from 'src/app/models/notaEnfermeria';
 import { PacienteDTO } from 'src/app/models/pacienteDTO';
@@ -64,7 +64,8 @@ export class NuevoNotaPage implements OnInit {
     private enfermeraService:EnfermeraService,
     private speechRecognition:SpeechRecognition,
     private cd:ChangeDetectorRef,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertController:AlertController,
     ) { 
       this.speechRecognition.requestPermission();
     }
@@ -93,7 +94,7 @@ export class NuevoNotaPage implements OnInit {
         this.regresar();
       },
       err => {
-        this.presentToast("error al crear el paciente");
+        this.presentToast("error al crear la nota");
       }
     );
     
@@ -257,6 +258,166 @@ export class NuevoNotaPage implements OnInit {
     });
     
   }
+
+  async docPacienteListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.docPacienteBuscar = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async numCamaListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.numCama = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async numCuartoListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.numCuarto = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async tSistolicoListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.tensionSistolicoNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async tDiastolicoListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.tensionDiastolicoNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async fCardiacaListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.frecuenciaCardiacaNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async fRespiratoriaListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.frecuenciaRespiratoriaNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async temperaturaListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.temperaturaNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async saturacionListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.saturacionNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async glucometriaListening()
+  {
+    this.texto = '';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.glucometriaNota = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
   
   stopListening()
   {
@@ -264,6 +425,30 @@ export class NuevoNotaPage implements OnInit {
     this.isRecording = false;
     this.speechRecognition.stopListening();
 
+  }
+
+  async guardarConfirm(){
+    const alert = await this.alertController.create({
+      header: 'Guardar Nota',
+      message: '¿Seguro de guardar la nota de enfermeria? Recuerde que no puede editar la nota, para editar la nota debe solicitarlo con el administrador.',
+      buttons:[
+        {
+          text:'Aceptar',
+          handler: () =>{
+            this.crear();
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler:(blah) => {
+            console.log('confirm cancel: blah');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
  
 

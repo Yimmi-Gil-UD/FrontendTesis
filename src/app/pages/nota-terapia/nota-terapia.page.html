@@ -12,6 +12,7 @@
           <ion-item>
             <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
             <ion-input required type="number" name="numIdentiPacienteNotaT" [(ngModel)]="this.docPacienteBuscar"></ion-input>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1.5;"></ion-icon>
           </ion-item> 
           <ion-item>
             <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: 
@@ -29,23 +30,28 @@
         <ion-card-content>            
           <ion-item>
             <ion-label position="floating">Objetivo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="objetivoT" [(ngModel)]="this.objetivo"></ion-input>
+            <ion-textarea  name="objetivoT" [(ngModel)]="this.objetivo" col="2" rows="2"></ion-textarea>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="objetivoListening()" style="zoom:1.5;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Estructura corporal:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="estructuraCorporalT" [(ngModel)]="this.estrucCorporal"></ion-input>
+            <ion-textarea  name="estructuraCorporalT" [(ngModel)]="this.estrucCorporal" col="2" rows="2"></ion-textarea>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="estrucCorporalListening()" style="zoom:1.5;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Función corporal:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="funcionCorporalT" [(ngModel)]="this.funcCorporal"></ion-input>
+            <ion-textarea name="funcionCorporalT" [(ngModel)]="this.funcCorporal" col="2" rows="2"></ion-textarea>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="funcionCorporalListening()" style="zoom:1.5;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Pronóstico:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="pronosticoT" [(ngModel)]="this.pronostico"></ion-input>
+            <ion-textarea name="pronosticoT" [(ngModel)]="this.pronostico" col="2" rows="2"></ion-textarea>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="pronosticolListening()" style="zoom:1.5;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Plan de trabajo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="planDeTrabajoT" [(ngModel)]="this.planTrabajo"></ion-input>
+            <ion-textarea  name="planDeTrabajoT" [(ngModel)]="this.planTrabajo" col="2" rows="2"></ion-textarea>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="planTrabajoListening()" style="zoom:1.5;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>
@@ -64,7 +70,7 @@
               <ion-button color="dark" expand="block" type="submit" class="ion-no-margin" (click)="startListening()">
                   <ion-icon name="mic-circle-outline" slot="icon-only"></ion-icon>
                   Grabar Observación 
-                  </ion-button>
+              </ion-button>
             </div>
           </ion-item>
 
@@ -79,7 +85,7 @@
               <p><b>{{enfermera.nombre}} {{enfermera.apellido}}</b></p></ion-label>
           </ion-item>               
           <div class="ion-padding">
-            <ion-button color="success" expand="block" type="submit" class="ion-no-margin"  (click)="crear()"  [disabled]="!f.valid">
+            <ion-button color="success" expand="block" type="submit" class="ion-no-margin"  (click)="guardarConfirm()"  [disabled]="!f.valid">
                 <ion-icon name="add-circle" slot="icon-only"></ion-icon>
                 Guardar Nota De Terapia
                 </ion-button>
