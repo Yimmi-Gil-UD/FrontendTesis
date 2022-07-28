@@ -8,18 +8,18 @@
           <ion-card-content>   
             <ion-item>
               <ion-label *ngFor="let paciente of pacienteDTO">
-                Documento Paciente: {{paciente.numeroIdentificacionP}}</ion-label>
+                Documento paciente: {{paciente.numeroIdentificacionP}}</ion-label>
             </ion-item> 
               <ion-item>
                 <ion-label *ngFor="let paciente of pacienteDTO" name="labelNombres">Nombres y apellidos del paciente: 
                   <p><b>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</b></p></ion-label>
               </ion-item>        
             <ion-item>
-              <ion-label position="floating">Número Cama:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="floating">Número cama:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCama" *ngFor="let nota of notaEnfermeriaDTO" [(ngModel)]="nota.numeroCama"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Número Cuarto:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="floating">Número cuarto:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCuarto" *ngFor="let nota of notaEnfermeriaDTO" [(ngModel)]="nota.numeroCuarto"></ion-input>
             </ion-item>
             <ion-item>

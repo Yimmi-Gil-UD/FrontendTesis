@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 import { ToastController } from '@ionic/angular';
 import { CategoriaDiscapacidadDTO } from 'src/app/models/categoriaDiscapacidadDTO';
 import { GeneroDTO } from 'src/app/models/generoDTO';
@@ -33,6 +34,7 @@ export class PacientePage implements OnInit {
 
   mensajeExito = '';
   mensajeError = '';
+  texto:string;
 
   tipoDocumentos: TipoDocumentoDTO[] = [];
   generos: GeneroDTO[] = [];
@@ -43,8 +45,12 @@ export class PacientePage implements OnInit {
     private pacienteService:PacienteService,
     private router: Router,
     private toastController:ToastController,
-    private firestore:FirebaseService
-  ) { }
+    private firestore:FirebaseService,
+    private speechRecognition:SpeechRecognition,
+    private cd:ChangeDetectorRef,
+  ) { 
+    this.speechRecognition.requestPermission();
+  }
 
   ngOnInit() {
     this.cargarListaDocumentos();
@@ -183,6 +189,87 @@ export class PacientePage implements OnInit {
       this.idGenero = '';
       this.idDiscapacidad = '';
       this.idGrupo = '';
+  }
+
+  async nombresListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.nombrePaciente = this.nombrePaciente + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async apellidosListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.apellidoPaciente = this.apellidoPaciente + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async numIdentificacionListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.numeroIdentificacion = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async direccionListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.direccion = this.direccion + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+
+  async telefonoListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.telefono = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
   }
 
 }

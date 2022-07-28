@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 import { ToastController } from '@ionic/angular';
 import { Enfermera } from 'src/app/models/enfermera';
 import { GeneroDTO } from 'src/app/models/generoDTO';
@@ -34,14 +35,19 @@ export class AdicionarEnfermeraPage implements OnInit {
 
   showPassword = false;
   passwordToggleIcon = 'eye';
+  texto:string;
 
   
   constructor(
     private enfermeraService:EnfermeraService,
     private router: Router,
     private toastController:ToastController,
-    private firestore:FirebaseService
-  ) { }
+    private firestore:FirebaseService,
+    private speechRecognition:SpeechRecognition,
+    private cd:ChangeDetectorRef,
+  ) { 
+    this.speechRecognition.requestPermission();
+  }
 
   ngOnInit() {
     this.cargarListaDocumentos();
@@ -180,6 +186,71 @@ export class AdicionarEnfermeraPage implements OnInit {
     else{
       this.passwordToggleIcon = 'eye';
     }
+  }
+
+  async nombreListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.nombre = this.nombre + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async apellidoListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.apellido = this.apellido + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
+  }
+
+
+  async numIdentificacionListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.identificacion = Number(this.texto.replace(/ /g, ""));
+      this.cd.detectChanges();
+    });
+    
+  }
+
+  async correoListening()
+  {
+    this.texto='';
+    let options = {
+      language: 'es-ES',
+      matches: 1,
+      partialResults:true
+    }
+    this.speechRecognition.startListening().subscribe(matches => {
+      this.texto = matches[0];
+      this.correo = this.correo + " " + this.texto;
+      this.cd.detectChanges();
+    });
+    
   }
 
 }

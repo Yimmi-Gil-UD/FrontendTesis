@@ -10,7 +10,7 @@
           </ion-card-header>
           <ion-card-content>
             <ion-item>
-              <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="floating">Documento paciente:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numIdentiPacienteNota" [(ngModel)]="this.docPacienteBuscar"></ion-input>
               <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1.5;"></ion-icon>
             </ion-item> 
@@ -29,12 +29,12 @@
         <ion-card [disabled]="!validar">    
           <ion-card-content>            
             <ion-item>
-              <ion-label position="floating">Número Cama:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="floating">Número cama:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCamaNota" [(ngModel)]="this.numCama"></ion-input>
               <ion-icon slot="end" name="mic-circle-outline" (click)="numCamaListening()" style="zoom:1.5;"></ion-icon>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Número Cuarto:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="floating">Número cuarto:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCuartoNota" [(ngModel)]="this.numCuarto"></ion-input>
               <ion-icon slot="end" name="mic-circle-outline" (click)="numCuartoListening()" style="zoom:1.5;"></ion-icon>
             </ion-item>

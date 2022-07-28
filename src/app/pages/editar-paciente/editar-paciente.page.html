@@ -23,11 +23,11 @@
           </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Número Identificación:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-label position="floating">Número identificación:<ion-text color="danger">*</ion-text></ion-label>
             <ion-input required type="number" *ngFor="let paciente of pacientesDTO" name="numIdentificacionEnfermera" [(ngModel)]="paciente.numeroIdentificacionP"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Fecha Nacimiento:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-label position="floating">Fecha nacimiento:<ion-text color="danger">*</ion-text></ion-label>
             &nbsp;
             <ion-input required type="date" dateFormat="DDD DD MMM, YYYY" *ngFor="let paciente of pacientesDTO" name="fechaNacimientoP" [(ngModel)]="paciente.fechaNacimiento.split('T')[0]"></ion-input>
           </ion-item>
