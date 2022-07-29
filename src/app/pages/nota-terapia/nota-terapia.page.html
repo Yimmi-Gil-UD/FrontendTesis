@@ -12,7 +12,7 @@
           <ion-item>
             <ion-label position="floating">Documento Paciente:<ion-text color="danger">*</ion-text></ion-label>
             <ion-input required type="number" name="numIdentiPacienteNotaT" [(ngModel)]="this.docPacienteBuscar"></ion-input>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1;"></ion-icon>
           </ion-item> 
           <ion-item>
             <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: 
@@ -31,27 +31,27 @@
           <ion-item>
             <ion-label position="floating">Objetivo:<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea  name="objetivoT" [(ngModel)]="this.objetivo" col="2" rows="2"></ion-textarea>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="objetivoListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="objetivoListening()" style="zoom:1;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Estructura corporal:<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea  name="estructuraCorporalT" [(ngModel)]="this.estrucCorporal" col="2" rows="2"></ion-textarea>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="estrucCorporalListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="estrucCorporalListening()" style="zoom:1;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Función corporal:<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea name="funcionCorporalT" [(ngModel)]="this.funcCorporal" col="2" rows="2"></ion-textarea>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="funcionCorporalListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="funcionCorporalListening()" style="zoom:1;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Pronóstico:<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea name="pronosticoT" [(ngModel)]="this.pronostico" col="2" rows="2"></ion-textarea>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="pronosticolListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="pronosticolListening()" style="zoom:1;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Plan de trabajo:<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea  name="planDeTrabajoT" [(ngModel)]="this.planTrabajo" col="2" rows="2"></ion-textarea>
-            <ion-icon slot="end" name="mic-circle-outline" (click)="planTrabajoListening()" style="zoom:1.5;"></ion-icon>
+            <ion-icon slot="end" name="mic-circle-outline" (click)="planTrabajoListening()" style="zoom:1;"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>

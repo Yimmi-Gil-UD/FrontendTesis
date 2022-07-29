@@ -12,6 +12,7 @@ import { RestLoginService } from 'src/app/services/rest-login.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
+import { numberFormat } from 'highcharts';
 
 
 
@@ -52,6 +53,13 @@ export class NuevoNotaPage implements OnInit {
   textoFinal = "";
   isRecording = false;
   estadoPaciente = "";
+  t1:Boolean;
+  t2:Boolean;
+  t3:Boolean;
+  t4:Boolean;
+  t5:Boolean;
+  t6:Boolean;
+  t7:Boolean;
 
 
   constructor(
@@ -427,29 +435,109 @@ export class NuevoNotaPage implements OnInit {
 
   }
 
+
   async guardarConfirm(){
-    const alert = await this.alertController.create({
-      header: 'Guardar Nota',
-      message: '¿Seguro de guardar la nota de enfermeria? Recuerde que no puede editar la nota, para editar la nota debe solicitarlo con el administrador.',
-      buttons:[
-        {
-          text:'Aceptar',
-          handler: () =>{
-            this.crear();
+ 
+    this.t1 = false;
+    this.t2 = false;
+    this.t3 = false;
+    this.t4 = false;
+    this.t5 = false;
+    this.t6 = false;
+    this.t7 = false;
+
+    if(this.tensionSistolicoNota == 0 && this.tensionDiastolicoNota == 0  && this.frecuenciaCardiacaNota == 0 && this.frecuenciaRespiratoriaNota == 0
+      && this.temperaturaNota == 0 && this.saturacionNota == 0 && this.glucometriaNota == 0)
+    {
+      this.t1 = true;
+      this.t2 = true;
+      this.t3 = true;
+      this.t4 = true;
+      this.t5 = true;
+      this.t6 = true;
+      this.t7 = true;
+
+    }else{
+
+      if(this.tensionSistolicoNota <=59 || this.tensionSistolicoNota >= 141)
+      {
+        this.presentToast("tension sistólica debe estar entre 60 y 140");
+      }
+      else{
+        this.t1 = true;
+      }
+      if (this.tensionDiastolicoNota <=59 || this.tensionDiastolicoNota >= 141)
+      {
+        this.presentToast("tension diastolica debe estar entre 60 y 140");
+      }
+      else{
+        this.t2 = true;
+      }
+      if(this.frecuenciaCardiacaNota <=59 || this.frecuenciaCardiacaNota >= 121)
+      {
+        this.presentToast("frecuencia cardiaca debe estar entre 60 y 120");
+      }
+      else{
+        this.t3 = true;
+      }
+      if(this.frecuenciaRespiratoriaNota <= 19 || this.frecuenciaRespiratoriaNota >= 91)
+      {
+        this.presentToast("frecuencia respiratoria debe estar entre 20 y 90");
+      }
+      else{
+        this.t4 = true;
+      }
+      if(this.temperaturaNota <= 29 || this.temperaturaNota >= 46)
+      {
+        this.presentToast("la temperatura debe estar entre 30 y 45");
+      }
+      else {
+        this.t5 = true;
+      }
+      if(this.saturacionNota <= 39 || this.saturacionNota >= 100)
+      {
+        this.presentToast("la saturación debe estar entre 40 y 99");
+      }
+      else {
+        this.t6 = true;
+      }
+      if(this.glucometriaNota <= 79 || this.glucometriaNota >= 191)
+      {
+        this.presentToast("la glucometría debe estar entre 80 y 190");
+      }
+      else {
+        this.t7 = true;
+      }
+    }     
+    if(this.t1 == true && this.t2 == true && this.t3 == true && this.t4 == true && this.t5 == true && this.t6 == true && this.t7 == true )
+    {
+      const alert = await this.alertController.create({
+        header: 'Guardar Nota',
+        message: '¿Seguro de guardar la nota de enfermeria? Recuerde que no puede editar la nota, para editar la nota debe solicitarlo con el administrador.',
+        buttons:[
+          {
+            text:'Aceptar',
+            handler: () =>{
+              this.crear();
+            }
+          },
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler:(blah) => {
+              console.log('confirm cancel: blah');
+            }
           }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler:(blah) => {
-            console.log('confirm cancel: blah');
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+        ]
+      });
+      await alert.present();
+    }
+
+
+    }
+
+  
  
 
 }

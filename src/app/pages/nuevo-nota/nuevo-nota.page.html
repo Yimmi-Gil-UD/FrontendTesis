@@ -12,7 +12,7 @@
             <ion-item>
               <ion-label position="floating">Documento paciente:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numIdentiPacienteNota" [(ngModel)]="this.docPacienteBuscar"></ion-input>
-              <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1.5;"></ion-icon>
+              <ion-icon slot="end" name="mic-circle-outline" (click)="docPacienteListening()" style="zoom:1;"></ion-icon>
             </ion-item> 
             <ion-item>
               <ion-label *ngFor="let paciente of pacientes" name="labelNombres">Nombres y apellidos paciente: 
@@ -31,12 +31,12 @@
             <ion-item>
               <ion-label position="floating">Número cama:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCamaNota" [(ngModel)]="this.numCama"></ion-input>
-              <ion-icon slot="end" name="mic-circle-outline" (click)="numCamaListening()" style="zoom:1.5;"></ion-icon>
+              <ion-icon slot="end" name="mic-circle-outline" (click)="numCamaListening()" style="zoom:1;"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Número cuarto:<ion-text color="danger">*</ion-text></ion-label>
               <ion-input required type="number" name="numCuartoNota" [(ngModel)]="this.numCuarto"></ion-input>
-              <ion-icon slot="end" name="mic-circle-outline" (click)="numCuartoListening()" style="zoom:1.5;"></ion-icon>
+              <ion-icon slot="end" name="mic-circle-outline" (click)="numCuartoListening()" style="zoom:1;"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Fecha:<ion-text color="danger">*</ion-text></ion-label>
@@ -68,14 +68,14 @@
               </ion-card-header>
               <ion-card-content>
                 <ion-item>
-                  <ion-label position="floating">Tensión arterial sistólico:<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input placeholder="Mm/Hg" type="number" name="tensionSistolicoNotaP" min="0" max="100" step="5" [(ngModel)]="this.tensionSistolicoNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="tSistolicoListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-label position="floating">T. arterial sistólico:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input placeholder="Mm/Hg" type="number" name="tensionSistolicoNotaP"  [(ngModel)]="this.tensionSistolicoNota"></ion-input>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="tSistolicoListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
                 <ion-item>
-                  <ion-label position="floating">Tensión arterial diastólico:<ion-text color="danger">*</ion-text></ion-label>
+                  <ion-label position="floating">T. arterial diastólico:<ion-text color="danger">*</ion-text></ion-label>
                   <ion-input placeholder="Mm/Hg" required type="number" name="tensionDiastolicoNotaP" [(ngModel)]="this.tensionDiastolicoNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="tDiastolicoListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="tDiastolicoListening()" style="zoom:1;"></ion-icon>
                 </ion-item>     
                 <ion-item>
                   <ion-label>
@@ -85,27 +85,27 @@
                 <ion-item>
                   <ion-label position="floating">Frecuencia cardiaca:<ion-text color="danger">*</ion-text></ion-label>
                   <ion-input placeholder="x min" required type="number" name="frecuenciaCardiacaNotaP" [(ngModel)]="this.frecuenciaCardiacaNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="fCardiacaListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="fCardiacaListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Frecuencia respiratoria:<ion-text color="danger" >*</ion-text></ion-label>
                   <ion-input placeholder="x min" required type="number" name="frecuenciaRespiratoriaNotaP" [(ngModel)]="this.frecuenciaRespiratoriaNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="fRespiratoriaListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="fRespiratoriaListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Temperatura:<ion-text color="danger">*</ion-text></ion-label>
                   <ion-input placeholder="T" required type="number" name="temperaturaNotaP" [(ngModel)]="this.temperaturaNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="temperaturaListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="temperaturaListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Saturación:<ion-text color="danger">*</ion-text></ion-label>
                   <ion-input placeholder="%" required type="number" name="saturacionNotaP" [(ngModel)]="this.saturacionNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="saturacionListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="saturacionListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
                 <ion-item>
                   <ion-label position="floating">Glucometría:<ion-text color="danger">*</ion-text></ion-label>
                   <ion-input placeholder="mg/dl" required type="number" name="glucometriaNotaP" [(ngModel)]="this.glucometriaNota"></ion-input>
-                  <ion-icon slot="end" name="mic-circle-outline" (click)="glucometriaListening()" style="zoom:1.5;"></ion-icon>
+                  <ion-icon slot="end" name="mic-circle-outline" (click)="glucometriaListening()" style="zoom:1;"></ion-icon>
                 </ion-item> 
               </ion-card-content>
             </ion-card>  

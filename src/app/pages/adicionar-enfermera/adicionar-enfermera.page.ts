@@ -237,20 +237,6 @@ export class AdicionarEnfermeraPage implements OnInit {
     
   }
 
-  async correoListening()
-  {
-    this.texto='';
-    let options = {
-      language: 'es-ES',
-      matches: 1,
-      partialResults:true
-    }
-    this.speechRecognition.startListening().subscribe(matches => {
-      this.texto = matches[0];
-      this.correo = this.correo + " " + this.texto;
-      this.cd.detectChanges();
-    });
-    
-  }
+
 
 }

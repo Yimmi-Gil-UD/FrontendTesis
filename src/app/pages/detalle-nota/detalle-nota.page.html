@@ -32,30 +32,46 @@
           <ion-label position="floating">Observación:</ion-label>
           <br><ion-textarea>{{notaEnfermeria.observacion}}</ion-textarea>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating">Tension arterial:</ion-label>
-          <p>{{notaEnfermeria.tensionArterial}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Frecuencia cardiaca:</ion-label>
-          <p>{{notaEnfermeria.frecuenciaCardiaca}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Frecuencia respiratoria:</ion-label>
-          <p>{{notaEnfermeria.frecuenciaRespiratoria}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Temperatura:</ion-label>
-          <p>{{notaEnfermeria.temperatura}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Saturacion:</ion-label>
-          <p>{{notaEnfermeria.saturacion}}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Glucometria:</ion-label>
-          <p>{{notaEnfermeria.glucometria}}</p>
-        </ion-item>
+
+        <ion-card *ngIf="notaEnfermeria.frecuenciaCardiaca > 0">  
+          <ion-card-content>
+            <ion-item>
+              <ion-label >Tension arterial:</ion-label>
+              <p>{{notaEnfermeria.tensionArterial}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label >Frecuencia cardiaca:</ion-label>
+              <p>{{notaEnfermeria.frecuenciaCardiaca}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label >Frecuencia respiratoria:</ion-label>
+              <p>{{notaEnfermeria.frecuenciaRespiratoria}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label >Temperatura:</ion-label>
+              <p>{{notaEnfermeria.temperatura}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label >Saturacion:</ion-label>
+              <p>{{notaEnfermeria.saturacion}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label >Glucometria:</ion-label>
+              <p>{{notaEnfermeria.glucometria}}</p>
+            </ion-item>
+
+          </ion-card-content>  
+        </ion-card> 
+
+        <ion-card *ngIf="notaEnfermeria.frecuenciaCardiaca == 0">  
+          <ion-card-content>
+            <ion-item>
+              <ion-label><b>No se tomaron signos vitales.</b></ion-label>
+            </ion-item>
+          </ion-card-content>  
+        </ion-card> 
+
+
         <ion-item>
           <ion-label position="floating">Enfermero(a):</ion-label>
           <p>{{notaEnfermeria.nombreEnfermera}} {{notaEnfermeria.apellidoEnfermera}}</p>
