@@ -14,6 +14,8 @@ import { TerapiaService } from 'src/app/services/terapia.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
+import { LogRegistro } from 'src/app/models/logRegistro';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-nota-terapia',
@@ -47,6 +49,7 @@ export class NotaTerapiaPage implements OnInit {
   textoFinal = "";
   isRecording = false;
   estadoPaciente = "";
+  logRegistro:LogRegistro;
 
 
   constructor(
@@ -61,6 +64,8 @@ export class NotaTerapiaPage implements OnInit {
     private cd:ChangeDetectorRef,
     private navCtrl: NavController,
     private alertController:AlertController,
+    private logService:LogService
+
 
   ) {
     this.speechRecognition.requestPermission();
@@ -76,6 +81,7 @@ export class NotaTerapiaPage implements OnInit {
   crear()
   {
     this.notaTerapia = new NotaTerapia(this.idPaciente,this.objetivo,this.estrucCorporal,this.funcCorporal,this.pronostico,this.planTrabajo,this.fechaTerapia,this.horaTerapia,this.observacion,this.idTipoTerapia,this.idEnfermera);
+    this.guardarLog(this.notaTerapia);
     this.terapiaService.crear(this.notaTerapia).subscribe(
       data => {
         this.presentToast("nota creada");
@@ -92,6 +98,28 @@ export class NotaTerapiaPage implements OnInit {
       }
     );
     
+  }
+
+  guardarLog(notaTerapia:NotaTerapia)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Guardar Nota Terapia",JSON.stringify(notaTerapia),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
   }
 
   async presentToast(mensaje: string) {

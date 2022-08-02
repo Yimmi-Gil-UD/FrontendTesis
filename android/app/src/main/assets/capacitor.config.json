@@ -1,6 +1,6 @@
 {
 	"appId": "com.example.app",
-	"appName": "FrontNotas",
+	"appName": "APNET NURSE",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"cordova": {

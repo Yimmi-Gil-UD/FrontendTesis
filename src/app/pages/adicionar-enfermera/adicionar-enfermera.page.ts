@@ -4,9 +4,12 @@ import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/n
 import { ToastController } from '@ionic/angular';
 import { Enfermera } from 'src/app/models/enfermera';
 import { GeneroDTO } from 'src/app/models/generoDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LogService } from 'src/app/services/log.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-adicionar-enfermera',
@@ -36,6 +39,7 @@ export class AdicionarEnfermeraPage implements OnInit {
   showPassword = false;
   passwordToggleIcon = 'eye';
   texto:string;
+  logRegistro:LogRegistro;
 
   
   constructor(
@@ -45,6 +49,8 @@ export class AdicionarEnfermeraPage implements OnInit {
     private firestore:FirebaseService,
     private speechRecognition:SpeechRecognition,
     private cd:ChangeDetectorRef,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { 
     this.speechRecognition.requestPermission();
   }
@@ -72,6 +78,7 @@ export class AdicionarEnfermeraPage implements OnInit {
     if(this.idUsuarioCorreo == null && this.idUsuarioDocumento == null)
     {
       this.enfermera = new Enfermera(this.nombre,this.apellido,this.tipoDocumento,this.identificacion,this.correo,this.password,this.genero,this.rol,this.estadoEnfermera);
+      this.guardarLog(this.enfermera);
       this.enfermeraService.crear(this.enfermera).subscribe(
         data => {
           this.presentToast("enfermera cread(@)");
@@ -93,6 +100,28 @@ export class AdicionarEnfermeraPage implements OnInit {
 
     }, TIME_IN_MS);
     
+
+  }
+
+  guardarLog(enfermera:Enfermera)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Guardar Enfermera",JSON.stringify(enfermera),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
 
   }
 

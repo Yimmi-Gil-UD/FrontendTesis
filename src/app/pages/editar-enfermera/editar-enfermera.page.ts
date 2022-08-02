@@ -5,9 +5,12 @@ import { Enfermera } from 'src/app/models/enfermera';
 import { EnfermeraDTO } from 'src/app/models/enfermeraDTO';
 import { EstadoDTO } from 'src/app/models/estadoDTO';
 import { GeneroDTO } from 'src/app/models/generoDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { RolDTO } from 'src/app/models/rolDTO';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
+import { LogService } from 'src/app/services/log.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-editar-enfermera',
@@ -25,6 +28,7 @@ export class EditarEnfermeraPage implements OnInit {
 
   showPassword = false;
   passwordToggleIcon = 'eye';
+  logRegistro:LogRegistro;
 
 
   
@@ -32,7 +36,9 @@ export class EditarEnfermeraPage implements OnInit {
     private enfermeraService:EnfermeraService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private toastController:ToastController
+    private toastController:ToastController,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { }
 
   ngOnInit() {
@@ -68,7 +74,7 @@ export class EditarEnfermeraPage implements OnInit {
        this.enfermera = new Enfermera (this.enfermeraDTOs[i].nombre.toString(),this.enfermeraDTOs[i].apellido.toString(),this.enfermeraDTOs[i].idTipoDocumentoE.toString(),this.enfermeraDTOs[i].numeroIdentificacion,this.enfermeraDTOs[i].correo.toString(),this.enfermeraDTOs[i].password.toString(),this.enfermeraDTOs[i].idGenero.toString(),this.enfermeraDTOs[i].idRol.toString(),this.enfermeraDTOs[i].idEstadoEnfermera.toString());
        //console.log("Datos de la enfermera ",this.enfermera);
     }
-    
+    this.guardarLog(this.enfermera);
     this.enfermeraService.actualizar(id,this.enfermera).subscribe(
       data => {
         this.presentToast("Datos actualizados");
@@ -83,8 +89,30 @@ export class EditarEnfermeraPage implements OnInit {
         this.presentToast("error al actualizar datos");
       }
     );
-  
   }
+
+  guardarLog(enfermera:Enfermera)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Editar Enfermera",JSON.stringify(enfermera),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
+  }
+
 
   cargarListaDocumentos(): void {
     this.enfermeraService.listaDocumentos().subscribe(

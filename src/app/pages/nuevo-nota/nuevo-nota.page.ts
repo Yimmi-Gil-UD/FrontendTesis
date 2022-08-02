@@ -13,6 +13,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 import { numberFormat } from 'highcharts';
+import { LogRegistro } from 'src/app/models/logRegistro';
+import { LogService } from 'src/app/services/log.service';
 
 
 
@@ -48,6 +50,7 @@ export class NuevoNotaPage implements OnInit {
   notaEnfermeria:NotaEnfermeria;
   pacientes: PacienteDTO[] = [];
   enfermeras: EnfermeraDTO[] = [];
+  logRegistro:LogRegistro;
 
   texto:string;
   textoFinal = "";
@@ -74,6 +77,8 @@ export class NuevoNotaPage implements OnInit {
     private cd:ChangeDetectorRef,
     private navCtrl: NavController,
     private alertController:AlertController,
+    private logService:LogService
+
     ) { 
       this.speechRecognition.requestPermission();
     }
@@ -90,6 +95,7 @@ export class NuevoNotaPage implements OnInit {
   {
     this.tension = this.tensionSistolicoNota + "/"+ this.tensionDiastolicoNota;
     this.notaEnfermeria = new NotaEnfermeria(this.idPaciente,this.numCuarto,this.numCama,this.fechaNota,this.horaNota,this.observacion,this.tensionSistolicoNota,this.tensionDiastolicoNota,this.tension,this.frecuenciaCardiacaNota,this.frecuenciaRespiratoriaNota,this.temperaturaNota,this.saturacionNota,this.glucometriaNota,this.idEnfermera);
+    this.guardarLog(this.notaEnfermeria);
     this.notaService.crear(this.notaEnfermeria).subscribe(
       data => {
         this.presentToast("nota creada");
@@ -106,6 +112,28 @@ export class NuevoNotaPage implements OnInit {
       }
     );
     
+  }
+
+  guardarLog(notaEnfermeria:NotaEnfermeria)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Guardar Nota Enfermeria",JSON.stringify(notaEnfermeria),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
   }
 
   async presentToast(mensaje: string) {

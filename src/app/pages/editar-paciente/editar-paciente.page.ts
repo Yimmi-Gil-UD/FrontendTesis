@@ -5,11 +5,14 @@ import { CategoriaDiscapacidadDTO } from 'src/app/models/categoriaDiscapacidadDT
 import { EstadoDTO } from 'src/app/models/estadoDTO';
 import { GeneroDTO } from 'src/app/models/generoDTO';
 import { GrupoSanguineoDTO } from 'src/app/models/grupoSanguineoDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteDTO } from 'src/app/models/pacienteDTO';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
+import { LogService } from 'src/app/services/log.service';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-editar-paciente',
@@ -25,13 +28,16 @@ export class EditarPacientePage implements OnInit {
   categoriaDiscapacidad:CategoriaDiscapacidadDTO[] = [];
   grupoSanguineo:GrupoSanguineoDTO[] = [];
   estados:EstadoDTO[] = [];
+  logRegistro:LogRegistro;
 
 
   constructor(
     private pacienteService:PacienteService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private toastController:ToastController
+    private toastController:ToastController,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { }
 
   ngOnInit() {
@@ -150,7 +156,7 @@ export class EditarPacientePage implements OnInit {
        this.paciente = new Paciente (this.pacientesDTO[i].nombrePaciente.toString(),this.pacientesDTO[i].apellidoPaciente.toString(),this.pacientesDTO[i].numeroIdentificacionP,this.pacientesDTO[i].idTipoDocumentoP.toString(),this.pacientesDTO[i].fechaNacimiento,this.pacientesDTO[i].direccion.toString(),this.pacientesDTO[i].telefono,this.pacientesDTO[i].idGenero.toString(),this.pacientesDTO[i].idCategoriaDiscapacidad.toString(),this.pacientesDTO[i].idGrupoSanguineo.toString(),this.pacientesDTO[i].idEstadoPaciente.toString());
        //console.log("Datos de la fecha ",this.pacientesDTO[i].fechaNacimiento);
     }
-    
+    this.guardarLog(this.paciente);
     this.pacienteService.actualizar(id,this.paciente).subscribe(
       data => {
         this.presentToast("Datos actualizados");
@@ -165,7 +171,28 @@ export class EditarPacientePage implements OnInit {
         this.presentToast("error al actualizar datos");
       }
     );
-  
+  }
+
+  guardarLog(paciente:Paciente)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Editar Paciente",JSON.stringify(paciente),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
   }
 
 

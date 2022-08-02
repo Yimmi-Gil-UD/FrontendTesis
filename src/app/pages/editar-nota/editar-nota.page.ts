@@ -3,13 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Enfermera } from 'src/app/models/enfermera';
 import { EnfermeraDTO } from 'src/app/models/enfermeraDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
+import { LogRegistroDTO } from 'src/app/models/logRegistroDTO';
 import { NotaEnfermeria } from 'src/app/models/notaEnfermeria';
 import { NotaEnfermeriaDTO } from 'src/app/models/notaEnfermeriaDTO';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteDTO } from 'src/app/models/pacienteDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
+import { LogService } from 'src/app/services/log.service';
 import { NotaService } from 'src/app/services/nota.service';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-editar-nota',
@@ -34,6 +38,10 @@ export class EditarNotaPage implements OnInit {
   notaEnfermeriaDTO:NotaEnfermeriaDTO[] = [];
   enfermera:Enfermera;
   enfermeraDTO:EnfermeraDTO[] = [];
+  logRegistro:LogRegistro;
+
+
+  
 
   constructor(
     private pacienteService:PacienteService,
@@ -42,6 +50,8 @@ export class EditarNotaPage implements OnInit {
     private activateRoute: ActivatedRoute,
     private router: Router,
     private toastController:ToastController,
+    private logService:LogService,
+    private restlogin: RestLoginService,
   ) { }
 
   ngOnInit() {
@@ -113,10 +123,10 @@ export class EditarNotaPage implements OnInit {
        this.notaEnfermeria = new NotaEnfermeria (this.notaEnfermeriaDTO[i].idPaciente.toString(),this.notaEnfermeriaDTO[i].numeroCuarto,this.notaEnfermeriaDTO[i].numeroCama,this.notaEnfermeriaDTO[i].fechaNota,this.notaEnfermeriaDTO[i].horaNota.toString(),this.notaEnfermeriaDTO[i].observacion.toString(),this.notaEnfermeriaDTO[i].tensionArterialSistolico,this.notaEnfermeriaDTO[i].tensionArterialDiastolico,this.notaEnfermeriaDTO[i].tensionArterial.toString(),this.notaEnfermeriaDTO[i].frecuenciaCardiaca,this.notaEnfermeriaDTO[i].frecuenciaRespiratoria,this.notaEnfermeriaDTO[i].temperatura,this.notaEnfermeriaDTO[i].saturacion,this.notaEnfermeriaDTO[i].glucometria,this.notaEnfermeriaDTO[i].idEnfermera.toString());
        //console.log("Datos de la fecha ",this.pacientesDTO[i].fechaNacimiento);
     }
-    
+    this.guardarLog(this.notaEnfermeria);
     this.notaService.actualizar(id,this.notaEnfermeria).subscribe(
       data => {
-        this.presentToast("Datos actualizados");
+        this.presentToast("Datos actualizados"); 
         let TIME_IN_MS = 2500;
         let hideFooterTimeout = setTimeout( () => {
         this.limpiarCampos();
@@ -128,7 +138,28 @@ export class EditarNotaPage implements OnInit {
         this.presentToast("error al actualizar datos");
       }
     );
-  
+  }
+
+  guardarLog(notaEnfermeria:NotaEnfermeria)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Editar Nota Enfemeria",JSON.stringify(notaEnfermeria),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
   }
 
   async presentToast(mensaje: string) {

@@ -5,10 +5,13 @@ import { ToastController } from '@ionic/angular';
 import { CategoriaDiscapacidadDTO } from 'src/app/models/categoriaDiscapacidadDTO';
 import { GeneroDTO } from 'src/app/models/generoDTO';
 import { GrupoSanguineoDTO } from 'src/app/models/grupoSanguineoDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { Paciente } from 'src/app/models/paciente';
 import { TipoDocumentoDTO } from 'src/app/models/TipoDocumentoIdDTO';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LogService } from 'src/app/services/log.service';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 
 @Component({
   selector: 'app-paciente',
@@ -35,6 +38,7 @@ export class PacientePage implements OnInit {
   mensajeExito = '';
   mensajeError = '';
   texto:string;
+  logRegistro:LogRegistro;
 
   tipoDocumentos: TipoDocumentoDTO[] = [];
   generos: GeneroDTO[] = [];
@@ -48,6 +52,8 @@ export class PacientePage implements OnInit {
     private firestore:FirebaseService,
     private speechRecognition:SpeechRecognition,
     private cd:ChangeDetectorRef,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { 
     this.speechRecognition.requestPermission();
   }
@@ -74,6 +80,7 @@ export class PacientePage implements OnInit {
     if(this.idUsuarioDocumento == null)
     {
     this.paciente = new Paciente(this.nombrePaciente,this.apellidoPaciente,this.numeroIdentificacion,this.idTipoDoc,this.fechaNacimiento,this.direccion,this.telefono,this.idGenero,this.idDiscapacidad,this.idGrupo,this.idEstado);
+    this.guardarLog(this.paciente);
     this.pacienteService.crear(this.paciente).subscribe(
       data => {
         this.presentToast("paciente creado");
@@ -96,6 +103,28 @@ export class PacientePage implements OnInit {
 
   }, TIME_IN_MS);
 
+
+  }
+
+  guardarLog(paciente:Paciente)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Guardar Paciente",JSON.stringify(paciente),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
 
   }
 

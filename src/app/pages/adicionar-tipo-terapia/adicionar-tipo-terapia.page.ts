@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { TipoTerapia } from 'src/app/models/tipoTerapia';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LogService } from 'src/app/services/log.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 import { TerapiaService } from 'src/app/services/terapia.service';
 
 @Component({
@@ -16,12 +19,15 @@ export class AdicionarTipoTerapiaPage implements OnInit {
   nombreTipoTerapia = '';
   tipoTerapia:TipoTerapia;
   idTipoTerapia = '';
+  logRegistro:LogRegistro;
 
   constructor(
     private terapiaService:TerapiaService,
     private router: Router,
     private toastController:ToastController,
-    private firestore: FirebaseService
+    private firestore: FirebaseService,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { }
 
   ngOnInit() {
@@ -38,7 +44,7 @@ export class AdicionarTipoTerapiaPage implements OnInit {
 
       if(this.idTipoTerapia == null) {
         this.tipoTerapia = new TipoTerapia(this.nombreTipoTerapia,);
-        //console.log(this.tipoTerapia);
+        this.guardarLog(this.tipoTerapia);
         this.terapiaService.crearTipoTerapia(this.tipoTerapia).subscribe(
           data => {
             this.presentToast("terapia creada");
@@ -61,6 +67,30 @@ export class AdicionarTipoTerapiaPage implements OnInit {
    
     }, TIME_IN_MS);
   }
+
+
+  guardarLog(tipoTerapia:TipoTerapia)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Guardar Tipo Terapia",JSON.stringify(tipoTerapia),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
+  }
+
 
   async presentToast(mensaje: string) {
     const toast = await this.toastController.create({

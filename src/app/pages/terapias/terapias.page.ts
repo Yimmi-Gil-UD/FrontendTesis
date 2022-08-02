@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { TipoTerapiaDTO } from 'src/app/models/tipoTerapiaDTO';
+import { LogService } from 'src/app/services/log.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 import { TerapiaService } from 'src/app/services/terapia.service';
 
 @Component({
@@ -12,12 +15,15 @@ export class TerapiasPage implements OnInit {
 
   terapias:TipoTerapiaDTO [] = [];
   textoBuscar = '';
+  logRegistro:LogRegistro;
 
   constructor(
     private terapiaService:TerapiaService,
     private toastController:ToastController,
     private alertController:AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private logService:LogService,
+    private restlogin: RestLoginService
   ) { }
 
   ngOnInit() {
@@ -84,6 +90,7 @@ export class TerapiasPage implements OnInit {
 
   EliminarTipoTerapia(id:string):void
   {
+    this.guardarLog(id);
     this.terapiaService.EliminarTipoTerapia(id).subscribe(
       data => {
         this.presentToast("Terapia eliminada");
@@ -93,6 +100,29 @@ export class TerapiasPage implements OnInit {
         this.presentToast("Error al eliminar la terapia");
       }
     );
+  }
+
+  
+  guardarLog(id:string)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Eliminar Tipo Terapia",JSON.stringify(id),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        //this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        //this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log eliminar tipo Terapia");
+      }
+    );
+
   }
 
 

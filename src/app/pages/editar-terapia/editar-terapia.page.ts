@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { EnfermeraDTO } from 'src/app/models/enfermeraDTO';
+import { LogRegistro } from 'src/app/models/logRegistro';
 import { NotaTerapia } from 'src/app/models/notaTerapia';
 import { NotaTerapiaDTO } from 'src/app/models/notaTerapiaDTO';
 import { Paciente } from 'src/app/models/paciente';
@@ -9,7 +10,9 @@ import { PacienteDTO } from 'src/app/models/pacienteDTO';
 import { TipoTerapiaDTO } from 'src/app/models/tipoTerapiaDTO';
 import { EnfermeraService } from 'src/app/services/enfermera.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LogService } from 'src/app/services/log.service';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { RestLoginService } from 'src/app/services/rest-login.service';
 import { TerapiaService } from 'src/app/services/terapia.service';
 
 @Component({
@@ -26,6 +29,7 @@ export class EditarTerapiaPage implements OnInit {
   tipoTerapia:TipoTerapiaDTO[] = [];
   enfermeraDTO:EnfermeraDTO[] = [];
   terapiasDTO:NotaTerapiaDTO[] = [];
+  logRegistro:LogRegistro;
   
 
 
@@ -37,6 +41,9 @@ export class EditarTerapiaPage implements OnInit {
     private router: Router,
     private toastController:ToastController,
     private enfermeraService:EnfermeraService,
+    private logService:LogService,
+    private restlogin: RestLoginService
+    
   ) { }
 
   ngOnInit() {
@@ -144,7 +151,7 @@ export class EditarTerapiaPage implements OnInit {
        this.terapia = new NotaTerapia (this.terapiasDTO[i].idPaciente.toString(),this.terapiasDTO[i].objetivo.toString(),this.terapiasDTO[i].estructuraCorporal.toString(),this.terapiasDTO[i].funcionCorporal.toString(),this.terapiasDTO[i].pronostico.toString(),this.terapiasDTO[i].planTrabajo.toString(),this.terapiasDTO[i].fechaNotaTerapia,this.terapiasDTO[i].horaNotaTerapia.toString(),this.terapiasDTO[i].observacion.toString(),this.terapiasDTO[i].idTipoTerapia.toString(),this.terapiasDTO[i].idEnfermera.toString());
        //console.log("Datos de la fecha ",this.pacientesDTO[i].fechaNacimiento);
     }
-    
+    this.guardarLog(this.terapia);
     this.terapiaService.actualizar(id,this.terapia).subscribe(
       data => {
         this.presentToast("Datos actualizados");
@@ -159,7 +166,29 @@ export class EditarTerapiaPage implements OnInit {
         this.presentToast("error al actualizar datos");
       }
     );
-  
+    
+  }
+
+  guardarLog(terapia:NotaTerapia)
+  {
+    this.logRegistro = new LogRegistro(this.restlogin.getId(),"Editar Nota Terapia",JSON.stringify(terapia),null,"");
+    //console.log("Datos guardados en log: ",this.logRegistro);
+
+    this.logService.crear(this.logRegistro).subscribe(
+      data => {
+        //this.presentToast("Datos actualizados"); 
+        let TIME_IN_MS = 2500;
+        let hideFooterTimeout = setTimeout( () => {
+        this.limpiarCampos();
+        }, TIME_IN_MS);
+        
+        this.regresar();
+      },
+      err => {
+        console.log("error al guardar el log");
+      }
+    );
+
   }
 
   limpiarCampos()
