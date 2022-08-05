@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import * as HighCharts from 'highcharts';
 import { NotaService } from 'src/app/services/nota.service';
 import { PacienteService } from 'src/app/services/paciente.service';
@@ -27,7 +28,8 @@ export class ReportesAdminPage implements OnInit {
   constructor(
     private pacienteService:PacienteService,
     private terapiaService:TerapiaService,
-    private notaService:NotaService
+    private notaService:NotaService,
+    private navCtrl: NavController
   ) { 
     
   }
@@ -191,6 +193,10 @@ export class ReportesAdminPage implements OnInit {
     
     this.discapacidades();
     this.generos();
+  }
+
+  goToLog(){
+    this.navCtrl.navigateForward('/registros-log');
   }
 
 

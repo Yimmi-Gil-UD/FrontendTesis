@@ -1,0 +1,39 @@
+<app-header title="Historial de log"></app-header>
+
+<ion-content>
+    
+  <ion-toolbar>
+    <br>
+    <ion-title>Seleccione parámetro búsqueda</ion-title>
+    <ion-list>
+      <ion-item>
+        <ion-select interface="popover" placeholder="Select campo" [(ngModel)]="itemBusqueda">
+          <ion-select-option value="id">Id registro</ion-select-option>
+          <ion-select-option value="usuarioId">Usuario</ion-select-option>
+          <ion-select-option value="accion">Acción</ion-select-option>
+          <ion-select-option value="cambio">Cambio</ion-select-option>
+          <ion-select-option value="fecha">Fecha</ion-select-option>
+          <ion-select-option value="hora">Hora</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated (ionChange)="buscar($event)" placeholder="Buscar por: {{itemBusqueda}}"></ion-searchbar>
+  </ion-toolbar>
+  <div class="ion-text-center ion-margin-bottom ion-margin-top">
+        <h3>Registro de cambios efectuados</h3>
+    </div>
+    <ion-card *ngFor ="let registro of registros | filtro:textoBuscar: itemBusqueda">    
+    <ion-item-sliding>
+          <ion-label><b>Id registro:</b>{{registro.id}} 
+          <br><b>Id usuario:</b> {{registro.usuarioId}}
+          <br><b>Acción realizada:</b> {{registro.accion}}
+          <br><b>Cambio Efectuado:</b> {{registro.cambio}}
+          <br><b>Fecha:</b> {{registro.fecha.split('T')[0]}}
+          <br><b>Hora:</b> {{registro.hora}}
+          </ion-label>
+      </ion-item-sliding>
+   </ion-card>
+</ion-content>
+

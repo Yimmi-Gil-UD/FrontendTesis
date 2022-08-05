@@ -52,7 +52,9 @@
               <ion-card-subtitle>Log del sistema</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-                  <ion-button>DESCARGAR REGISTRO</ion-button>
+              <div class="center">
+                <ion-button (click)="goToLog()" routerDirection="forward">Revisar Log</ion-button>
+              </div>
             </ion-card-content>
           </ion-card>
 

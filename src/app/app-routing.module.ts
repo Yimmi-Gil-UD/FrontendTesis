@@ -116,6 +116,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/adicionar-tipo-terapia/adicionar-tipo-terapia.module').then( m => m.AdicionarTipoTerapiaPageModule)
   },
   {
+    path: 'registros-log',
+    loadChildren: () => import('./pages/registros-log/registros-log.module').then( m => m.RegistrosLogPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
