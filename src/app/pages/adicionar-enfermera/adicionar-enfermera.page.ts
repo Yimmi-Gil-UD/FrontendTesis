@@ -67,7 +67,7 @@ export class AdicionarEnfermeraPage implements OnInit {
     this.idUsuarioDocumento = null;
     this.getValidacionCorreo(this.correo);
     this.getValidacionDocumento(this.identificacion);
-
+    this.rol = 'Gu2ZrrJHSBpmz5gIQnPH';
 
 
     let TIME_IN_MS = 2500;

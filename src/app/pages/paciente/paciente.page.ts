@@ -71,7 +71,7 @@ export class PacientePage implements OnInit {
 
     this.idUsuarioDocumento = null;
     this.getValidacionDocumento(this.numeroIdentificacion);
-
+    this.idEstado = 'OY3rHoXKun6Y2MFr61JN';
     let TIME_IN_MS = 2500;
     let hideFooterTimeout = setTimeout( () => {
 
