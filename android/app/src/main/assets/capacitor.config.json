@@ -1,6 +1,6 @@
 {
 	"appId": "com.example.app",
-	"appName": "APNET NURSE",
+	"appName": "note nurse",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"cordova": {
