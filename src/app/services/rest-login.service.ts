@@ -9,9 +9,13 @@ const rolResult = 'rolResult';
 })
 export class RestLoginService {
 
+// wifi
   // IP DEL SERVIDOR LOCAL 
   //ip = 'http://localhost';
-  ip = 'http://192.168.20.38';
+  //ip = 'http://192.168.20.38';
+
+ // dato celular 
+  ip = 'http://192.168.43.56';
 
   constructor() { }
 
